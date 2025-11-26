@@ -41,7 +41,13 @@ export function UserActions({ className, isMobile = false }: UserActionsProps): 
 
   if (isAuthenticated) {
     return (
-      <div className={cn('flex items-center', isMobile ? 'flex-col space-y-3' : 'space-x-3', className)}>
+      <div
+        className={cn(
+          'flex items-center',
+          isMobile ? 'flex-col space-y-3' : 'space-x-3',
+          className
+        )}
+      >
         <Link href="/mypage">
           <Button
             variant="outline"
@@ -59,7 +65,9 @@ export function UserActions({ className, isMobile = false }: UserActionsProps): 
   }
 
   return (
-    <div className={cn('flex items-center', isMobile ? 'flex-col space-y-3' : 'space-x-3', className)}>
+    <div
+      className={cn('flex items-center', isMobile ? 'flex-col space-y-3' : 'space-x-3', className)}
+    >
       <Link href="/signup">
         <GradientButton
           className={cn(

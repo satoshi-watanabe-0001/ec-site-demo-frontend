@@ -47,7 +47,7 @@ export function Header({ className }: HeaderProps): React.ReactElement {
    * メニューの開閉を切り替える
    */
   const toggleMenu = useCallback(() => {
-    setIsMenuOpen((prev) => !prev)
+    setIsMenuOpen(prev => !prev)
   }, [])
 
   /**

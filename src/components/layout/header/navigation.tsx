@@ -59,9 +59,7 @@ function NavLink({
       onClick={onItemClick}
       className={cn(
         'transition-colors duration-200 font-medium',
-        isMobile
-          ? 'py-2 px-4 rounded-lg hover:bg-slate-700 block'
-          : 'hover:text-white',
+        isMobile ? 'py-2 px-4 rounded-lg hover:bg-slate-700 block' : 'hover:text-white',
         isActive ? 'text-white' : 'text-gray-300'
       )}
       aria-current={isActive ? 'page' : undefined}
@@ -94,13 +92,8 @@ export function Navigation({
       )}
       aria-label="メインナビゲーション"
     >
-      {items.map((item) => (
-        <NavLink
-          key={item.href}
-          item={item}
-          isMobile={isMobile}
-          onItemClick={onItemClick}
-        />
+      {items.map(item => (
+        <NavLink key={item.href} item={item} isMobile={isMobile} onItemClick={onItemClick} />
       ))}
     </nav>
   )
