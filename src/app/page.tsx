@@ -28,10 +28,7 @@ function HeroSection(): React.ReactElement {
       aria-labelledby="hero-title"
     >
       <div className="container mx-auto px-4 text-center">
-        <h1
-          id="hero-title"
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-        >
+        <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
           シンプルで、おトク。
           <br />
           それが ahamo。
@@ -45,19 +42,14 @@ function HeroSection(): React.ReactElement {
           <GradientButton size="lg" className="bg-white text-orange-500 hover:bg-gray-100">
             今すぐ申し込む
           </GradientButton>
-          <button
-            className="inline-flex items-center justify-center px-12 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white bg-transparent hover:bg-white/10 transition-all duration-300"
-          >
+          <button className="inline-flex items-center justify-center px-12 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white bg-transparent hover:bg-white/10 transition-all duration-300">
             料金シミュレーション
           </button>
         </div>
       </div>
 
       {/* 装飾的な背景要素 */}
-      <div
-        className="absolute inset-0 overflow-hidden pointer-events-none"
-        aria-hidden="true"
-      >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="absolute -top-1/2 -right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
       </div>

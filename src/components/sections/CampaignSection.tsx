@@ -28,7 +28,8 @@ const mockCampaigns: Campaign[] = [
     startDate: '2025-01-01',
     endDate: '2025-03-31',
     category: '新規契約',
-    description: '他社からの乗り換え（MNP）または新規契約で対象の5G対応スマートフォンをご購入いただくと、機種代金から最大22,000円割引！',
+    description:
+      '他社からの乗り換え（MNP）または新規契約で対象の5G対応スマートフォンをご購入いただくと、機種代金から最大22,000円割引！',
     detailUrl: '/campaigns/5g-welcome',
   },
   {
@@ -40,7 +41,8 @@ const mockCampaigns: Campaign[] = [
     startDate: '2025-01-01',
     endDate: '2025-06-30',
     category: 'オプション',
-    description: 'ahamoをご利用中のお客様がd払いをご利用いただくと、dポイントが最大4,000ポイント還元されます。',
+    description:
+      'ahamoをご利用中のお客様がd払いをご利用いただくと、dポイントが最大4,000ポイント還元されます。',
     detailUrl: '/campaigns/point-katsudo',
   },
   {
@@ -51,7 +53,8 @@ const mockCampaigns: Campaign[] = [
     startDate: '2025-02-01',
     endDate: '2025-04-30',
     category: 'オプション',
-    description: '初めて大盛りオプションをお申し込みのお客様は、1ヶ月分のオプション料金が無料になります。',
+    description:
+      '初めて大盛りオプションをお申し込みのお客様は、1ヶ月分のオプション料金が無料になります。',
     detailUrl: '/campaigns/oomori-free',
   },
   {
@@ -63,7 +66,8 @@ const mockCampaigns: Campaign[] = [
     startDate: '2025-01-15',
     endDate: '2025-03-15',
     category: '機種変更',
-    description: 'キャンペーン期間中にGalaxyシリーズをご購入いただくと、dポイント5,000ポイントをプレゼント！',
+    description:
+      'キャンペーン期間中にGalaxyシリーズをご購入いただくと、dポイント5,000ポイントをプレゼント！',
     detailUrl: '/campaigns/galaxy-campaign',
   },
 ]
@@ -121,7 +125,8 @@ function CampaignCard({ campaign, isActive }: CampaignCardProps): React.ReactEle
             <p className="text-gray-600 mb-3 line-clamp-2">{campaign.description}</p>
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-500">
-                期間: {formatCampaignDate(campaign.startDate)} 〜 {formatCampaignDate(campaign.endDate)}
+                期間: {formatCampaignDate(campaign.startDate)} 〜{' '}
+                {formatCampaignDate(campaign.endDate)}
               </span>
               <span className="text-orange-500 font-medium group-hover:underline">
                 詳細を見る →
@@ -146,12 +151,12 @@ export function CampaignSection(): React.ReactElement {
 
   // 次のスライドへ
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % campaigns.length)
+    setCurrentIndex(prev => (prev + 1) % campaigns.length)
   }, [campaigns.length])
 
   // 前のスライドへ
   const goToPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + campaigns.length) % campaigns.length)
+    setCurrentIndex(prev => (prev - 1 + campaigns.length) % campaigns.length)
   }, [campaigns.length])
 
   // 特定のスライドへ
@@ -259,9 +264,7 @@ export function CampaignSection(): React.ReactElement {
                 }}
                 className={cn(
                   'w-3 h-3 rounded-full transition-all',
-                  index === currentIndex
-                    ? 'bg-orange-500 w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                  index === currentIndex ? 'bg-orange-500 w-8' : 'bg-gray-300 hover:bg-gray-400'
                 )}
                 role="tab"
                 aria-selected={index === currentIndex}

@@ -173,7 +173,10 @@ function OptionCard({ option, className }: OptionCardProps): React.ReactElement 
         </p>
       </div>
 
-      <Button variant="outline" className="w-full border-orange-500 text-orange-500 hover:bg-orange-50">
+      <Button
+        variant="outline"
+        className="w-full border-orange-500 text-orange-500 hover:bg-orange-50"
+      >
         オプションを追加
       </Button>
     </article>

@@ -112,12 +112,7 @@ function SupportCard({ link }: SupportCardProps): React.ReactElement {
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </div>
@@ -147,7 +142,7 @@ export function SupportSection(): React.ReactElement {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {supportLinks.map((link) => (
+          {supportLinks.map(link => (
             <SupportCard key={link.id} link={link} />
           ))}
         </div>
@@ -155,15 +150,9 @@ export function SupportSection(): React.ReactElement {
         {/* 追加のサポート情報 */}
         <div className="mt-12 text-center">
           <div className="inline-block bg-gray-100 rounded-2xl p-6 md:p-8">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">
-              お電話でのお問い合わせ
-            </h3>
-            <p className="text-3xl font-bold text-orange-500 mb-2">
-              0120-XXX-XXX
-            </p>
-            <p className="text-sm text-gray-600">
-              受付時間: 9:00〜20:00（年中無休）
-            </p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">お電話でのお問い合わせ</h3>
+            <p className="text-3xl font-bold text-orange-500 mb-2">0120-XXX-XXX</p>
+            <p className="text-sm text-gray-600">受付時間: 9:00〜20:00（年中無休）</p>
           </div>
         </div>
       </div>

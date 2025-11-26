@@ -22,7 +22,8 @@ const mockNews: NewsItem[] = [
     title: 'ahamo大盛りオプション 1ヶ月無料キャンペーン開始のお知らせ',
     publishedAt: '2025-02-01',
     category: 'キャンペーン',
-    summary: '2025年2月1日より、大盛りオプションを初めてお申し込みのお客様を対象に、1ヶ月分のオプション料金が無料になるキャンペーンを開始いたします。',
+    summary:
+      '2025年2月1日より、大盛りオプションを初めてお申し込みのお客様を対象に、1ヶ月分のオプション料金が無料になるキャンペーンを開始いたします。',
     detailUrl: '/news/oomori-campaign',
   },
   {
@@ -54,7 +55,8 @@ const mockNews: NewsItem[] = [
     title: 'dポイント還元率アップキャンペーン実施中',
     publishedAt: '2025-01-05',
     category: 'キャンペーン',
-    summary: 'dカード GOLDでahamo料金をお支払いいただくと、通常10%のところ15%還元になるキャンペーンを実施中です。',
+    summary:
+      'dカード GOLDでahamo料金をお支払いいただくと、通常10%のところ15%還元になるキャンペーンを実施中です。',
     detailUrl: '/news/dpoint-campaign',
   },
 ]
@@ -99,12 +101,12 @@ function NewsItemCard({ news }: NewsItemCardProps): React.ReactElement {
       className="group border-b border-gray-200 last:border-b-0 py-4 first:pt-0 last:pb-0"
       aria-labelledby={`news-${news.id}-title`}
     >
-      <Link href={news.detailUrl} className="block hover:bg-gray-50 -mx-4 px-4 py-2 rounded-lg transition-colors">
+      <Link
+        href={news.detailUrl}
+        className="block hover:bg-gray-50 -mx-4 px-4 py-2 rounded-lg transition-colors"
+      >
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-2">
-          <time
-            dateTime={news.publishedAt}
-            className="text-sm text-gray-500 flex-shrink-0"
-          >
+          <time dateTime={news.publishedAt} className="text-sm text-gray-500 flex-shrink-0">
             {formatNewsDate(news.publishedAt)}
           </time>
           <span
@@ -125,9 +127,7 @@ function NewsItemCard({ news }: NewsItemCardProps): React.ReactElement {
         </h3>
 
         {news.summary && (
-          <p className="text-sm text-gray-600 mt-2 line-clamp-2 hidden md:block">
-            {news.summary}
-          </p>
+          <p className="text-sm text-gray-600 mt-2 line-clamp-2 hidden md:block">{news.summary}</p>
         )}
       </Link>
     </article>
@@ -146,10 +146,7 @@ export function NewsSection(): React.ReactElement {
     <section className="py-16 md:py-24 bg-gray-50" aria-labelledby="news-section-title">
       <div className="container mx-auto px-4">
         <header className="text-center mb-12">
-          <h2
-            id="news-section-title"
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-          >
+          <h2 id="news-section-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             お知らせ・ニュース
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -159,7 +156,7 @@ export function NewsSection(): React.ReactElement {
 
         <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 md:p-8">
           <div className="divide-y divide-gray-200">
-            {news.map((item) => (
+            {news.map(item => (
               <NewsItemCard key={item.id} news={item} />
             ))}
           </div>

@@ -130,7 +130,7 @@ export const marketingHandlers = [
 
     let filteredCampaigns = mockCampaigns
     if (category) {
-      filteredCampaigns = mockCampaigns.filter((c) => c.category === category)
+      filteredCampaigns = mockCampaigns.filter(c => c.category === category)
     }
 
     const response: CampaignsResponse = {
@@ -148,7 +148,7 @@ export const marketingHandlers = [
 
     let filteredNews = mockNews
     if (category) {
-      filteredNews = mockNews.filter((n) => n.category === category)
+      filteredNews = mockNews.filter(n => n.category === category)
     }
 
     const response: NewsResponse = {

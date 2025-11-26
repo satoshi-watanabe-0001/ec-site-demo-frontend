@@ -121,7 +121,7 @@ function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
         {/* ラベル */}
         {device.labels.length > 0 && (
           <div className="absolute top-3 left-3 z-10 flex gap-2">
-            {device.labels.map((label) => (
+            {device.labels.map(label => (
               <span
                 key={label}
                 className={cn(
@@ -144,7 +144,7 @@ function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
               fill
               className="object-contain"
               sizes="(max-width: 768px) 128px, 160px"
-              onError={(e) => {
+              onError={e => {
                 // 画像が見つからない場合のフォールバック
                 const target = e.target as HTMLImageElement
                 target.src = '/images/devices/placeholder.png'
@@ -178,9 +178,7 @@ function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
             )}
           </div>
 
-          {!device.inStock && (
-            <p className="text-sm text-red-500 mt-2">現在在庫切れ</p>
-          )}
+          {!device.inStock && <p className="text-sm text-red-500 mt-2">現在在庫切れ</p>}
         </div>
       </Link>
     </article>
@@ -212,7 +210,7 @@ export function PopularDevicesSection(): React.ReactElement {
         </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {devices.map((device) => (
+          {devices.map(device => (
             <DeviceCard key={device.id} device={device} />
           ))}
         </div>

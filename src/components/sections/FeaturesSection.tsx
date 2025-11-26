@@ -93,10 +93,7 @@ function FeatureCard({ feature }: FeatureCardProps): React.ReactElement {
       </div>
 
       {/* タイトル */}
-      <h3
-        id={`feature-${feature.id}-title`}
-        className="text-xl font-bold text-gray-900 mb-2"
-      >
+      <h3 id={`feature-${feature.id}-title`} className="text-xl font-bold text-gray-900 mb-2">
         {feature.title}
       </h3>
 
@@ -136,13 +133,13 @@ export function FeaturesSection(): React.ReactElement {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {features.slice(0, 3).map((feature) => (
+          {features.slice(0, 3).map(feature => (
             <FeatureCard key={feature.id} feature={feature} />
           ))}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-6">
-          {features.slice(3).map((feature) => (
+          {features.slice(3).map(feature => (
             <FeatureCard key={feature.id} feature={feature} />
           ))}
         </div>
