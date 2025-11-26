@@ -16,7 +16,8 @@ import type { Category } from '@/types/category'
  */
 export const metadata: Metadata = {
   title: '製品 | ahamo',
-  description: 'ahamoで取り扱っている製品カテゴリ一覧。iPhone、Android、ドコモ認定リユース品、アクセサリをご覧いただけます。',
+  description:
+    'ahamoで取り扱っている製品カテゴリ一覧。iPhone、Android、ドコモ認定リユース品、アクセサリをご覧いただけます。',
 }
 
 /**
