@@ -1,3 +1,11 @@
-import { setupWorker } from 'msw/browser'
+/**
+ * @fileoverview MSWブラウザワーカー設定
+ * @module mocks/browser
+ *
+ * 開発環境でAPIリクエストをインターセプトするためのMSWワーカー設定。
+ */
 
-export const worker = setupWorker()
+import { setupWorker } from 'msw/browser'
+import { handlers } from './handlers'
+
+export const worker = setupWorker(...handlers)
