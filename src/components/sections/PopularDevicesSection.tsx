@@ -129,9 +129,7 @@ function ColorDots({ colors, maxVisible = 4 }: ColorDotsProps): React.ReactEleme
           title={color.name}
         />
       ))}
-      {remainingCount > 0 && (
-        <span className="text-xs text-gray-500">+{remainingCount}</span>
-      )}
+      {remainingCount > 0 && <span className="text-xs text-gray-500">+{remainingCount}</span>}
     </div>
   )
 }

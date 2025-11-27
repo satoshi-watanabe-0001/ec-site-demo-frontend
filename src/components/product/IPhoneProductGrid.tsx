@@ -159,9 +159,7 @@ function ColorDots({ colors, maxVisible = 5 }: ColorDotsProps): React.ReactEleme
           title={color.name}
         />
       ))}
-      {remainingCount > 0 && (
-        <span className="text-xs text-gray-500">+{remainingCount}</span>
-      )}
+      {remainingCount > 0 && <span className="text-xs text-gray-500">+{remainingCount}</span>}
     </div>
   )
 }
@@ -225,10 +223,7 @@ function IPhoneCard({ device }: IPhoneCardProps): React.ReactElement {
         <div className="p-4 space-y-3">
           <div>
             <p className="text-sm text-gray-500 mb-1">{device.manufacturer}</p>
-            <h3
-              id={`device-${device.id}-title`}
-              className="text-lg font-bold text-gray-900 mb-1"
-            >
+            <h3 id={`device-${device.id}-title`} className="text-lg font-bold text-gray-900 mb-1">
               {device.name}
             </h3>
           </div>
@@ -239,10 +234,7 @@ function IPhoneCard({ device }: IPhoneCardProps): React.ReactElement {
               <span>容量:</span>
               <div className="flex gap-1.5 flex-wrap">
                 {device.storageOptions.map((storage, index) => (
-                  <span
-                    key={index}
-                    className="px-2 py-0.5 bg-gray-100 rounded text-xs"
-                  >
+                  <span key={index} className="px-2 py-0.5 bg-gray-100 rounded text-xs">
                     {storage}
                   </span>
                 ))}
@@ -315,9 +307,7 @@ interface IPhoneProductGridProps {
  * @param props - グリッドのプロパティ
  * @returns iPhoneプロダクトグリッド要素
  */
-export function IPhoneProductGrid({
-  className,
-}: IPhoneProductGridProps): React.ReactElement {
+export function IPhoneProductGrid({ className }: IPhoneProductGridProps): React.ReactElement {
   const [sortBy, setSortBy] = useState<'name' | 'price'>('name')
   const devices = mockIPhoneDevices
 

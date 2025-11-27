@@ -27,9 +27,7 @@ interface IPhoneCampaignBannerProps {
  * @param props - バナーのプロパティ
  * @returns キャンペーンバナー要素
  */
-export function IPhoneCampaignBanner({
-  className,
-}: IPhoneCampaignBannerProps): React.ReactElement {
+export function IPhoneCampaignBanner({ className }: IPhoneCampaignBannerProps): React.ReactElement {
   return (
     <div
       className={cn(
