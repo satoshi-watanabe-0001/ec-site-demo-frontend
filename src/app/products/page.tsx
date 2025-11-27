@@ -29,18 +29,21 @@ const CATEGORIES: Category[] = [
   {
     id: 1,
     name: 'iPhone',
+    slug: 'iphone',
     imageUrl: '/images/categories/iphone.jpg',
     displayOrder: 1,
   },
   {
     id: 2,
     name: 'Android',
+    slug: 'android',
     imageUrl: '/images/categories/android.jpg',
     displayOrder: 2,
   },
   {
     id: 3,
     name: 'ドコモ認定リユース品',
+    slug: 'docomo-certified',
     imageUrl: '/images/categories/refurbished.jpg',
     description: '30日以内無料交換可能',
     displayOrder: 3,
@@ -48,6 +51,7 @@ const CATEGORIES: Category[] = [
   {
     id: 4,
     name: 'アクセサリ',
+    slug: 'accessories',
     imageUrl: '/images/categories/accessories.jpg',
     displayOrder: 4,
   },
