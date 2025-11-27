@@ -10,7 +10,6 @@
 
 import { mapProductCardDtoToDevice, mapProductCardDtosToDevices } from '../productMapper'
 import type { ProductCardDto } from '@/types/category'
-import type { Device } from '@/types/device'
 
 describe('productMapper', () => {
   describe('mapProductCardDtoToDevice', () => {
