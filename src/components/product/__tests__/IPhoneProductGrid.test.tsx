@@ -143,14 +143,21 @@ describe('IPhoneProductGrid', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     // デフォルトでは成功レスポンスを返す
+    // TanStack QueryのUseQueryResultは多くのプロパティを持つため、
+    // テストに必要なプロパティのみをモックし、unknown経由でキャストする
     mockUseCategoryProducts.mockReturnValue({
       data: mockCategoryResponse,
       isLoading: false,
       error: null,
       isError: false,
       isSuccess: true,
+      isPending: false,
+      isFetching: false,
+      isRefetching: false,
       refetch: jest.fn(),
-    } as ReturnType<typeof useCategoryProducts>)
+      status: 'success',
+      fetchStatus: 'idle',
+    } as unknown as ReturnType<typeof useCategoryProducts>)
   })
   describe('レンダリング', () => {
     test('IPhoneProductGrid_WithDefaultProps_ShouldRenderProductCount', () => {
@@ -374,8 +381,13 @@ describe('IPhoneProductGrid', () => {
         error: null,
         isError: false,
         isSuccess: false,
+        isPending: true,
+        isFetching: true,
+        isRefetching: false,
         refetch: jest.fn(),
-      } as ReturnType<typeof useCategoryProducts>)
+        status: 'pending',
+        fetchStatus: 'fetching',
+      } as unknown as ReturnType<typeof useCategoryProducts>)
 
       // Act
       render(<IPhoneProductGrid />)
@@ -394,8 +406,13 @@ describe('IPhoneProductGrid', () => {
         error: new Error('API error'),
         isError: true,
         isSuccess: false,
+        isPending: false,
+        isFetching: false,
+        isRefetching: false,
         refetch: jest.fn(),
-      } as ReturnType<typeof useCategoryProducts>)
+        status: 'error',
+        fetchStatus: 'idle',
+      } as unknown as ReturnType<typeof useCategoryProducts>)
 
       // Act
       render(<IPhoneProductGrid />)
