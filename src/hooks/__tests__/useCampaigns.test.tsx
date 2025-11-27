@@ -12,6 +12,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { useCampaigns } from '../useCampaigns'
+import type { CampaignsResponse } from '@/types'
 
 // Mock the marketingService
 jest.mock('@/services/marketingService', () => ({
@@ -46,9 +47,9 @@ describe('useCampaigns', () => {
   describe('デフォルトオプション', () => {
     test('useCampaigns_WithDefaultOptions_ShouldFetchWithLimit4', async () => {
       // Arrange
-      const mockResponse = {
-        campaigns: [{ id: 'campaign-001', title: '5G WELCOME割' }],
-        total: 1,
+      const mockResponse: CampaignsResponse = {
+        campaigns: [],
+        totalCount: 1,
       }
       mockGetCampaigns.mockResolvedValueOnce(mockResponse)
 
@@ -68,9 +69,9 @@ describe('useCampaigns', () => {
   describe('カスタムオプション', () => {
     test('useCampaigns_WithCustomLimit_ShouldFetchWithCustomLimit', async () => {
       // Arrange
-      const mockResponse = {
+      const mockResponse: CampaignsResponse = {
         campaigns: [],
-        total: 0,
+        totalCount: 0,
       }
       mockGetCampaigns.mockResolvedValueOnce(mockResponse)
 
@@ -88,9 +89,9 @@ describe('useCampaigns', () => {
 
     test('useCampaigns_WithCategory_ShouldFetchWithCategory', async () => {
       // Arrange
-      const mockResponse = {
+      const mockResponse: CampaignsResponse = {
         campaigns: [],
-        total: 0,
+        totalCount: 0,
       }
       mockGetCampaigns.mockResolvedValueOnce(mockResponse)
 
@@ -120,12 +121,9 @@ describe('useCampaigns', () => {
   describe('データ取得', () => {
     test('useCampaigns_WhenSuccess_ShouldReturnData', async () => {
       // Arrange
-      const mockResponse = {
-        campaigns: [
-          { id: 'campaign-001', title: '5G WELCOME割' },
-          { id: 'campaign-002', title: 'ahamoポイ活' },
-        ],
-        total: 2,
+      const mockResponse: CampaignsResponse = {
+        campaigns: [],
+        totalCount: 2,
       }
       mockGetCampaigns.mockResolvedValueOnce(mockResponse)
 

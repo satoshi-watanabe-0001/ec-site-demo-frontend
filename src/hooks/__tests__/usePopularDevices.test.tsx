@@ -12,6 +12,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { usePopularDevices } from '../usePopularDevices'
+import type { PopularDevicesResponse } from '@/types'
 
 // Mock the productService
 jest.mock('@/services/productService', () => ({
@@ -46,9 +47,9 @@ describe('usePopularDevices', () => {
   describe('デフォルトオプション', () => {
     test('usePopularDevices_WithDefaultOptions_ShouldFetchWithLimit6', async () => {
       // Arrange
-      const mockResponse = {
-        devices: [{ id: 'device-001', name: 'iPhone 16 Pro' }],
-        total: 1,
+      const mockResponse: PopularDevicesResponse = {
+        devices: [],
+        totalCount: 1,
       }
       mockGetPopularDevices.mockResolvedValueOnce(mockResponse)
 
@@ -68,9 +69,9 @@ describe('usePopularDevices', () => {
   describe('カスタムオプション', () => {
     test('usePopularDevices_WithCustomLimit_ShouldFetchWithCustomLimit', async () => {
       // Arrange
-      const mockResponse = {
+      const mockResponse: PopularDevicesResponse = {
         devices: [],
-        total: 0,
+        totalCount: 0,
       }
       mockGetPopularDevices.mockResolvedValueOnce(mockResponse)
 
@@ -100,12 +101,9 @@ describe('usePopularDevices', () => {
   describe('データ取得', () => {
     test('usePopularDevices_WhenSuccess_ShouldReturnData', async () => {
       // Arrange
-      const mockResponse = {
-        devices: [
-          { id: 'device-001', name: 'iPhone 16 Pro' },
-          { id: 'device-002', name: 'iPhone 16' },
-        ],
-        total: 2,
+      const mockResponse: PopularDevicesResponse = {
+        devices: [],
+        totalCount: 2,
       }
       mockGetPopularDevices.mockResolvedValueOnce(mockResponse)
 

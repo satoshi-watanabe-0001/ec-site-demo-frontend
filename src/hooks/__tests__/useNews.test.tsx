@@ -12,6 +12,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { useNews } from '../useNews'
+import type { NewsResponse } from '@/types'
 
 // Mock the marketingService
 jest.mock('@/services/marketingService', () => ({
@@ -46,9 +47,9 @@ describe('useNews', () => {
   describe('デフォルトオプション', () => {
     test('useNews_WithDefaultOptions_ShouldFetchWithLimit5', async () => {
       // Arrange
-      const mockResponse = {
-        news: [{ id: 'news-001', title: 'お知らせ1' }],
-        total: 1,
+      const mockResponse: NewsResponse = {
+        news: [],
+        totalCount: 1,
       }
       mockGetNews.mockResolvedValueOnce(mockResponse)
 
@@ -68,9 +69,9 @@ describe('useNews', () => {
   describe('カスタムオプション', () => {
     test('useNews_WithCustomLimit_ShouldFetchWithCustomLimit', async () => {
       // Arrange
-      const mockResponse = {
+      const mockResponse: NewsResponse = {
         news: [],
-        total: 0,
+        totalCount: 0,
       }
       mockGetNews.mockResolvedValueOnce(mockResponse)
 
@@ -88,9 +89,9 @@ describe('useNews', () => {
 
     test('useNews_WithCategory_ShouldFetchWithCategory', async () => {
       // Arrange
-      const mockResponse = {
+      const mockResponse: NewsResponse = {
         news: [],
-        total: 0,
+        totalCount: 0,
       }
       mockGetNews.mockResolvedValueOnce(mockResponse)
 
@@ -120,12 +121,9 @@ describe('useNews', () => {
   describe('データ取得', () => {
     test('useNews_WhenSuccess_ShouldReturnData', async () => {
       // Arrange
-      const mockResponse = {
-        news: [
-          { id: 'news-001', title: 'お知らせ1' },
-          { id: 'news-002', title: 'お知らせ2' },
-        ],
-        total: 2,
+      const mockResponse: NewsResponse = {
+        news: [],
+        totalCount: 2,
       }
       mockGetNews.mockResolvedValueOnce(mockResponse)
 
