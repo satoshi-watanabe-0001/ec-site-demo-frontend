@@ -12,7 +12,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import type { Device, DeviceLabel } from '@/types'
+import type { Device, DeviceLabel, ColorOption } from '@/types'
 
 /**
  * モック用人気端末データ
@@ -102,6 +102,39 @@ function getLabelColor(label: DeviceLabel): string {
 }
 
 /**
+ * カラードットコンポーネントのProps
+ */
+interface ColorDotsProps {
+  /** カラーオプション配列 */
+  colors: ColorOption[]
+  /** 表示する最大数 */
+  maxVisible?: number
+}
+
+/**
+ * カラードットコンポーネント
+ * カラーオプションを小さな円で表示
+ */
+function ColorDots({ colors, maxVisible = 4 }: ColorDotsProps): React.ReactElement {
+  const visibleColors = colors.slice(0, maxVisible)
+  const remainingCount = colors.length - maxVisible
+
+  return (
+    <div className="flex items-center gap-1">
+      {visibleColors.map((color, index) => (
+        <div
+          key={index}
+          className="w-3 h-3 rounded-full border border-gray-300"
+          style={{ backgroundColor: color.hex }}
+          title={color.name}
+        />
+      ))}
+      {remainingCount > 0 && <span className="text-xs text-gray-500">+{remainingCount}</span>}
+    </div>
+  )
+}
+
+/**
  * 端末カードのProps
  */
 interface DeviceCardProps {
@@ -154,20 +187,45 @@ function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
         </div>
 
         {/* 端末情報 */}
-        <div className="p-4">
+        <div className="p-4 space-y-2">
           <p className="text-sm text-gray-500 mb-1">{device.manufacturer}</p>
           <h3
             id={`device-${device.id}-title`}
-            className="text-lg font-bold text-gray-900 mb-2 line-clamp-2"
+            className="text-lg font-bold text-gray-900 mb-1 line-clamp-2"
           >
             {device.name}
           </h3>
 
           {device.description && (
-            <p className="text-sm text-gray-600 mb-3 line-clamp-2">{device.description}</p>
+            <p className="text-sm text-gray-600 mb-2 line-clamp-2">{device.description}</p>
           )}
 
-          <div className="flex items-baseline gap-2">
+          {/* ストレージオプション（オプション） */}
+          {device.storageOptions && device.storageOptions.length > 0 && (
+            <div className="flex items-center gap-1.5 text-xs text-gray-600">
+              <span>容量:</span>
+              <div className="flex gap-1 flex-wrap">
+                {device.storageOptions.slice(0, 3).map((storage, index) => (
+                  <span key={index} className="px-1.5 py-0.5 bg-gray-100 rounded">
+                    {storage}
+                  </span>
+                ))}
+                {device.storageOptions.length > 3 && (
+                  <span className="text-gray-500">+{device.storageOptions.length - 3}</span>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* カラーオプション（オプション） */}
+          {device.colorOptions && device.colorOptions.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-gray-600">カラー:</span>
+              <ColorDots colors={device.colorOptions} maxVisible={4} />
+            </div>
+          )}
+
+          <div className="flex items-baseline gap-2 pt-1">
             <span className="text-xl font-bold text-gray-900">
               {device.price.toLocaleString()}円
             </span>
@@ -177,6 +235,13 @@ function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
               </span>
             )}
           </div>
+
+          {/* 月額料金（オプション） */}
+          {device.monthlyPayment && (
+            <p className="text-sm text-gray-600">
+              月々{device.monthlyPayment.toLocaleString()}円〜
+            </p>
+          )}
 
           {!device.inStock && <p className="text-sm text-red-500 mt-2">現在在庫切れ</p>}
         </div>

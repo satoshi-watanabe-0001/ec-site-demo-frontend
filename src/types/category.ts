@@ -16,6 +16,8 @@ export interface Category {
   id: number
   /** カテゴリ名 */
   name: string
+  /** URLスラッグ（例: 'iphone', 'android'） */
+  slug: string
   /** カテゴリ画像のURL */
   imageUrl: string
   /** カテゴリの説明（オプション） */

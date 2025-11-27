@@ -6,3 +6,5 @@
  */
 
 export { CategoryCard } from './category-card'
+export { IPhoneCampaignBanner } from './IPhoneCampaignBanner'
+export { IPhoneProductGrid } from './IPhoneProductGrid'
