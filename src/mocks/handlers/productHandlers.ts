@@ -7,7 +7,12 @@
  */
 
 import { http, HttpResponse } from 'msw'
-import type { Device, PopularDevicesResponse, CategoryDetailResponse, ProductCardDto } from '@/types'
+import type {
+  Device,
+  PopularDevicesResponse,
+  CategoryDetailResponse,
+  ProductCardDto,
+} from '@/types'
 
 /**
  * モック用人気端末データ
