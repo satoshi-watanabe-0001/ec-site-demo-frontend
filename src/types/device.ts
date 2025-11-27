@@ -11,6 +11,16 @@
 export type DeviceLabel = 'NEW' | '人気' | 'おすすめ' | '在庫わずか'
 
 /**
+ * カラーオプションの型定義
+ */
+export interface ColorOption {
+  /** カラー名 */
+  name: string
+  /** カラーコード（16進数） */
+  hex: string
+}
+
+/**
  * 端末情報の型定義
  */
 export interface Device {
@@ -34,6 +44,12 @@ export interface Device {
   inStock: boolean
   /** 詳細ページURL */
   detailUrl: string
+  /** ストレージオプション（オプション） */
+  storageOptions?: string[]
+  /** カラーオプション（オプション） */
+  colorOptions?: ColorOption[]
+  /** 月額料金（オプション） */
+  monthlyPayment?: number
 }
 
 /**
