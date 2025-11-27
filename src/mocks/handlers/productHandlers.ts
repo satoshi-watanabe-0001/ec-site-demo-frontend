@@ -7,7 +7,7 @@
  */
 
 import { http, HttpResponse } from 'msw'
-import type { Device, PopularDevicesResponse } from '@/types'
+import type { Device, PopularDevicesResponse, CategoryDetailResponse, ProductCardDto } from '@/types'
 
 /**
  * モック用人気端末データ
@@ -122,6 +122,136 @@ export const productHandlers = [
     const response: PopularDevicesResponse = {
       devices: mockPopularDevices.slice(0, limit),
       totalCount: mockPopularDevices.length,
+    }
+    return HttpResponse.json(response)
+  }),
+
+  // カテゴリ別製品一覧取得
+  http.get('*/api/v1/products/categories/:categoryCode', ({ params }) => {
+    const { categoryCode } = params
+
+    // iPhoneカテゴリの場合、E2Eテストが期待する5件のデータを返す
+    if (categoryCode === 'iphone') {
+      const mockIPhoneProducts: ProductCardDto[] = [
+        {
+          productId: 1,
+          productName: 'iPhone 16 Pro Max',
+          manufacturer: 'Apple',
+          price: 189800,
+          originalPrice: 204800,
+          monthlyPayment: 7283,
+          imageUrls: ['/images/devices/iphone-16-pro-max.png'],
+          storageOptions: ['256GB', '512GB', '1TB'],
+          colorOptions: [
+            { name: 'ナチュラルチタニウム', hex: '#8E8E93' },
+            { name: 'ブルーチタニウム', hex: '#5B9BD5' },
+            { name: 'ホワイトチタニウム', hex: '#F2F2F7' },
+            { name: 'ブラックチタニウム', hex: '#1C1C1E' },
+          ],
+          campaigns: [
+            { campaignCode: 'NEW', badgeText: 'NEW' },
+            { campaignCode: 'POPULAR', badgeText: '人気' },
+          ],
+          inStock: true,
+          description: '最新のA18 Proチップ搭載。最大のディスプレイと最長のバッテリー駆動時間。',
+        },
+        {
+          productId: 2,
+          productName: 'iPhone 16 Pro',
+          manufacturer: 'Apple',
+          price: 159800,
+          originalPrice: 174800,
+          monthlyPayment: 6033,
+          imageUrls: ['/images/devices/iphone-16-pro.png'],
+          storageOptions: ['128GB', '256GB', '512GB', '1TB'],
+          colorOptions: [
+            { name: 'ナチュラルチタニウム', hex: '#8E8E93' },
+            { name: 'ブルーチタニウム', hex: '#5B9BD5' },
+            { name: 'ホワイトチタニウム', hex: '#F2F2F7' },
+            { name: 'ブラックチタニウム', hex: '#1C1C1E' },
+          ],
+          campaigns: [
+            { campaignCode: 'NEW', badgeText: 'NEW' },
+            { campaignCode: 'POPULAR', badgeText: '人気' },
+          ],
+          inStock: true,
+          description: '最新のA18 Proチップ搭載。プロ仕様のカメラシステム。',
+        },
+        {
+          productId: 3,
+          productName: 'iPhone 16 Plus',
+          manufacturer: 'Apple',
+          price: 134800,
+          monthlyPayment: 5617,
+          imageUrls: ['/images/devices/iphone-16-plus.png'],
+          storageOptions: ['128GB', '256GB', '512GB'],
+          colorOptions: [
+            { name: 'ブラック', hex: '#1C1C1E' },
+            { name: 'ホワイト', hex: '#F2F2F7' },
+            { name: 'ピンク', hex: '#FFB6C1' },
+            { name: 'ティール', hex: '#008080' },
+            { name: 'ウルトラマリン', hex: '#4169E1' },
+          ],
+          campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+          inStock: true,
+          description: 'A18チップ搭載。大画面で楽しむエンターテインメント。',
+        },
+        {
+          productId: 4,
+          productName: 'iPhone 16',
+          manufacturer: 'Apple',
+          price: 124800,
+          monthlyPayment: 5200,
+          imageUrls: ['/images/devices/iphone-16.png'],
+          storageOptions: ['128GB', '256GB', '512GB'],
+          colorOptions: [
+            { name: 'ブラック', hex: '#1C1C1E' },
+            { name: 'ホワイト', hex: '#F2F2F7' },
+            { name: 'ピンク', hex: '#FFB6C1' },
+            { name: 'ティール', hex: '#008080' },
+            { name: 'ウルトラマリン', hex: '#4169E1' },
+          ],
+          campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+          inStock: true,
+          description: 'A18チップ搭載。進化したカメラとバッテリー。',
+        },
+        {
+          productId: 5,
+          productName: 'iPhone 15',
+          manufacturer: 'Apple',
+          price: 112800,
+          originalPrice: 124800,
+          monthlyPayment: 4700,
+          imageUrls: ['/images/devices/iphone-15.png'],
+          storageOptions: ['128GB', '256GB', '512GB'],
+          colorOptions: [
+            { name: 'ブラック', hex: '#1C1C1E' },
+            { name: 'ブルー', hex: '#5B9BD5' },
+            { name: 'グリーン', hex: '#90EE90' },
+            { name: 'イエロー', hex: '#FFD700' },
+            { name: 'ピンク', hex: '#FFB6C1' },
+          ],
+          campaigns: [{ campaignCode: 'RECOMMEND', badgeText: 'おすすめ' }],
+          inStock: true,
+          description: 'A16 Bionicチップ搭載。お求めやすい価格で高性能。',
+        },
+      ]
+
+      const response: CategoryDetailResponse = {
+        categoryCode: 'iphone',
+        categoryName: 'iPhone',
+        products: mockIPhoneProducts,
+        totalCount: mockIPhoneProducts.length,
+      }
+      return HttpResponse.json(response)
+    }
+
+    // その他のカテゴリは空のレスポンスを返す
+    const response: CategoryDetailResponse = {
+      categoryCode: categoryCode as string,
+      categoryName: '',
+      products: [],
+      totalCount: 0,
     }
     return HttpResponse.json(response)
   }),
