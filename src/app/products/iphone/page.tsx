@@ -3,13 +3,23 @@
  * @module app/products/iphone/page
  *
  * PBI-DP-002: iPhoneカテゴリページ閲覧機能 (EC-269)
+ * EC-272: API統合実装
  *
  * iPhone製品をグリッド形式で表示するページ。
  * ストレージオプション、カラーバリエーション、価格情報、
  * キャンペーン情報、ドコモオンラインショップリンクを含む。
+ *
+ * TanStack Queryを使用するため、動的レンダリングを強制。
  */
 
 import React from 'react'
+
+/**
+ * 動的レンダリングを強制
+ * TanStack QueryのuseQueryフックを使用するコンポーネントを含むため、
+ * ビルド時の静的生成を無効化する必要がある。
+ */
+export const dynamic = 'force-dynamic'
 import type { Metadata } from 'next'
 import { IPhoneProductGrid } from '@/components/product/IPhoneProductGrid'
 import { IPhoneCampaignBanner } from '@/components/product/IPhoneCampaignBanner'

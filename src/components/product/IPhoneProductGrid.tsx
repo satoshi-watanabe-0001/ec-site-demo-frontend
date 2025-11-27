@@ -3,126 +3,22 @@
  * @module components/product/IPhoneProductGrid
  *
  * PBI-DP-002: iPhoneカテゴリページ閲覧機能 (EC-269)
+ * EC-272: API統合実装
  *
  * iPhone製品をグリッド形式で表示するコンポーネント。
  * ストレージオプション、カラーバリエーション、価格情報を含む。
+ * バックエンドAPIからデータを取得し、クライアントサイドでソートを行う。
  */
 
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { useCategoryProducts } from '@/hooks/useCategoryProducts'
+import { mapProductCardDtosToDevices } from '@/lib/productMapper'
 import type { Device, DeviceLabel, ColorOption } from '@/types'
-
-/**
- * モック用iPhoneデータ
- * MSWが有効でない場合のフォールバック
- */
-const mockIPhoneDevices: Device[] = [
-  {
-    id: 'iphone-16-pro-max',
-    name: 'iPhone 16 Pro Max',
-    manufacturer: 'Apple',
-    imageUrl: '/images/devices/iphone-16-pro-max.png',
-    price: 189800,
-    originalPrice: 204800,
-    labels: ['NEW', '人気'],
-    description: '最新のA18 Proチップ搭載。最大のディスプレイと最長のバッテリー駆動時間。',
-    inStock: true,
-    detailUrl: '/devices/iphone-16-pro-max',
-    storageOptions: ['256GB', '512GB', '1TB'],
-    colorOptions: [
-      { name: 'ナチュラルチタニウム', hex: '#8E8E93' },
-      { name: 'ブルーチタニウム', hex: '#5B9BD5' },
-      { name: 'ホワイトチタニウム', hex: '#F2F2F7' },
-      { name: 'ブラックチタニウム', hex: '#1C1C1E' },
-    ],
-    monthlyPayment: 7283,
-  },
-  {
-    id: 'iphone-16-pro',
-    name: 'iPhone 16 Pro',
-    manufacturer: 'Apple',
-    imageUrl: '/images/devices/iphone-16-pro.png',
-    price: 159800,
-    originalPrice: 174800,
-    labels: ['NEW', '人気'],
-    description: '最新のA18 Proチップ搭載。プロ仕様のカメラシステム。',
-    inStock: true,
-    detailUrl: '/devices/iphone-16-pro',
-    storageOptions: ['128GB', '256GB', '512GB', '1TB'],
-    colorOptions: [
-      { name: 'ナチュラルチタニウム', hex: '#8E8E93' },
-      { name: 'ブルーチタニウム', hex: '#5B9BD5' },
-      { name: 'ホワイトチタニウム', hex: '#F2F2F7' },
-      { name: 'ブラックチタニウム', hex: '#1C1C1E' },
-    ],
-    monthlyPayment: 6033,
-  },
-  {
-    id: 'iphone-16-plus',
-    name: 'iPhone 16 Plus',
-    manufacturer: 'Apple',
-    imageUrl: '/images/devices/iphone-16-plus.png',
-    price: 134800,
-    labels: ['NEW'],
-    description: 'A18チップ搭載。大画面で楽しむエンターテインメント。',
-    inStock: true,
-    detailUrl: '/devices/iphone-16-plus',
-    storageOptions: ['128GB', '256GB', '512GB'],
-    colorOptions: [
-      { name: 'ブラック', hex: '#1C1C1E' },
-      { name: 'ホワイト', hex: '#F2F2F7' },
-      { name: 'ピンク', hex: '#FFB6C1' },
-      { name: 'ティール', hex: '#008080' },
-      { name: 'ウルトラマリン', hex: '#4169E1' },
-    ],
-    monthlyPayment: 5617,
-  },
-  {
-    id: 'iphone-16',
-    name: 'iPhone 16',
-    manufacturer: 'Apple',
-    imageUrl: '/images/devices/iphone-16.png',
-    price: 124800,
-    labels: ['NEW'],
-    description: 'A18チップ搭載。進化したカメラとバッテリー。',
-    inStock: true,
-    detailUrl: '/devices/iphone-16',
-    storageOptions: ['128GB', '256GB', '512GB'],
-    colorOptions: [
-      { name: 'ブラック', hex: '#1C1C1E' },
-      { name: 'ホワイト', hex: '#F2F2F7' },
-      { name: 'ピンク', hex: '#FFB6C1' },
-      { name: 'ティール', hex: '#008080' },
-      { name: 'ウルトラマリン', hex: '#4169E1' },
-    ],
-    monthlyPayment: 5200,
-  },
-  {
-    id: 'iphone-15',
-    name: 'iPhone 15',
-    manufacturer: 'Apple',
-    imageUrl: '/images/devices/iphone-15.png',
-    price: 112800,
-    originalPrice: 124800,
-    labels: ['おすすめ'],
-    description: 'A16 Bionicチップ搭載。お求めやすい価格で高性能。',
-    inStock: true,
-    detailUrl: '/devices/iphone-15',
-    storageOptions: ['128GB', '256GB', '512GB'],
-    colorOptions: [
-      { name: 'ブラック', hex: '#1C1C1E' },
-      { name: 'ブルー', hex: '#5B9BD5' },
-      { name: 'グリーン', hex: '#90EE90' },
-      { name: 'イエロー', hex: '#FFD700' },
-      { name: 'ピンク', hex: '#FFB6C1' },
-    ],
-    monthlyPayment: 4700,
-  },
-]
 
 /**
  * ラベルの色を取得
@@ -301,22 +197,60 @@ interface IPhoneProductGridProps {
  *
  * iPhone製品をグリッド形式で表示。以下の機能を提供:
  * - 3カラムレスポンシブグリッド
- * - ソート機能（名前順、価格順）
+ * - ソート機能（名前順、価格順）- クライアントサイドソートを採用（シンプルさとUX向上のため）
  * - 製品数の表示
+ * - ローディング状態の表示
+ * - エラー状態の表示
  *
  * @param props - グリッドのプロパティ
  * @returns iPhoneプロダクトグリッド要素
  */
 export function IPhoneProductGrid({ className }: IPhoneProductGridProps): React.ReactElement {
   const [sortBy, setSortBy] = useState<'name' | 'price'>('name')
-  const devices = mockIPhoneDevices
 
-  const sortedDevices = [...devices].sort((a, b) => {
-    if (sortBy === 'name') {
-      return a.name.localeCompare(b.name)
-    }
-    return b.price - a.price
-  })
+  // バックエンドAPIからiPhoneカテゴリの製品を取得
+  const { data, isLoading, error } = useCategoryProducts('iphone')
+
+  // APIレスポンスをDevice型に変換
+  const devices: Device[] = useMemo(() => {
+    if (!data?.products) return []
+    return mapProductCardDtosToDevices(data.products)
+  }, [data?.products])
+
+  // クライアントサイドでソート（シンプルさとUX向上のため）
+  const sortedDevices = useMemo(() => {
+    return [...devices].sort((a, b) => {
+      if (sortBy === 'name') {
+        return a.name.localeCompare(b.name)
+      }
+      // 価格順は高い順（降順）
+      return b.price - a.price
+    })
+  }, [devices, sortBy])
+
+  // ローディング状態の表示
+  if (isLoading) {
+    return (
+      <div className={className}>
+        <div className="flex justify-center items-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+          <span className="ml-3 text-gray-600">製品を読み込み中...</span>
+        </div>
+      </div>
+    )
+  }
+
+  // エラー状態の表示
+  if (error) {
+    return (
+      <div className={className}>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+          <p className="text-red-600">製品の読み込みに失敗しました</p>
+          <p className="text-sm text-red-500 mt-1">しばらくしてから再度お試しください</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={className}>

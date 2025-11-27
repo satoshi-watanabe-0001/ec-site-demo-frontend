@@ -6,14 +6,161 @@
  * - FIRST原則（Fast, Independent, Repeatable, Self-Validating, Timely）
  * - AAA（Arrange-Act-Assert）パターン
  * - 命名規約: MethodName_StateUnderTest_ExpectedBehavior
+ *
+ * EC-272: API統合後のテスト
+ * useCategoryProductsフックをモックして、ESMモジュール（@t3-oss/env-nextjs）の
+ * 解析エラーを回避する。
  */
 
 import React from 'react'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { IPhoneProductGrid } from '../IPhoneProductGrid'
+import type { CategoryDetailResponse, ProductCardDto } from '@/types/category'
+
+// useCategoryProductsフックをモック（ESMモジュール問題を回避）
+jest.mock('@/hooks/useCategoryProducts', () => ({
+  useCategoryProducts: jest.fn(),
+}))
+
+import { useCategoryProducts } from '@/hooks/useCategoryProducts'
+
+const mockUseCategoryProducts = useCategoryProducts as jest.MockedFunction<
+  typeof useCategoryProducts
+>
+
+/**
+ * モック用iPhone製品データ（ProductCardDto形式）
+ * バックエンドAPIから返されるDTO形式でモックデータを定義
+ */
+const mockIPhoneProducts: ProductCardDto[] = [
+  {
+    productId: 1,
+    productName: 'iPhone 16 Pro Max',
+    manufacturer: 'Apple',
+    price: 189800,
+    originalPrice: 199800,
+    monthlyPayment: 7283,
+    imageUrls: ['/images/devices/iphone-16-pro-max.png'],
+    storageOptions: ['256GB', '512GB', '1TB'],
+    colorOptions: [
+      { name: 'ナチュラルチタニウム', hex: '#C4B8A5' },
+      { name: 'ブラックチタニウム', hex: '#3C3C3C' },
+      { name: 'ホワイトチタニウム', hex: '#F5F5F0' },
+      { name: 'デザートチタニウム', hex: '#D4C4B0' },
+    ],
+    campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+    inStock: true,
+    description: '最新のA18 Proチップ搭載',
+  },
+  {
+    productId: 2,
+    productName: 'iPhone 16 Pro',
+    manufacturer: 'Apple',
+    price: 159800,
+    originalPrice: 169800,
+    monthlyPayment: 6033,
+    imageUrls: ['/images/devices/iphone-16-pro.png'],
+    storageOptions: ['128GB', '256GB', '512GB', '1TB'],
+    colorOptions: [
+      { name: 'ナチュラルチタニウム', hex: '#C4B8A5' },
+      { name: 'ブラックチタニウム', hex: '#3C3C3C' },
+      { name: 'ホワイトチタニウム', hex: '#F5F5F0' },
+      { name: 'デザートチタニウム', hex: '#D4C4B0' },
+    ],
+    campaigns: [
+      { campaignCode: 'NEW', badgeText: 'NEW' },
+      { campaignCode: 'POPULAR', badgeText: '人気' },
+    ],
+    inStock: true,
+    description: 'プロ仕様のカメラシステム',
+  },
+  {
+    productId: 3,
+    productName: 'iPhone 16 Plus',
+    manufacturer: 'Apple',
+    price: 139800,
+    imageUrls: ['/images/devices/iphone-16-plus.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [
+      { name: 'ブラック', hex: '#1C1C1E' },
+      { name: 'ホワイト', hex: '#F5F5F7' },
+      { name: 'ピンク', hex: '#F9D1CF' },
+      { name: 'ティール', hex: '#5DADE2' },
+      { name: 'ウルトラマリン', hex: '#3B5998' },
+    ],
+    campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+    inStock: true,
+    description: '大画面で楽しむiPhone',
+  },
+  {
+    productId: 4,
+    productName: 'iPhone 16',
+    manufacturer: 'Apple',
+    price: 124800,
+    imageUrls: ['/images/devices/iphone-16.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [
+      { name: 'ブラック', hex: '#1C1C1E' },
+      { name: 'ホワイト', hex: '#F5F5F7' },
+      { name: 'ピンク', hex: '#F9D1CF' },
+      { name: 'ティール', hex: '#5DADE2' },
+      { name: 'ウルトラマリン', hex: '#3B5998' },
+    ],
+    campaigns: [{ campaignCode: 'POPULAR', badgeText: '人気' }],
+    inStock: true,
+    description: 'A18チップ搭載',
+  },
+  {
+    productId: 5,
+    productName: 'iPhone 15',
+    manufacturer: 'Apple',
+    price: 95800,
+    imageUrls: ['/images/devices/iphone-15.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [
+      { name: 'ブラック', hex: '#1C1C1E' },
+      { name: 'ブルー', hex: '#A7C7E7' },
+      { name: 'グリーン', hex: '#A8D5BA' },
+      { name: 'イエロー', hex: '#F7DC6F' },
+      { name: 'ピンク', hex: '#F9D1CF' },
+    ],
+    campaigns: [{ campaignCode: 'RECOMMEND', badgeText: 'おすすめ' }],
+    inStock: true,
+    description: 'お求めやすい価格のiPhone',
+  },
+]
+
+/**
+ * モック用カテゴリ詳細レスポンス
+ */
+const mockCategoryResponse: CategoryDetailResponse = {
+  categoryCode: 'iphone',
+  categoryName: 'iPhone',
+  products: mockIPhoneProducts,
+  totalCount: 5,
+}
 
 describe('IPhoneProductGrid', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+    // デフォルトでは成功レスポンスを返す
+    // TanStack QueryのUseQueryResultは多くのプロパティを持つため、
+    // テストに必要なプロパティのみをモックし、unknown経由でキャストする
+    mockUseCategoryProducts.mockReturnValue({
+      data: mockCategoryResponse,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      isPending: false,
+      isFetching: false,
+      isRefetching: false,
+      refetch: jest.fn(),
+      status: 'success',
+      fetchStatus: 'idle',
+    } as unknown as ReturnType<typeof useCategoryProducts>)
+  })
   describe('レンダリング', () => {
     test('IPhoneProductGrid_WithDefaultProps_ShouldRenderProductCount', () => {
       // Arrange
@@ -224,6 +371,57 @@ describe('IPhoneProductGrid', () => {
       // Assert
       const sortSelect = screen.getByLabelText('並び替え:')
       expect(sortSelect).toBeInTheDocument()
+    })
+  })
+
+  describe('ローディング状態', () => {
+    test('IPhoneProductGrid_WhenLoading_ShouldShowLoadingIndicator', () => {
+      // Arrange
+      mockUseCategoryProducts.mockReturnValue({
+        data: undefined,
+        isLoading: true,
+        error: null,
+        isError: false,
+        isSuccess: false,
+        isPending: true,
+        isFetching: true,
+        isRefetching: false,
+        refetch: jest.fn(),
+        status: 'pending',
+        fetchStatus: 'fetching',
+      } as unknown as ReturnType<typeof useCategoryProducts>)
+
+      // Act
+      render(<IPhoneProductGrid />)
+
+      // Assert
+      expect(screen.getByText('製品を読み込み中...')).toBeInTheDocument()
+    })
+  })
+
+  describe('エラー状態', () => {
+    test('IPhoneProductGrid_WhenError_ShouldShowErrorMessage', () => {
+      // Arrange
+      mockUseCategoryProducts.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        error: new Error('API error'),
+        isError: true,
+        isSuccess: false,
+        isPending: false,
+        isFetching: false,
+        isRefetching: false,
+        refetch: jest.fn(),
+        status: 'error',
+        fetchStatus: 'idle',
+      } as unknown as ReturnType<typeof useCategoryProducts>)
+
+      // Act
+      render(<IPhoneProductGrid />)
+
+      // Assert
+      expect(screen.getByText('製品の読み込みに失敗しました')).toBeInTheDocument()
+      expect(screen.getByText('しばらくしてから再度お試しください')).toBeInTheDocument()
     })
   })
 })

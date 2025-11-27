@@ -6,13 +6,122 @@
  * - FIRST原則（Fast, Independent, Repeatable, Self-Validating, Timely）
  * - AAA（Arrange-Act-Assert）パターン
  * - 命名規約: MethodName_StateUnderTest_ExpectedBehavior
+ *
+ * EC-272: API統合後のテスト
+ * useCategoryProductsフックをモックして、ESMモジュール（@t3-oss/env-nextjs）の
+ * 解析エラーを回避する。
  */
 
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import IPhoneCategoryPage from '../page'
+import type { CategoryDetailResponse, ProductCardDto } from '@/types/category'
+
+// useCategoryProductsフックをモック（ESMモジュール問題を回避）
+jest.mock('@/hooks/useCategoryProducts', () => ({
+  useCategoryProducts: jest.fn(),
+}))
+
+import { useCategoryProducts } from '@/hooks/useCategoryProducts'
+
+const mockUseCategoryProducts = useCategoryProducts as jest.MockedFunction<
+  typeof useCategoryProducts
+>
+
+/**
+ * モック用iPhone製品データ（ProductCardDto形式）
+ */
+const mockIPhoneProducts: ProductCardDto[] = [
+  {
+    productId: 1,
+    productName: 'iPhone 16 Pro Max',
+    manufacturer: 'Apple',
+    price: 189800,
+    originalPrice: 199800,
+    monthlyPayment: 7283,
+    imageUrls: ['/images/devices/iphone-16-pro-max.png'],
+    storageOptions: ['256GB', '512GB', '1TB'],
+    colorOptions: [
+      { name: 'ナチュラルチタニウム', hex: '#C4B8A5' },
+      { name: 'ブラックチタニウム', hex: '#3C3C3C' },
+    ],
+    campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+    inStock: true,
+  },
+  {
+    productId: 2,
+    productName: 'iPhone 16 Pro',
+    manufacturer: 'Apple',
+    price: 159800,
+    imageUrls: ['/images/devices/iphone-16-pro.png'],
+    storageOptions: ['128GB', '256GB', '512GB', '1TB'],
+    colorOptions: [{ name: 'ナチュラルチタニウム', hex: '#C4B8A5' }],
+    campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+    inStock: true,
+  },
+  {
+    productId: 3,
+    productName: 'iPhone 16 Plus',
+    manufacturer: 'Apple',
+    price: 139800,
+    imageUrls: ['/images/devices/iphone-16-plus.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [{ name: 'ブラック', hex: '#1C1C1E' }],
+    campaigns: [{ campaignCode: 'NEW', badgeText: 'NEW' }],
+    inStock: true,
+  },
+  {
+    productId: 4,
+    productName: 'iPhone 16',
+    manufacturer: 'Apple',
+    price: 124800,
+    imageUrls: ['/images/devices/iphone-16.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [{ name: 'ブラック', hex: '#1C1C1E' }],
+    campaigns: [{ campaignCode: 'POPULAR', badgeText: '人気' }],
+    inStock: true,
+  },
+  {
+    productId: 5,
+    productName: 'iPhone 15',
+    manufacturer: 'Apple',
+    price: 95800,
+    imageUrls: ['/images/devices/iphone-15.png'],
+    storageOptions: ['128GB', '256GB', '512GB'],
+    colorOptions: [{ name: 'ブラック', hex: '#1C1C1E' }],
+    campaigns: [{ campaignCode: 'RECOMMEND', badgeText: 'おすすめ' }],
+    inStock: true,
+  },
+]
+
+/**
+ * モック用カテゴリ詳細レスポンス
+ */
+const mockCategoryResponse: CategoryDetailResponse = {
+  categoryCode: 'iphone',
+  categoryName: 'iPhone',
+  products: mockIPhoneProducts,
+  totalCount: 5,
+}
 
 describe('IPhoneCategoryPage', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+    // デフォルトでは成功レスポンスを返す
+    mockUseCategoryProducts.mockReturnValue({
+      data: mockCategoryResponse,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+      isPending: false,
+      isFetching: false,
+      isRefetching: false,
+      refetch: jest.fn(),
+      status: 'success',
+      fetchStatus: 'idle',
+    } as unknown as ReturnType<typeof useCategoryProducts>)
+  })
   describe('レンダリング', () => {
     test('IPhoneCategoryPage_WithDefaultRender_ShouldShowPageTitle', () => {
       // Arrange
