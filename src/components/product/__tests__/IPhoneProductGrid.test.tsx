@@ -25,7 +25,9 @@ jest.mock('@/hooks/useCategoryProducts', () => ({
 
 import { useCategoryProducts } from '@/hooks/useCategoryProducts'
 
-const mockUseCategoryProducts = useCategoryProducts as jest.MockedFunction<typeof useCategoryProducts>
+const mockUseCategoryProducts = useCategoryProducts as jest.MockedFunction<
+  typeof useCategoryProducts
+>
 
 /**
  * モック用iPhone製品データ（ProductCardDto形式）
