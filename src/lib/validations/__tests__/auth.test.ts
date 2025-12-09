@@ -39,9 +39,7 @@ describe('loginSchema', () => {
       // Assert
       expect(result.success).toBe(false)
       if (!result.success) {
-        expect(result.error.issues[0].message).toBe(
-          'メールアドレスを入力してください'
-        )
+        expect(result.error.issues[0].message).toBe('メールアドレスを入力してください')
       }
     })
 
@@ -58,9 +56,7 @@ describe('loginSchema', () => {
       // Assert
       expect(result.success).toBe(false)
       if (!result.success) {
-        expect(result.error.issues[0].message).toBe(
-          '有効なメールアドレスを入力してください'
-        )
+        expect(result.error.issues[0].message).toBe('有効なメールアドレスを入力してください')
       }
     })
   })
@@ -93,9 +89,7 @@ describe('loginSchema', () => {
       // Assert
       expect(result.success).toBe(false)
       if (!result.success) {
-        expect(result.error.issues[0].message).toBe(
-          'パスワードを入力してください'
-        )
+        expect(result.error.issues[0].message).toBe('パスワードを入力してください')
       }
     })
   })

@@ -59,16 +59,13 @@ describe('authService', () => {
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:8080/api/v1/auth/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(credentials),
-        }
-      )
+      expect(mockFetch).toHaveBeenCalledWith('http://localhost:8080/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      })
       expect(result).toEqual(mockResponse)
     })
 
