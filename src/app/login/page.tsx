@@ -32,9 +32,7 @@ export default function LoginPage(): React.ReactElement {
         {/* ページタイトル */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">ログイン</h1>
-          <p className="text-slate-400">
-            ahamoアカウントにログインしてください
-          </p>
+          <p className="text-slate-400">ahamoアカウントにログインしてください</p>
         </div>
 
         {/* ログインフォームカード */}

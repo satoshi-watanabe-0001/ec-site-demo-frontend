@@ -82,8 +82,7 @@ export function LoginForm(): React.ReactElement {
       // マイページへリダイレクト
       router.push('/mypage')
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'ログインに失敗しました'
+      const errorMessage = error instanceof Error ? error.message : 'ログインに失敗しました'
       setSubmitError(errorMessage)
     }
   }
@@ -102,10 +101,7 @@ export function LoginForm(): React.ReactElement {
 
       {/* メールアドレス入力 */}
       <div className="space-y-2">
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-slate-300"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-slate-300">
           メールアドレス
         </label>
         <input
@@ -130,10 +126,7 @@ export function LoginForm(): React.ReactElement {
 
       {/* パスワード入力 */}
       <div className="space-y-2">
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-slate-300"
-        >
+        <label htmlFor="password" className="block text-sm font-medium text-slate-300">
           パスワード
         </label>
         <div className="relative">
@@ -156,11 +149,7 @@ export function LoginForm(): React.ReactElement {
             className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-300 transition-colors"
             aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'}
           >
-            {showPassword ? (
-              <EyeOff className="h-5 w-5" />
-            ) : (
-              <Eye className="h-5 w-5" />
-            )}
+            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
           </button>
         </div>
         {errors.password && (
@@ -178,21 +167,13 @@ export function LoginForm(): React.ReactElement {
           {...register('rememberMe')}
           className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-orange-500 focus:ring-orange-500 focus:ring-offset-slate-900"
         />
-        <label
-          htmlFor="rememberMe"
-          className="ml-2 text-sm text-slate-300 cursor-pointer"
-        >
+        <label htmlFor="rememberMe" className="ml-2 text-sm text-slate-300 cursor-pointer">
           ログイン状態を保持する
         </label>
       </div>
 
       {/* 送信ボタン */}
-      <GradientButton
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full"
-        size="lg"
-      >
+      <GradientButton type="submit" disabled={isSubmitting} className="w-full" size="lg">
         {isSubmitting ? (
           <>
             <Loader2 className="h-5 w-5 mr-2 animate-spin" />
