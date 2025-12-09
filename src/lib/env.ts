@@ -32,7 +32,8 @@ export const env = createEnv({
 })
 
 // クライアントサイドでも安全に使用できるようにprocess.env.NODE_ENVを使用
-const nodeEnv = process.env.NODE_ENV ?? 'development'
+// NODE_ENVの型は "development" | "production" | "test" のみ
+const nodeEnv = (process.env.NODE_ENV ?? 'development') as string
 
 const isDevelopment = nodeEnv === 'development'
 const isStaging = nodeEnv === 'staging'
