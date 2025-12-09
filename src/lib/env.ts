@@ -31,14 +31,22 @@ export const env = createEnv({
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 })
 
+// クライアントサイドでも安全に使用できるようにprocess.env.NODE_ENVを使用
+// NODE_ENVの型は "development" | "production" | "test" のみ
+const nodeEnv = (process.env.NODE_ENV ?? 'development') as string
+
+const isDevelopment = nodeEnv === 'development'
+const isStaging = nodeEnv === 'staging'
+const isProduction = nodeEnv === 'production'
+
 export const config = {
-  isDevelopment: env.NODE_ENV === 'development',
-  isStaging: env.NODE_ENV === 'staging',
-  isProduction: env.NODE_ENV === 'production',
+  isDevelopment,
+  isStaging,
+  isProduction,
 
   api: {
     baseURL: env.NEXT_PUBLIC_API_URL,
-    timeout: env.NODE_ENV === 'production' ? 30000 : 60000,
+    timeout: isProduction ? 30000 : 60000,
   },
 
   app: {
