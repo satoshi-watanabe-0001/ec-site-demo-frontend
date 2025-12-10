@@ -8,7 +8,7 @@
 
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAuthStore } from '@/store/auth-store'
 import { loginUser } from '@/services/authService'
+import { useRecentAccountsStore } from '@/store/recent-accounts-store'
 
 /**
  * ログインフォームのバリデーションスキーマ
@@ -38,13 +39,23 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>
 
 /**
+ * ログインフォームコンポーネントのProps
+ */
+interface LoginFormProps {
+  /** 選択されたメールアドレス（過去ログインアカウントから選択時） */
+  selectedEmail?: string
+}
+
+/**
  * ログインフォームコンポーネント
  *
+ * @param props - コンポーネントのProps
  * @returns ログインフォーム要素
  */
-export function LoginForm(): React.ReactElement {
+export function LoginForm({ selectedEmail }: LoginFormProps): React.ReactElement {
   const router = useRouter()
   const { login } = useAuthStore()
+  const { addAccount } = useRecentAccountsStore()
   const [showPassword, setShowPassword] = useState(false)
   const [loginError, setLoginError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,6 +63,7 @@ export function LoginForm(): React.ReactElement {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isValid },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -62,6 +74,12 @@ export function LoginForm(): React.ReactElement {
     },
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    if (selectedEmail) {
+      setValue('email', selectedEmail, { shouldValidate: true })
+    }
+  }, [selectedEmail, setValue])
 
   /**
    * フォーム送信処理
@@ -84,6 +102,9 @@ export function LoginForm(): React.ReactElement {
         name: response.user.email.split('@')[0],
         email: response.user.email,
       })
+
+      // 過去ログインアカウントに追加
+      addAccount(response.user.email)
 
       // マイページへリダイレクト
       router.push('/mypage')
