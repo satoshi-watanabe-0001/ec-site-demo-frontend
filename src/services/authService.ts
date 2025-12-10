@@ -20,7 +20,8 @@ const AUTH_SERVICE_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localho
  * エラーメッセージの定数
  */
 const ERROR_MESSAGES = {
-  NETWORK_ERROR: 'ネットワークエラーが発生しました。インターネット接続を確認して、再度お試しください。',
+  NETWORK_ERROR:
+    'ネットワークエラーが発生しました。インターネット接続を確認して、再度お試しください。',
   SERVER_ERROR: 'サーバーでエラーが発生しました。時間をおいて再度お試しください。',
   UNEXPECTED_ERROR: '予期しないエラーが発生しました。時間をおいて再度お試しください。',
   LOGIN_FAILED: 'ログインに失敗しました。',

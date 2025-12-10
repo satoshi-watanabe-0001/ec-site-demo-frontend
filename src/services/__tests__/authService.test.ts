@@ -18,7 +18,8 @@ global.fetch = mockFetch
  * エラーメッセージの定数（authService.tsと同じ）
  */
 const ERROR_MESSAGES = {
-  NETWORK_ERROR: 'ネットワークエラーが発生しました。インターネット接続を確認して、再度お試しください。',
+  NETWORK_ERROR:
+    'ネットワークエラーが発生しました。インターネット接続を確認して、再度お試しください。',
   SERVER_ERROR: 'サーバーでエラーが発生しました。時間をおいて再度お試しください。',
   UNEXPECTED_ERROR: '予期しないエラーが発生しました。時間をおいて再度お試しください。',
   LOGIN_FAILED: 'ログインに失敗しました。',
