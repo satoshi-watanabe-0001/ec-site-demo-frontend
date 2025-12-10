@@ -30,7 +30,8 @@ COPY . .
 
 # 環境変数を設定（ビルド時）
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_PUBLIC_API_URL=http://localhost:3001
+# E2Eテスト用: ブラウザからアクセスするためlocalhost:8080を使用
+ENV NEXT_PUBLIC_API_URL=http://localhost:8080
 
 # アプリケーションをビルド
 RUN pnpm build
