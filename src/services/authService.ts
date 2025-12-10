@@ -14,8 +14,7 @@ import type { LoginRequest, LoginResponse, AuthErrorResponse } from '@/types'
  * @t3-oss/env-nextjsのenvオブジェクトはサーバーサイド変数を含むため、
  * クライアントコンポーネントでは直接process.envを使用
  */
-const AUTH_SERVICE_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+const AUTH_SERVICE_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 /**
  * ログイン処理
