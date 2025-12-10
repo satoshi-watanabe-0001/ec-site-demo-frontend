@@ -113,6 +113,33 @@ class LoginPage {
   async getPasswordValue() {
     return this.page.locator('#password').inputValue()
   }
+
+  /** 過去ログインアカウント一覧が表示されているか */
+  async isRecentAccountsListVisible() {
+    return this.page.locator('text=過去にログインしたアカウント').isVisible()
+  }
+
+  /** 過去ログインアカウントの数を取得 */
+  async getRecentAccountsCount() {
+    return this.page.locator('[aria-label$="でログイン"]').count()
+  }
+
+  /** 指定したメールアドレスの過去ログインアカウントをクリック */
+  async clickRecentAccount(email: string) {
+    await this.page.locator(`[aria-label="${email}でログイン"]`).click()
+  }
+
+  /** 指定したメールアドレスの過去ログインアカウントの削除ボタンをクリック */
+  async removeRecentAccount(email: string) {
+    const accountItem = this.page.locator(`[aria-label="${email}でログイン"]`)
+    await accountItem.hover()
+    await this.page.locator(`[aria-label="${email}を履歴から削除"]`).click()
+  }
+
+  /** 指定したメールアドレスの過去ログインアカウントが存在するか */
+  async hasRecentAccount(email: string) {
+    return this.page.locator(`[aria-label="${email}でログイン"]`).isVisible()
+  }
 }
 
 /**
@@ -423,6 +450,110 @@ test.describe('レスポンシブデザイン (EC-273)', () => {
     expect(title).toBe('ログイン')
     const hasSignupLink = await loginPage.hasSignupLink()
     expect(hasSignupLink).toBe(true)
+  })
+})
+
+test.describe('過去ログインアカウント選択機能 (EC-273)', () => {
+  let loginPage: LoginPage
+
+  test.beforeEach(async ({ page }) => {
+    loginPage = new LoginPage(page)
+  })
+
+  test.describe('アカウント一覧表示', () => {
+    test('ログインページに過去ログインアカウント一覧が表示される', async () => {
+      // Arrange & Act
+      await loginPage.goto()
+
+      // Assert
+      const isVisible = await loginPage.isRecentAccountsListVisible()
+      expect(isVisible).toBe(true)
+    })
+
+    test('開発環境では初期で2つのアカウントが表示される', async () => {
+      // Arrange & Act
+      await loginPage.goto()
+
+      // Assert
+      const count = await loginPage.getRecentAccountsCount()
+      expect(count).toBe(2)
+    })
+
+    test('test@docomo.ne.jpアカウントが表示される', async () => {
+      // Arrange & Act
+      await loginPage.goto()
+
+      // Assert
+      const hasAccount = await loginPage.hasRecentAccount('test@docomo.ne.jp')
+      expect(hasAccount).toBe(true)
+    })
+
+    test('demo@docomo.ne.jpアカウントが表示される', async () => {
+      // Arrange & Act
+      await loginPage.goto()
+
+      // Assert
+      const hasAccount = await loginPage.hasRecentAccount('demo@docomo.ne.jp')
+      expect(hasAccount).toBe(true)
+    })
+  })
+
+  test.describe('アカウント選択によるメールアドレス自動入力', () => {
+    test('過去ログインアカウントをクリックするとメールアドレスが自動入力される', async () => {
+      // Arrange
+      await loginPage.goto()
+
+      // Act
+      await loginPage.clickRecentAccount('test@docomo.ne.jp')
+
+      // Assert
+      const emailValue = await loginPage.getEmailValue()
+      expect(emailValue).toBe('test@docomo.ne.jp')
+    })
+
+    test('別のアカウントをクリックするとメールアドレスが更新される', async () => {
+      // Arrange
+      await loginPage.goto()
+      await loginPage.clickRecentAccount('test@docomo.ne.jp')
+
+      // Act
+      await loginPage.clickRecentAccount('demo@docomo.ne.jp')
+
+      // Assert
+      const emailValue = await loginPage.getEmailValue()
+      expect(emailValue).toBe('demo@docomo.ne.jp')
+    })
+
+    test('アカウント選択後にパスワードを入力してログインできる', async ({ page }) => {
+      // Arrange
+      await loginPage.goto()
+      await loginPage.clickRecentAccount('test@docomo.ne.jp')
+
+      // Act
+      await loginPage.fillPassword('password123')
+      await loginPage.clickLoginButton()
+
+      // Assert
+      await page.waitForURL('/mypage')
+      expect(page.url()).toContain('/mypage')
+    })
+  })
+
+  test.describe('アカウント削除', () => {
+    test('アカウントの削除ボタンをクリックするとアカウントが削除される', async () => {
+      // Arrange
+      await loginPage.goto()
+      const initialCount = await loginPage.getRecentAccountsCount()
+
+      // Act
+      await loginPage.removeRecentAccount('demo@docomo.ne.jp')
+
+      // Assert
+      const hasAccount = await loginPage.hasRecentAccount('demo@docomo.ne.jp')
+      expect(hasAccount).toBe(false)
+      const newCount = await loginPage.getRecentAccountsCount()
+      expect(newCount).toBe(initialCount - 1)
+    })
   })
 })
 
