@@ -6,13 +6,16 @@
  * Auth Service（port 8081）と通信。
  */
 
-import { config } from '@/lib/env'
 import type { LoginRequest, LoginResponse, AuthErrorResponse } from '@/types'
 
 /**
  * Auth Service APIのベースURL
+ * クライアントサイドで使用するため、NEXT_PUBLIC_API_URLを直接参照
+ * @t3-oss/env-nextjsのenvオブジェクトはサーバーサイド変数を含むため、
+ * クライアントコンポーネントでは直接process.envを使用
  */
-const AUTH_SERVICE_BASE_URL = config.api.baseURL
+const AUTH_SERVICE_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 /**
  * ログイン処理

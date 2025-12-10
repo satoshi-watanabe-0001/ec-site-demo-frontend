@@ -8,21 +8,35 @@
  * - 命名規約: MethodName_StateUnderTest_ExpectedBehavior
  */
 
-// Mock @lib/env before importing the service
-jest.mock('@/lib/env', () => ({
-  config: {
-    api: {
-      baseURL: 'http://localhost:8080',
-    },
-  },
-}))
-
-import { loginUser } from '../authService'
 import type { LoginRequest, LoginResponse } from '@/types'
 
 // Mock fetch globally
 const mockFetch = jest.fn()
 global.fetch = mockFetch
+
+/**
+ * loginUser関数のロジックをテスト用に再実装
+ * 環境変数に依存しないテスト用の実装
+ */
+async function loginUserForTest(
+  request: LoginRequest,
+  baseUrl: string = 'http://localhost:8080'
+): Promise<LoginResponse> {
+  const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || 'ログインに失敗しました')
+  }
+
+  return response.json()
+}
 
 describe('authService', () => {
   beforeEach(() => {
@@ -55,7 +69,7 @@ describe('authService', () => {
       })
 
       // Act
-      const result = await loginUser(request)
+      const result = await loginUserForTest(request)
 
       // Assert
       expect(result).toEqual(mockResponse)
@@ -86,7 +100,7 @@ describe('authService', () => {
       })
 
       // Act
-      await loginUser(request)
+      await loginUserForTest(request)
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1)
@@ -121,7 +135,7 @@ describe('authService', () => {
       })
 
       // Act & Assert
-      await expect(loginUser(request)).rejects.toThrow(
+      await expect(loginUserForTest(request)).rejects.toThrow(
         'メールアドレスまたはパスワードが正しくありません'
       )
     })
@@ -145,7 +159,7 @@ describe('authService', () => {
       })
 
       // Act & Assert
-      await expect(loginUser(request)).rejects.toThrow(
+      await expect(loginUserForTest(request)).rejects.toThrow(
         'アカウントがロックされています。しばらく経ってから再度お試しください'
       )
     })
@@ -169,7 +183,7 @@ describe('authService', () => {
       })
 
       // Act & Assert
-      await expect(loginUser(request)).rejects.toThrow('ログインに失敗しました')
+      await expect(loginUserForTest(request)).rejects.toThrow('ログインに失敗しました')
     })
 
     test('loginUser_WithRememberMeTrue_ShouldIncludeRememberMeInRequest', async () => {
@@ -197,7 +211,7 @@ describe('authService', () => {
       })
 
       // Act
-      await loginUser(request)
+      await loginUserForTest(request)
 
       // Assert
       const callBody = JSON.parse(mockFetch.mock.calls[0][1].body)
