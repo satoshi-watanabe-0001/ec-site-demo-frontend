@@ -247,9 +247,7 @@ describe('LoginForm', () => {
     test('LoginForm_WhenSubmitting_ShouldShowLoadingState', async () => {
       // Arrange
       const user = userEvent.setup()
-      mockLoginUser.mockImplementation(
-        () => new Promise(resolve => setTimeout(resolve, 100))
-      )
+      mockLoginUser.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)))
       render(<LoginForm />)
 
       // Act
