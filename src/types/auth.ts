@@ -20,16 +20,16 @@ export interface LoginRequest {
 
 /**
  * ログインレスポンスのユーザー情報
+ *
+ * バックエンドのUserResponseに対応。
  */
 export interface LoginUser {
   /** ユーザーID */
   id: string
+  /** ユーザー名 */
+  name: string
   /** メールアドレス */
   email: string
-  /** ユーザーの役割 */
-  roles: string[]
-  /** MFA（多要素認証）が有効かどうか */
-  mfaEnabled: boolean
 }
 
 /**

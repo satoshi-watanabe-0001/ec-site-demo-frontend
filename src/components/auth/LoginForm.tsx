@@ -96,10 +96,10 @@ export function LoginForm({ selectedEmail }: LoginFormProps): React.ReactElement
         rememberMe: data.rememberMe,
       })
 
-      // 認証ストアにユーザー情報を保存
+      // 認証ストアにユーザー情報を保存（バックエンドから返されるnameを使用）
       login({
         id: response.user.id,
-        name: response.user.email.split('@')[0],
+        name: response.user.name,
         email: response.user.email,
       })
 

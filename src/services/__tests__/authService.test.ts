@@ -46,9 +46,8 @@ describe('authService', () => {
         expiresIn: 3600,
         user: {
           id: 'user-001',
+          name: 'テストユーザー',
           email: 'test@docomo.ne.jp',
-          roles: ['user'],
-          mfaEnabled: false,
         },
       }
       mockFetch.mockResolvedValueOnce({
@@ -77,9 +76,8 @@ describe('authService', () => {
         expiresIn: 3600,
         user: {
           id: 'user-001',
+          name: 'テストユーザー',
           email: 'test@docomo.ne.jp',
-          roles: ['user'],
-          mfaEnabled: false,
         },
       }
       mockFetch.mockResolvedValueOnce({
@@ -185,12 +183,11 @@ describe('authService', () => {
         accessToken: 'mock-access-token',
         refreshToken: 'mock-refresh-token',
         tokenType: 'Bearer',
-        expiresIn: 3600,
+        expiresIn: 25200,
         user: {
           id: 'user-001',
+          name: 'テストユーザー',
           email: 'test@docomo.ne.jp',
-          roles: ['user'],
-          mfaEnabled: false,
         },
       }
       mockFetch.mockResolvedValueOnce({
