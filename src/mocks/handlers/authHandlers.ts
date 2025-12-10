@@ -68,17 +68,19 @@ export const authHandlers = [
       return HttpResponse.json(errorResponse, { status: 401 })
     }
 
-    // 成功レスポンス
+    // rememberMeに応じて有効期限を設定（バックエンドと同じロジック）
+    const expiresIn = body.rememberMe ? 25200 : 3600
+
+    // 成功レスポンス（バックエンドのAuthResponseに対応）
     const successResponse: LoginResponse = {
       accessToken: generateMockToken(),
       refreshToken: generateMockToken(),
       tokenType: 'Bearer',
-      expiresIn: 3600,
+      expiresIn,
       user: {
         id: 'user-001',
+        name: 'テストユーザー',
         email: body.email,
-        roles: ['USER'],
-        mfaEnabled: false,
       },
     }
 

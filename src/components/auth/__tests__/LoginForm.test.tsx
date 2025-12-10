@@ -181,9 +181,8 @@ describe('LoginForm', () => {
         expiresIn: 3600,
         user: {
           id: 'user-001',
+          name: 'テストユーザー',
           email: 'test@docomo.ne.jp',
-          roles: ['user'],
-          mfaEnabled: false,
         },
       })
       render(<LoginForm />)
@@ -266,12 +265,11 @@ describe('LoginForm', () => {
         accessToken: 'mock-token',
         refreshToken: 'mock-refresh',
         tokenType: 'Bearer',
-        expiresIn: 3600,
+        expiresIn: 25200,
         user: {
           id: 'user-001',
+          name: 'テストユーザー',
           email: 'test@docomo.ne.jp',
-          roles: ['user'],
-          mfaEnabled: false,
         },
       })
       render(<LoginForm />)
