@@ -1,0 +1,62 @@
+# EC-275: E2Eテスト用Dockerfile
+# Next.js standaloneビルドを使用
+
+FROM node:20-alpine AS base
+
+# 依存関係インストール用ステージ
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# pnpmをインストール
+RUN corepack enable && corepack prepare pnpm@9.15.1 --activate
+
+# 依存関係ファイルをコピー
+COPY package.json pnpm-lock.yaml ./
+
+# 依存関係をインストール
+RUN pnpm install --frozen-lockfile
+
+# ビルド用ステージ
+FROM base AS builder
+WORKDIR /app
+
+# pnpmをインストール
+RUN corepack enable && corepack prepare pnpm@9.15.1 --activate
+
+# 依存関係をコピー
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# 環境変数を設定（ビルド時）
+ENV NEXT_TELEMETRY_DISABLED=1
+# E2Eテスト用: ブラウザからアクセスするためlocalhost:8080を使用
+ENV NEXT_PUBLIC_API_URL=http://localhost:8080
+
+# アプリケーションをビルド
+RUN pnpm build
+
+# 本番用ステージ
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# セキュリティ用の非rootユーザーを作成
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# standaloneビルドをコピー
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
