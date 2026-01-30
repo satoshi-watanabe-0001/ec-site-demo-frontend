@@ -23,7 +23,14 @@ import type { BillingHistoryItem } from '@/types'
  * @returns 請求・支払いページ要素
  */
 export default function BillingPage() {
-  const { currentBilling, paymentMethod, setCurrentBilling, setPaymentMethod, setLoading, isLoading } = useBillingStore()
+  const {
+    currentBilling,
+    paymentMethod,
+    setCurrentBilling,
+    setPaymentMethod,
+    setLoading,
+    isLoading,
+  } = useBillingStore()
   const [history, setHistory] = useState<BillingHistoryItem[]>([])
   const [historyLoading, setHistoryLoading] = useState(true)
 

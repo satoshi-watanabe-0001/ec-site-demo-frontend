@@ -11,7 +11,11 @@
  */
 
 import { useEffect, useState } from 'react'
-import { ContactInfoForm, PasswordChangeForm, NotificationSettings } from '@/components/mypage/settings'
+import {
+  ContactInfoForm,
+  PasswordChangeForm,
+  NotificationSettings,
+} from '@/components/mypage/settings'
 import { useAccountStore } from '@/store/accountStore'
 import {
   getAccountProfile,
@@ -20,7 +24,11 @@ import {
   getNotificationSettings,
   updateNotificationSettings,
 } from '@/services/accountService'
-import type { UpdateAccountProfileRequest, ChangePasswordRequest, NotificationSettings as NotificationSettingsType } from '@/types'
+import type {
+  UpdateAccountProfileRequest,
+  ChangePasswordRequest,
+  NotificationSettings as NotificationSettingsType,
+} from '@/types'
 
 /**
  * アカウント設定ページコンポーネント
@@ -28,7 +36,14 @@ import type { UpdateAccountProfileRequest, ChangePasswordRequest, NotificationSe
  * @returns アカウント設定ページ要素
  */
 export default function SettingsPage() {
-  const { profile, notificationSettings, setProfile, setNotificationSettings, setLoading, isLoading } = useAccountStore()
+  const {
+    profile,
+    notificationSettings,
+    setProfile,
+    setNotificationSettings,
+    setLoading,
+    isLoading,
+  } = useAccountStore()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
@@ -93,10 +108,7 @@ export default function SettingsPage() {
           isSubmitting={isSubmitting}
           onSubmit={handleUpdateProfile}
         />
-        <PasswordChangeForm
-          isSubmitting={isSubmitting}
-          onSubmit={handleChangePassword}
-        />
+        <PasswordChangeForm isSubmitting={isSubmitting} onSubmit={handleChangePassword} />
         <NotificationSettings
           settings={notificationSettings}
           isLoading={isLoading}

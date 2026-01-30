@@ -92,7 +92,11 @@ class MyPageDashboard {
 
   /** 電話番号を取得 */
   async getPhoneNumber() {
-    return this.page.locator('text=電話番号').locator('..').locator('span.font-medium').textContent()
+    return this.page
+      .locator('text=電話番号')
+      .locator('..')
+      .locator('span.font-medium')
+      .textContent()
   }
 }
 

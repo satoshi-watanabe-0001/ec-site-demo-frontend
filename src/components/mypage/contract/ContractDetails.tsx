@@ -78,7 +78,10 @@ export function ContractDetails({ details, isLoading, className }: ContractDetai
       <div className="mb-6 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">契約詳細</h3>
         <span
-          className={cn('rounded-full px-3 py-1 text-xs font-medium text-white', statusDisplay.color)}
+          className={cn(
+            'rounded-full px-3 py-1 text-xs font-medium text-white',
+            statusDisplay.color
+          )}
         >
           {statusDisplay.label}
         </span>

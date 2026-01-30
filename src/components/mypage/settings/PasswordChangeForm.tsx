@@ -182,7 +182,12 @@ export function PasswordChangeForm({ isSubmitting, onSubmit, className }: Passwo
               <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? '変更中...' : 'パスワードを変更'}
               </Button>
-              <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleCancel}
+                disabled={isSubmitting}
+              >
                 キャンセル
               </Button>
             </div>

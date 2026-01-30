@@ -14,7 +14,11 @@ export type BillingStatus = 'pending' | 'paid' | 'overdue' | 'cancelled'
 /**
  * 支払い方法種別
  */
-export type PaymentMethodType = 'credit_card' | 'bank_transfer' | 'convenience_store' | 'carrier_billing'
+export type PaymentMethodType =
+  | 'credit_card'
+  | 'bank_transfer'
+  | 'convenience_store'
+  | 'carrier_billing'
 
 /**
  * 現在月の請求情報

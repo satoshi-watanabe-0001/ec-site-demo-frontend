@@ -104,10 +104,7 @@ export function DataUsageCard({ usage, isLoading, className }: DataUsageCardProp
       </div>
 
       <div className="mt-4 border-t border-slate-700 pt-4">
-        <Link
-          href="/mypage/data-usage"
-          className="text-sm text-primary hover:underline"
-        >
+        <Link href="/mypage/data-usage" className="text-sm text-primary hover:underline">
           詳細を見る →
         </Link>
       </div>

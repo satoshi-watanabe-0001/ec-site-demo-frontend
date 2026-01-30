@@ -97,11 +97,7 @@ export function NotificationSettings({
     }
   }, [settings])
 
-  const handleToggle = (
-    category: 'email' | 'push' | 'sms',
-    field: string,
-    value: boolean
-  ) => {
+  const handleToggle = (category: 'email' | 'push' | 'sms', field: string, value: boolean) => {
     if (!formData) return
 
     setFormData(prev => {

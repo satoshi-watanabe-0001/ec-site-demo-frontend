@@ -84,9 +84,7 @@ export function BillingSummary({ billing, isLoading, className }: BillingSummary
       </div>
 
       <div className="mb-4">
-        <span className="text-3xl font-bold text-white">
-          ¥{billing.total.toLocaleString()}
-        </span>
+        <span className="text-3xl font-bold text-white">¥{billing.total.toLocaleString()}</span>
         <span className="ml-2 text-sm text-slate-400">(税込)</span>
       </div>
 
@@ -114,10 +112,7 @@ export function BillingSummary({ billing, isLoading, className }: BillingSummary
       </div>
 
       <div className="mt-4 border-t border-slate-700 pt-4">
-        <Link
-          href="/mypage/billing"
-          className="text-sm text-primary hover:underline"
-        >
+        <Link href="/mypage/billing" className="text-sm text-primary hover:underline">
           請求詳細を見る →
         </Link>
       </div>

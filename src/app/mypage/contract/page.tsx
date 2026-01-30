@@ -22,17 +22,15 @@ import { getContractDetails, getDeviceInfo } from '@/services/contractService'
  * @returns 契約情報ページ要素
  */
 export default function ContractPage() {
-  const { details, deviceInfo, setDetails, setDeviceInfo, setLoading, isLoading } = useContractStore()
+  const { details, deviceInfo, setDetails, setDeviceInfo, setLoading, isLoading } =
+    useContractStore()
 
   useEffect(() => {
     const fetchContractData = async () => {
       setLoading(true)
 
       try {
-        const [detailsRes, deviceRes] = await Promise.all([
-          getContractDetails(),
-          getDeviceInfo(),
-        ])
+        const [detailsRes, deviceRes] = await Promise.all([getContractDetails(), getDeviceInfo()])
 
         setDetails(detailsRes)
         setDeviceInfo(deviceRes)

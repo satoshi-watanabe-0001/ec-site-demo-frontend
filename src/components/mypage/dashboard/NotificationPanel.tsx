@@ -134,9 +134,7 @@ export function NotificationPanel({
                   >
                     {notification.title}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-xs text-slate-400">
-                    {notification.message}
-                  </p>
+                  <p className="mt-1 line-clamp-2 text-xs text-slate-400">{notification.message}</p>
                   <p className="mt-1 text-xs text-slate-500">
                     {new Date(notification.createdAt).toLocaleDateString('ja-JP')}
                   </p>

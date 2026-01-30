@@ -13,7 +13,12 @@
 import { useEffect, useState } from 'react'
 import { DataUsageCard } from '@/components/mypage/dashboard'
 import { useDataUsageStore } from '@/store/dataUsageStore'
-import { getCurrentDataUsage, getDataUsageHistory, getDataAddOnOptions, purchaseDataAddOn } from '@/services/dataUsageService'
+import {
+  getCurrentDataUsage,
+  getDataUsageHistory,
+  getDataAddOnOptions,
+  purchaseDataAddOn,
+} from '@/services/dataUsageService'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import type { DataUsageHistoryResponse, DataAddOnOption } from '@/types'
@@ -79,7 +84,7 @@ export default function DataUsagePage() {
         {/* 使用履歴 */}
         <div className="rounded-lg bg-slate-800 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">使用履歴</h3>
-          
+
           {historyLoading ? (
             <div className="animate-pulse space-y-3">
               <div className="h-8 w-full rounded bg-slate-700" />
@@ -92,9 +97,14 @@ export default function DataUsagePage() {
                 <h4 className="mb-2 text-sm font-medium text-slate-400">日別使用量</h4>
                 <div className="space-y-2">
                   {history.dailyUsage.slice(0, 7).map(day => (
-                    <div key={day.date} className="flex items-center justify-between rounded bg-slate-700/50 px-3 py-2">
+                    <div
+                      key={day.date}
+                      className="flex items-center justify-between rounded bg-slate-700/50 px-3 py-2"
+                    >
                       <span className="text-sm text-white">{day.date}</span>
-                      <span className="text-sm font-medium text-white">{day.usedData.toFixed(2)}GB</span>
+                      <span className="text-sm font-medium text-white">
+                        {day.usedData.toFixed(2)}GB
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -104,11 +114,18 @@ export default function DataUsagePage() {
                 <h4 className="mb-2 text-sm font-medium text-slate-400">月別使用量</h4>
                 <div className="space-y-2">
                   {history.monthlyUsage.slice(0, 3).map(month => (
-                    <div key={month.month} className="flex items-center justify-between rounded bg-slate-700/50 px-3 py-2">
+                    <div
+                      key={month.month}
+                      className="flex items-center justify-between rounded bg-slate-700/50 px-3 py-2"
+                    >
                       <span className="text-sm text-white">{month.month}</span>
                       <div className="text-right">
-                        <span className="text-sm font-medium text-white">{month.usedData.toFixed(1)}GB</span>
-                        <span className="ml-2 text-xs text-slate-400">/ {month.dataCapacity}GB</span>
+                        <span className="text-sm font-medium text-white">
+                          {month.usedData.toFixed(1)}GB
+                        </span>
+                        <span className="ml-2 text-xs text-slate-400">
+                          / {month.dataCapacity}GB
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -123,7 +140,7 @@ export default function DataUsagePage() {
         {/* データ追加オプション */}
         <div className="rounded-lg bg-slate-800 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">データ追加オプション</h3>
-          
+
           {addOnOptions.length === 0 ? (
             <p className="text-slate-400">利用可能なオプションがありません</p>
           ) : (

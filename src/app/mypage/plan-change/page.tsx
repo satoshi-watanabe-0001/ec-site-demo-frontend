@@ -121,7 +121,9 @@ export default function PlanChangePage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xl font-bold text-white">{currentContract.planName}</p>
-                <p className="text-slate-400">月額 ¥{currentContract.monthlyBaseFee.toLocaleString()}</p>
+                <p className="text-slate-400">
+                  月額 ¥{currentContract.monthlyBaseFee.toLocaleString()}
+                </p>
               </div>
               <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-white">
                 契約中
@@ -135,7 +137,7 @@ export default function PlanChangePage() {
         {/* 利用可能なプラン */}
         <div className="rounded-lg bg-slate-800 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">利用可能なプラン</h3>
-          
+
           {isLoading ? (
             <div className="animate-pulse space-y-4">
               <div className="h-24 w-full rounded bg-slate-700" />
@@ -183,7 +185,9 @@ export default function PlanChangePage() {
                     <div className="space-y-1 text-sm">
                       <p className="text-slate-300">データ容量: {plan.dataCapacity}GB</p>
                       {plan.features.slice(0, 3).map((feature, index) => (
-                        <p key={index} className="text-slate-400">• {feature}</p>
+                        <p key={index} className="text-slate-400">
+                          • {feature}
+                        </p>
                       ))}
                     </div>
                   </div>
@@ -197,7 +201,7 @@ export default function PlanChangePage() {
         {(simulationLoading || simulation) && (
           <div className="rounded-lg bg-slate-800 p-6">
             <h3 className="mb-4 text-lg font-semibold text-white">変更シミュレーション</h3>
-            
+
             {simulationLoading ? (
               <div className="animate-pulse space-y-3">
                 <div className="h-4 w-full rounded bg-slate-700" />
@@ -222,12 +226,14 @@ export default function PlanChangePage() {
 
                 <div className="rounded bg-slate-700/50 p-4">
                   <p className="text-sm text-slate-400">差額</p>
-                  <p className={cn(
-                    'text-xl font-bold',
-                    simulation.priceDifference > 0 ? 'text-red-400' : 'text-green-400'
-                  )}>
-                    {simulation.priceDifference > 0 ? '+' : ''}
-                    ¥{simulation.priceDifference.toLocaleString()}/月
+                  <p
+                    className={cn(
+                      'text-xl font-bold',
+                      simulation.priceDifference > 0 ? 'text-red-400' : 'text-green-400'
+                    )}
+                  >
+                    {simulation.priceDifference > 0 ? '+' : ''}¥
+                    {simulation.priceDifference.toLocaleString()}/月
                   </p>
                 </div>
 

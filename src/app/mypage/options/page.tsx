@@ -23,7 +23,14 @@ import type { OptionService } from '@/types'
  * @returns オプション管理ページ要素
  */
 export default function OptionsPage() {
-  const { subscribedOptions, availableOptions, setSubscribedOptions, setAvailableOptions, setLoading, isLoading } = useOptionStore()
+  const {
+    subscribedOptions,
+    availableOptions,
+    setSubscribedOptions,
+    setAvailableOptions,
+    setLoading,
+    isLoading,
+  } = useOptionStore()
   const [processingId, setProcessingId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
@@ -90,9 +97,7 @@ export default function OptionsPage() {
       key={option.optionId}
       className={cn(
         'rounded-lg border p-4',
-        isSubscribed
-          ? 'border-green-500 bg-green-500/10'
-          : 'border-slate-600 bg-slate-700/30'
+        isSubscribed ? 'border-green-500 bg-green-500/10' : 'border-slate-600 bg-slate-700/30'
       )}
     >
       <div className="mb-2 flex items-start justify-between">
@@ -167,7 +172,7 @@ export default function OptionsPage() {
         {/* 契約中のオプション */}
         <div className="rounded-lg bg-slate-800 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">契約中のオプション</h3>
-          
+
           {isLoading ? (
             <div className="animate-pulse space-y-4">
               <div className="h-32 w-full rounded bg-slate-700" />
@@ -185,7 +190,7 @@ export default function OptionsPage() {
         {/* 利用可能なオプション */}
         <div className="rounded-lg bg-slate-800 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">利用可能なオプション</h3>
-          
+
           {isLoading ? (
             <div className="animate-pulse space-y-4">
               <div className="h-32 w-full rounded bg-slate-700" />

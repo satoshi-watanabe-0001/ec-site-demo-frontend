@@ -104,7 +104,9 @@ export function BillingHistory({ history, isLoading, className }: BillingHistory
                   {item.dataOverageCharges > 0 && (
                     <div className="flex justify-between">
                       <span className="text-slate-400">データ超過料金</span>
-                      <span className="text-white">¥{item.dataOverageCharges.toLocaleString()}</span>
+                      <span className="text-white">
+                        ¥{item.dataOverageCharges.toLocaleString()}
+                      </span>
                     </div>
                   )}
                   {item.deviceInstallment > 0 && (

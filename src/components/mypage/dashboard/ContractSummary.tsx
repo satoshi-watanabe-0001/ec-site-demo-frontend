@@ -79,7 +79,10 @@ export function ContractSummary({ summary, isLoading, className }: ContractSumma
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">契約情報</h3>
         <span
-          className={cn('rounded-full px-3 py-1 text-xs font-medium text-white', statusDisplay.color)}
+          className={cn(
+            'rounded-full px-3 py-1 text-xs font-medium text-white',
+            statusDisplay.color
+          )}
         >
           {statusDisplay.label}
         </span>
@@ -96,9 +99,7 @@ export function ContractSummary({ summary, isLoading, className }: ContractSumma
         </div>
         <div className="flex justify-between">
           <span className="text-slate-400">月額基本料金</span>
-          <span className="font-medium text-white">
-            ¥{summary.monthlyBaseFee.toLocaleString()}
-          </span>
+          <span className="font-medium text-white">¥{summary.monthlyBaseFee.toLocaleString()}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-slate-400">契約開始日</span>
@@ -107,10 +108,7 @@ export function ContractSummary({ summary, isLoading, className }: ContractSumma
       </div>
 
       <div className="mt-4 border-t border-slate-700 pt-4">
-        <Link
-          href="/mypage/contract"
-          className="text-sm text-primary hover:underline"
-        >
+        <Link href="/mypage/contract" className="text-sm text-primary hover:underline">
           契約詳細を見る →
         </Link>
       </div>

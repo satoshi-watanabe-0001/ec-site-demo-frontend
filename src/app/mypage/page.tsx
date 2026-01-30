@@ -23,10 +23,7 @@ import {
 import { useContractStore } from '@/store/contractStore'
 import { useDataUsageStore } from '@/store/dataUsageStore'
 import { useBillingStore } from '@/store/billingStore'
-import {
-  getContractSummary,
-  getDeviceInfo,
-} from '@/services/contractService'
+import { getContractSummary, getDeviceInfo } from '@/services/contractService'
 import { getCurrentDataUsage } from '@/services/dataUsageService'
 import { getCurrentBilling } from '@/services/billingService'
 import { getNotifications } from '@/services/notificationService'
@@ -38,10 +35,27 @@ import type { Notification } from '@/types'
  * @returns ダッシュボードページ要素
  */
 export default function MyPageDashboard() {
-  const { summary, deviceInfo, setSummary, setDeviceInfo, setLoading: setContractLoading, isLoading: contractLoading } = useContractStore()
-  const { currentUsage, setCurrentUsage, setLoading: setDataUsageLoading, isLoading: dataUsageLoading } = useDataUsageStore()
-  const { currentBilling, setCurrentBilling, setLoading: setBillingLoading, isLoading: billingLoading } = useBillingStore()
-  
+  const {
+    summary,
+    deviceInfo,
+    setSummary,
+    setDeviceInfo,
+    setLoading: setContractLoading,
+    isLoading: contractLoading,
+  } = useContractStore()
+  const {
+    currentUsage,
+    setCurrentUsage,
+    setLoading: setDataUsageLoading,
+    isLoading: dataUsageLoading,
+  } = useDataUsageStore()
+  const {
+    currentBilling,
+    setCurrentBilling,
+    setLoading: setBillingLoading,
+    isLoading: billingLoading,
+  } = useBillingStore()
+
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [unreadCount, setUnreadCount] = useState(0)
   const [notificationsLoading, setNotificationsLoading] = useState(true)
@@ -54,13 +68,14 @@ export default function MyPageDashboard() {
       setNotificationsLoading(true)
 
       try {
-        const [contractSummaryRes, deviceInfoRes, dataUsageRes, billingRes, notificationsRes] = await Promise.all([
-          getContractSummary(),
-          getDeviceInfo(),
-          getCurrentDataUsage(),
-          getCurrentBilling(),
-          getNotifications(),
-        ])
+        const [contractSummaryRes, deviceInfoRes, dataUsageRes, billingRes, notificationsRes] =
+          await Promise.all([
+            getContractSummary(),
+            getDeviceInfo(),
+            getCurrentDataUsage(),
+            getCurrentBilling(),
+            getNotifications(),
+          ])
 
         setSummary(contractSummaryRes)
         setDeviceInfo(deviceInfoRes)
@@ -79,7 +94,15 @@ export default function MyPageDashboard() {
     }
 
     fetchDashboardData()
-  }, [setSummary, setDeviceInfo, setCurrentUsage, setCurrentBilling, setContractLoading, setDataUsageLoading, setBillingLoading])
+  }, [
+    setSummary,
+    setDeviceInfo,
+    setCurrentUsage,
+    setCurrentBilling,
+    setContractLoading,
+    setDataUsageLoading,
+    setBillingLoading,
+  ])
 
   const handleNotificationClick = (notification: Notification) => {
     console.log('通知クリック:', notification.notificationId)
