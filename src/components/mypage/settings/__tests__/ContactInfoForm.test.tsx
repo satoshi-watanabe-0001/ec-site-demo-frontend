@@ -15,14 +15,16 @@ import type { AccountProfile } from '@/types'
 
 describe('ContactInfoForm', () => {
   const mockProfile: AccountProfile = {
-    accountId: 'acc-001',
+    userId: 'user-001',
     name: '山田 太郎',
+    nameKana: 'ヤマダ タロウ',
     email: 'test@example.com',
     phoneNumber: '090-1234-5678',
+    birthDate: '1990-01-01',
     postalCode: '123-4567',
     address: '東京都渋谷区1-2-3',
-    birthDate: '1990-01-01',
-    registeredDate: '2023-04-01',
+    registeredAt: '2023-04-01T00:00:00Z',
+    updatedAt: '2025-01-01T00:00:00Z',
   }
 
   describe('レンダリング', () => {

@@ -31,20 +31,26 @@ describe('optionService', () => {
       const mockResponse: OptionsResponse = {
         availableOptions: [
           {
-            id: 'opt-001',
-            name: 'かけ放題オプション',
+            optionId: 'opt-001',
+            optionName: 'かけ放題オプション',
             description: '国内通話かけ放題',
             monthlyFee: 1100,
             category: 'call',
+            features: ['国内通話無制限'],
+            status: 'available',
+            isCancellable: true,
           },
         ],
         subscribedOptions: [
           {
-            id: 'opt-002',
-            name: '大盛りオプション',
+            optionId: 'opt-002',
+            optionName: '大盛りオプション',
             description: '+80GB追加',
             monthlyFee: 1980,
             category: 'data',
+            features: ['80GB追加'],
+            status: 'subscribed',
+            isCancellable: true,
           },
         ],
       }
@@ -88,12 +94,16 @@ describe('optionService', () => {
       const mockResponse: SubscribeOptionResponse = {
         success: true,
         message: 'オプションに加入しました',
-        subscribedOption: {
-          id: 'opt-002',
-          name: '大盛りオプション',
+        startDate: '2026-02-01',
+        option: {
+          optionId: 'opt-002',
+          optionName: '大盛りオプション',
           description: '+80GB追加',
           monthlyFee: 1980,
           category: 'data',
+          features: ['80GB追加'],
+          status: 'subscribed',
+          isCancellable: true,
         },
       }
       mockFetch.mockResolvedValueOnce({
@@ -114,12 +124,16 @@ describe('optionService', () => {
       const mockResponse: SubscribeOptionResponse = {
         success: true,
         message: 'オプションに加入しました',
-        subscribedOption: {
-          id: 'opt-002',
-          name: '大盛りオプション',
+        startDate: '2026-02-01',
+        option: {
+          optionId: 'opt-002',
+          optionName: '大盛りオプション',
           description: '+80GB追加',
           monthlyFee: 1980,
           category: 'data',
+          features: ['80GB追加'],
+          status: 'subscribed',
+          isCancellable: true,
         },
       }
       mockFetch.mockResolvedValueOnce({
@@ -164,6 +178,7 @@ describe('optionService', () => {
       const mockResponse: UnsubscribeOptionResponse = {
         success: true,
         message: 'オプションを解約しました',
+        endDate: '2026-01-31',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -183,6 +198,7 @@ describe('optionService', () => {
       const mockResponse: UnsubscribeOptionResponse = {
         success: true,
         message: 'オプションを解約しました',
+        endDate: '2026-01-31',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,

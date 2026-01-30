@@ -15,14 +15,20 @@ import type { CurrentBilling } from '@/types'
 
 describe('BillingSummary', () => {
   const mockBilling: CurrentBilling = {
+    billingId: 'bill-001',
     billingMonth: '2025-01',
-    total: 9963,
+    status: 'pending',
     baseFee: 2970,
+    callFee: 0,
+    dataAdditionalFee: 0,
     optionFee: 1100,
     deviceInstallment: 4987,
+    discount: 0,
+    subtotal: 9057,
     tax: 906,
+    total: 9963,
     dueDate: '2025-01-27',
-    status: 'pending',
+    paymentMethod: 'credit_card',
   }
 
   describe('レンダリング', () => {

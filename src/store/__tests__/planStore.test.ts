@@ -46,18 +46,26 @@ describe('usePlanStore', () => {
       // Arrange
       const plans: Plan[] = [
         {
-          id: 'plan-001',
-          name: 'ahamo',
+          planId: 'plan-001',
+          planName: 'ahamo',
+          planType: 'ahamo',
           dataCapacity: 20,
           monthlyFee: 2970,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
           description: '基本プラン',
           features: ['5分かけ放題', '20GB'],
         },
         {
-          id: 'plan-002',
-          name: 'ahamo大盛り',
+          planId: 'plan-002',
+          planName: 'ahamo大盛り',
+          planType: 'ahamo_large',
           dataCapacity: 100,
           monthlyFee: 4950,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
           description: '大容量プラン',
           features: ['5分かけ放題', '100GB'],
         },
@@ -80,10 +88,14 @@ describe('usePlanStore', () => {
       })
       const plans: Plan[] = [
         {
-          id: 'plan-001',
-          name: 'ahamo',
+          planId: 'plan-001',
+          planName: 'ahamo',
+          planType: 'ahamo',
           dataCapacity: 20,
           monthlyFee: 2970,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
           description: '基本プラン',
           features: ['5分かけ放題', '20GB'],
         },
@@ -104,10 +116,14 @@ describe('usePlanStore', () => {
     test('setCurrentPlan_WithValidPlan_ShouldSetCurrentPlan', () => {
       // Arrange
       const plan: Plan = {
-        id: 'plan-001',
-        name: 'ahamo',
+        planId: 'plan-001',
+        planName: 'ahamo',
+        planType: 'ahamo',
         dataCapacity: 20,
         monthlyFee: 2970,
+        freeCallMinutes: 5,
+        is5GSupported: true,
+        isInternationalRoamingSupported: true,
         description: '基本プラン',
         features: ['5分かけ放題', '20GB'],
       }
@@ -155,10 +171,14 @@ describe('usePlanStore', () => {
     test('reset_WhenCalled_ShouldResetAllState', () => {
       // Arrange
       const plan: Plan = {
-        id: 'plan-001',
-        name: 'ahamo',
+        planId: 'plan-001',
+        planName: 'ahamo',
+        planType: 'ahamo',
         dataCapacity: 20,
         monthlyFee: 2970,
+        freeCallMinutes: 5,
+        is5GSupported: true,
+        isInternationalRoamingSupported: true,
         description: '基本プラン',
         features: ['5分かけ放題', '20GB'],
       }

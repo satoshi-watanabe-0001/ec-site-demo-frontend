@@ -35,14 +35,15 @@ describe('accountService', () => {
       // Arrange
       const mockResponse: AccountProfile = {
         userId: 'user-001',
+        name: '山田 太郎',
+        nameKana: 'ヤマダ タロウ',
         email: 'test@docomo.ne.jp',
-        phone: '090-1234-5678',
-        address: {
-          postalCode: '100-0001',
-          prefecture: '東京都',
-          city: '千代田区',
-          street: '千代田1-1-1',
-        },
+        phoneNumber: '090-1234-5678',
+        birthDate: '1990-01-15',
+        postalCode: '100-0001',
+        address: '東京都千代田区千代田1-1-1',
+        registeredAt: '2023-04-01T00:00:00Z',
+        updatedAt: '2025-01-01T00:00:00Z',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -80,18 +81,19 @@ describe('accountService', () => {
     test('updateAccountProfile_WithValidData_ShouldReturnUpdatedProfile', async () => {
       // Arrange
       const updateData: Partial<AccountProfile> = {
-        phone: '090-9876-5432',
+        phoneNumber: '090-9876-5432',
       }
       const mockResponse: AccountProfile = {
         userId: 'user-001',
+        name: '山田 太郎',
+        nameKana: 'ヤマダ タロウ',
         email: 'test@docomo.ne.jp',
-        phone: '090-9876-5432',
-        address: {
-          postalCode: '100-0001',
-          prefecture: '東京都',
-          city: '千代田区',
-          street: '千代田1-1-1',
-        },
+        phoneNumber: '090-9876-5432',
+        birthDate: '1990-01-15',
+        postalCode: '100-0001',
+        address: '東京都千代田区千代田1-1-1',
+        registeredAt: '2023-04-01T00:00:00Z',
+        updatedAt: '2025-01-01T00:00:00Z',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -108,7 +110,7 @@ describe('accountService', () => {
     test('updateAccountProfile_WithServerError_ShouldThrowServerErrorMessage', async () => {
       // Arrange
       const updateData: Partial<AccountProfile> = {
-        phone: '090-9876-5432',
+        phoneNumber: '090-9876-5432',
       }
       mockFetch.mockResolvedValueOnce({
         ok: false,

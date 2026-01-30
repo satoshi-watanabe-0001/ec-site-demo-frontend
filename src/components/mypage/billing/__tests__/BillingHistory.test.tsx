@@ -23,10 +23,10 @@ describe('BillingHistory', () => {
       callCharges: 0,
       dataOverageCharges: 0,
       deviceInstallment: 4987,
-      tax: 906,
       total: 9963,
       status: 'paid',
       paidDate: '2025-01-27',
+      paymentMethod: 'credit_card',
     },
     {
       billingId: 'bill-002',
@@ -36,10 +36,10 @@ describe('BillingHistory', () => {
       callCharges: 500,
       dataOverageCharges: 0,
       deviceInstallment: 4987,
-      tax: 955,
       total: 10512,
       status: 'paid',
       paidDate: '2024-12-27',
+      paymentMethod: 'credit_card',
     },
   ]
 

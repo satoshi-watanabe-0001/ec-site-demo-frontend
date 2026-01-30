@@ -46,18 +46,24 @@ describe('useOptionStore', () => {
       // Arrange
       const options: OptionService[] = [
         {
-          id: 'opt-001',
-          name: 'かけ放題オプション',
+          optionId: 'opt-001',
+          optionName: 'かけ放題オプション',
           description: '国内通話かけ放題',
           monthlyFee: 1100,
           category: 'call',
+          features: ['国内通話無制限'],
+          status: 'available',
+          isCancellable: true,
         },
         {
-          id: 'opt-002',
-          name: '大盛りオプション',
+          optionId: 'opt-002',
+          optionName: '大盛りオプション',
           description: '+80GB追加',
           monthlyFee: 1980,
           category: 'data',
+          features: ['80GB追加'],
+          status: 'available',
+          isCancellable: true,
         },
       ]
 
@@ -78,11 +84,14 @@ describe('useOptionStore', () => {
       })
       const options: OptionService[] = [
         {
-          id: 'opt-001',
-          name: 'かけ放題オプション',
+          optionId: 'opt-001',
+          optionName: 'かけ放題オプション',
           description: '国内通話かけ放題',
           monthlyFee: 1100,
           category: 'call',
+          features: ['国内通話無制限'],
+          status: 'available',
+          isCancellable: true,
         },
       ]
 
@@ -102,11 +111,14 @@ describe('useOptionStore', () => {
       // Arrange
       const subscribedOptions: OptionService[] = [
         {
-          id: 'opt-001',
-          name: 'かけ放題オプション',
+          optionId: 'opt-001',
+          optionName: 'かけ放題オプション',
           description: '国内通話かけ放題',
           monthlyFee: 1100,
           category: 'call',
+          features: ['国内通話無制限'],
+          status: 'subscribed',
+          isCancellable: true,
         },
       ]
 
@@ -164,11 +176,14 @@ describe('useOptionStore', () => {
       // Arrange
       const options: OptionService[] = [
         {
-          id: 'opt-001',
-          name: 'かけ放題オプション',
+          optionId: 'opt-001',
+          optionName: 'かけ放題オプション',
           description: '国内通話かけ放題',
           monthlyFee: 1100,
           category: 'call',
+          features: ['国内通話無制限'],
+          status: 'available',
+          isCancellable: true,
         },
       ]
       act(() => {

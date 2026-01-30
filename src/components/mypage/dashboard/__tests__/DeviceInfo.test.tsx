@@ -15,6 +15,7 @@ import type { DeviceInfo as DeviceInfoType } from '@/types'
 
 describe('DeviceInfo', () => {
   const mockDevice: DeviceInfoType = {
+    deviceId: 'dev-001',
     deviceName: 'iPhone 15 Pro',
     manufacturer: 'Apple',
     modelNumber: 'A3101',
@@ -80,7 +81,7 @@ describe('DeviceInfo', () => {
 
     test('DeviceInfo_WithoutWarrantyEndDate_ShouldNotShowWarrantyEndDate', () => {
       // Arrange
-      const deviceWithoutWarranty = { ...mockDevice, warrantyEndDate: undefined }
+      const deviceWithoutWarranty = { ...mockDevice, warrantyEndDate: '' }
 
       // Act
       render(<DeviceInfo device={deviceWithoutWarranty} />)

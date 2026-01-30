@@ -35,12 +35,11 @@ describe('contractService', () => {
       // Arrange
       const mockResponse: ContractSummary = {
         contractId: 'CNT-001',
-        phoneNumber: '090-1234-5678',
-        planName: 'ahamo',
-        dataCapacity: 20,
-        monthlyFee: 2970,
         status: 'active',
-        contractStartDate: '2023-04-01',
+        planName: 'ahamo',
+        startDate: '2023-04-01',
+        phoneNumber: '090-1234-5678',
+        monthlyBaseFee: 2970,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -58,12 +57,11 @@ describe('contractService', () => {
       // Arrange
       const mockResponse: ContractSummary = {
         contractId: 'CNT-001',
-        phoneNumber: '090-1234-5678',
-        planName: 'ahamo',
-        dataCapacity: 20,
-        monthlyFee: 2970,
         status: 'active',
-        contractStartDate: '2023-04-01',
+        planName: 'ahamo',
+        startDate: '2023-04-01',
+        phoneNumber: '090-1234-5678',
+        monthlyBaseFee: 2970,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -111,11 +109,13 @@ describe('contractService', () => {
       // Arrange
       const mockResponse: ContractDetails = {
         contractId: 'CNT-001',
+        contractNumber: 'CNT-2023-001234',
+        status: 'active',
+        startDate: '2023-04-01',
         phoneNumber: '090-1234-5678',
-        contractStartDate: '2023-04-01',
         plan: {
-          id: 'plan-001',
-          name: 'ahamo',
+          planId: 'plan-001',
+          planName: 'ahamo',
           dataCapacity: 20,
           monthlyFee: 2970,
         },
@@ -128,17 +128,12 @@ describe('contractService', () => {
         contractor: {
           name: '山田 太郎',
           nameKana: 'ヤマダ タロウ',
-          birthDate: '1990-01-15',
-          address: {
-            postalCode: '100-0001',
-            prefecture: '東京都',
-            city: '千代田区',
-            street: '千代田1-1-1',
-          },
+          dateOfBirth: '1990-01-15',
+          postalCode: '100-0001',
+          address: '東京都千代田区千代田1-1-1',
           email: 'test@docomo.ne.jp',
-          phone: '090-1234-5678',
+          contactPhone: '090-1234-5678',
         },
-        status: 'active',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -177,14 +172,14 @@ describe('contractService', () => {
       // Arrange
       const mockResponse: DeviceInfo = {
         deviceId: 'device-001',
-        name: 'iPhone 16 Pro',
+        deviceName: 'iPhone 16 Pro',
         manufacturer: 'Apple',
         modelNumber: 'A3293',
         imei: '35912345678901*',
         purchaseDate: '2024-09-20',
         warrantyEndDate: '2025-09-19',
         installmentBalance: 89760,
-        installmentRemainingMonths: 18,
+        installmentRemainingCount: 18,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,

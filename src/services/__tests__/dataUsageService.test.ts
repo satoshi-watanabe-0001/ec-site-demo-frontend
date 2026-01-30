@@ -8,7 +8,7 @@
  * - 命名規約: MethodName_StateUnderTest_ExpectedBehavior
  */
 
-import type { CurrentDataUsage, DataUsageHistory } from '@/types'
+import type { CurrentDataUsage, DataUsageHistoryResponse } from '@/types'
 import { getCurrentDataUsage, getDataUsageHistory } from '@/services/dataUsageService'
 
 const mockFetch = jest.fn()
@@ -29,11 +29,15 @@ describe('dataUsageService', () => {
     test('getCurrentDataUsage_WithValidResponse_ShouldReturnCurrentDataUsage', async () => {
       // Arrange
       const mockResponse: CurrentDataUsage = {
+        dataCapacity: 20,
         usedData: 12.5,
-        totalData: 20,
         remainingData: 7.5,
+        usagePercentage: 62.5,
+        periodStartDate: '2025-01-01',
+        periodEndDate: '2025-01-31',
         resetDate: '2025-02-01',
-        unit: 'GB',
+        additionalData: 0,
+        carryOverData: 0,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -70,14 +74,14 @@ describe('dataUsageService', () => {
   describe('getDataUsageHistory', () => {
     test('getDataUsageHistory_WithValidResponse_ShouldReturnDataUsageHistory', async () => {
       // Arrange
-      const mockResponse: DataUsageHistory = {
-        daily: [
+      const mockResponse: DataUsageHistoryResponse = {
+        dailyUsage: [
           { date: '2026-01-01', usedData: 0.26 },
           { date: '2026-01-02', usedData: 0.99 },
         ],
-        monthly: [
-          { month: '2025-02', usedData: 16.9, totalData: 20 },
-          { month: '2025-03', usedData: 18.0, totalData: 20 },
+        monthlyUsage: [
+          { month: '2025-02', usedData: 16.9, dataCapacity: 20, additionalData: 0 },
+          { month: '2025-03', usedData: 18.0, dataCapacity: 20, additionalData: 0 },
         ],
       }
       mockFetch.mockResolvedValueOnce({

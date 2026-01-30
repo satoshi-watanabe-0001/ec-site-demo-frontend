@@ -30,19 +30,27 @@ describe('planService', () => {
       // Arrange
       const mockResponse: AvailablePlansResponse = {
         currentPlan: {
-          id: 'plan-001',
-          name: 'ahamo',
+          planId: 'plan-001',
+          planName: 'ahamo',
+          planType: 'ahamo',
           dataCapacity: 20,
           monthlyFee: 2970,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
           description: '基本プラン',
           features: ['5分かけ放題', '20GB'],
         },
         availablePlans: [
           {
-            id: 'plan-002',
-            name: 'ahamo大盛り',
+            planId: 'plan-002',
+            planName: 'ahamo大盛り',
+            planType: 'ahamo_large',
             dataCapacity: 100,
             monthlyFee: 4950,
+            freeCallMinutes: 5,
+            is5GSupported: true,
+            isInternationalRoamingSupported: true,
             description: '大容量プラン',
             features: ['5分かけ放題', '100GB'],
           },
@@ -84,11 +92,24 @@ describe('planService', () => {
   describe('changePlan', () => {
     test('changePlan_WithValidRequest_ShouldReturnSuccess', async () => {
       // Arrange
-      const request = { planId: 'plan-002' }
+      const request = { newPlanId: 'plan-002' }
       const mockResponse: ChangePlanResponse = {
         success: true,
         message: 'プラン変更が完了しました',
         effectiveDate: '2026-02-01',
+        newPlan: {
+          planId: 'plan-002',
+          planName: 'ahamo大盛り',
+          planType: 'ahamo_large',
+          dataCapacity: 100,
+          monthlyFee: 4950,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
+          description: '大容量プラン',
+          features: ['5分かけ放題', '100GB'],
+        },
+        priceDifference: 1980,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -104,11 +125,24 @@ describe('planService', () => {
 
     test('changePlan_WithValidRequest_ShouldCallFetchWithCorrectParams', async () => {
       // Arrange
-      const request = { planId: 'plan-002' }
+      const request = { newPlanId: 'plan-002' }
       const mockResponse: ChangePlanResponse = {
         success: true,
         message: 'プラン変更が完了しました',
         effectiveDate: '2026-02-01',
+        newPlan: {
+          planId: 'plan-002',
+          planName: 'ahamo大盛り',
+          planType: 'ahamo_large',
+          dataCapacity: 100,
+          monthlyFee: 4950,
+          freeCallMinutes: 5,
+          is5GSupported: true,
+          isInternationalRoamingSupported: true,
+          description: '大容量プラン',
+          features: ['5分かけ放題', '100GB'],
+        },
+        priceDifference: 1980,
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -133,7 +167,7 @@ describe('planService', () => {
 
     test('changePlan_WithServerError_ShouldThrowServerErrorMessage', async () => {
       // Arrange
-      const request = { planId: 'plan-002' }
+      const request = { newPlanId: 'plan-002' }
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 500,

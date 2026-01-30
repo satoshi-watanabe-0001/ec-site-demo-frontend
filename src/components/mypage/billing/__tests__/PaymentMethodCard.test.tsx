@@ -15,10 +15,10 @@ import type { PaymentMethod } from '@/types'
 
 describe('PaymentMethodCard', () => {
   const mockCreditCard: PaymentMethod = {
-    paymentMethodId: 'pm-001',
     type: 'credit_card',
     isDefault: true,
     cardInfo: {
+      cardId: 'card-001',
       brand: 'visa',
       lastFourDigits: '1234',
       expiryDate: '12/26',
@@ -27,19 +27,19 @@ describe('PaymentMethodCard', () => {
   }
 
   const mockBankTransfer: PaymentMethod = {
-    paymentMethodId: 'pm-002',
     type: 'bank_transfer',
     isDefault: false,
     bankInfo: {
+      accountId: 'acc-001',
       bankName: '三菱UFJ銀行',
       branchName: '渋谷支店',
       accountType: 'savings',
       accountNumberLast4: '5678',
+      accountHolderName: '山田 太郎',
     },
   }
 
   const mockCarrierBilling: PaymentMethod = {
-    paymentMethodId: 'pm-003',
     type: 'carrier_billing',
     isDefault: false,
   }

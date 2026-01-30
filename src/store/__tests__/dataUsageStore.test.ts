@@ -50,11 +50,15 @@ describe('useDataUsageStore', () => {
     test('setCurrentUsage_WithValidUsage_ShouldSetCurrentUsage', () => {
       // Arrange
       const usage: CurrentDataUsage = {
+        dataCapacity: 20,
         usedData: 12.5,
-        totalData: 20,
         remainingData: 7.5,
+        usagePercentage: 62.5,
+        periodStartDate: '2025-01-01',
+        periodEndDate: '2025-01-31',
         resetDate: '2025-02-01',
-        unit: 'GB',
+        additionalData: 0,
+        carryOverData: 0,
       }
 
       // Act
@@ -73,11 +77,15 @@ describe('useDataUsageStore', () => {
         useDataUsageStore.getState().setError('テストエラー')
       })
       const usage: CurrentDataUsage = {
+        dataCapacity: 20,
         usedData: 12.5,
-        totalData: 20,
         remainingData: 7.5,
+        usagePercentage: 62.5,
+        periodStartDate: '2025-01-01',
+        periodEndDate: '2025-01-31',
         resetDate: '2025-02-01',
-        unit: 'GB',
+        additionalData: 0,
+        carryOverData: 0,
       }
 
       // Act
@@ -114,8 +122,8 @@ describe('useDataUsageStore', () => {
     test('setMonthlyUsage_WithValidUsage_ShouldSetMonthlyUsage', () => {
       // Arrange
       const monthlyUsage: MonthlyDataUsage[] = [
-        { month: '2025-02', usedData: 16.9, totalData: 20 },
-        { month: '2025-03', usedData: 18.0, totalData: 20 },
+        { month: '2025-02', usedData: 16.9, dataCapacity: 20, additionalData: 0 },
+        { month: '2025-03', usedData: 18.0, dataCapacity: 20, additionalData: 0 },
       ]
 
       // Act
@@ -171,11 +179,15 @@ describe('useDataUsageStore', () => {
     test('reset_WhenCalled_ShouldResetAllState', () => {
       // Arrange
       const usage: CurrentDataUsage = {
+        dataCapacity: 20,
         usedData: 12.5,
-        totalData: 20,
         remainingData: 7.5,
+        usagePercentage: 62.5,
+        periodStartDate: '2025-01-01',
+        periodEndDate: '2025-01-31',
         resetDate: '2025-02-01',
-        unit: 'GB',
+        additionalData: 0,
+        carryOverData: 0,
       }
       act(() => {
         useDataUsageStore.getState().setCurrentUsage(usage)

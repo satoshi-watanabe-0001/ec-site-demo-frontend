@@ -33,18 +33,20 @@ describe('billingService', () => {
     test('getCurrentBilling_WithValidResponse_ShouldReturnCurrentBilling', async () => {
       // Arrange
       const mockResponse: CurrentBilling = {
+        billingId: 'bill-001',
         billingMonth: '2025-01',
-        totalAmount: 9963,
-        taxIncluded: true,
-        dueDate: '2025-02-28',
         status: 'pending',
-        breakdown: {
-          basicFee: 2970,
-          optionFees: 1100,
-          deviceInstallment: 4987,
-          discounts: 0,
-          taxes: 906,
-        },
+        baseFee: 2970,
+        callFee: 0,
+        dataAdditionalFee: 0,
+        optionFee: 1100,
+        deviceInstallment: 4987,
+        discount: 0,
+        subtotal: 9057,
+        tax: 906,
+        total: 9963,
+        dueDate: '2025-02-28',
+        paymentMethod: 'credit_card',
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -83,17 +85,17 @@ describe('billingService', () => {
       // Arrange
       const mockResponse: BillingHistoryItem[] = [
         {
+          billingId: 'bill-001',
           billingMonth: '2024-12',
-          totalAmount: 9963,
           status: 'paid',
+          baseFee: 2970,
+          optionFee: 1100,
+          callCharges: 0,
+          dataOverageCharges: 0,
+          deviceInstallment: 4987,
+          total: 9963,
           paidDate: '2024-12-27',
-          breakdown: {
-            basicFee: 2970,
-            optionFees: 1100,
-            deviceInstallment: 4987,
-            discounts: 0,
-            taxes: 906,
-          },
+          paymentMethod: 'credit_card',
         },
       ]
       mockFetch.mockResolvedValueOnce({
@@ -124,14 +126,15 @@ describe('billingService', () => {
     test('getPaymentMethod_WithValidResponse_ShouldReturnPaymentMethod', async () => {
       // Arrange
       const mockResponse: PaymentMethod = {
-        id: 'pm-001',
         type: 'credit_card',
-        cardBrand: 'VISA',
-        lastFourDigits: '4242',
-        expiryMonth: 12,
-        expiryYear: 2026,
-        holderName: 'TARO YAMADA',
         isDefault: true,
+        cardInfo: {
+          cardId: 'card-001',
+          brand: 'VISA',
+          lastFourDigits: '4242',
+          expiryDate: '12/26',
+          holderName: 'TARO YAMADA',
+        },
       }
       mockFetch.mockResolvedValueOnce({
         ok: true,

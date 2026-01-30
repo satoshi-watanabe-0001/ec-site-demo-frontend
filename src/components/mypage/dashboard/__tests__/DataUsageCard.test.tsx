@@ -15,12 +15,15 @@ import type { CurrentDataUsage } from '@/types'
 
 describe('DataUsageCard', () => {
   const mockUsage: CurrentDataUsage = {
-    usedData: 12.5,
     dataCapacity: 20,
+    usedData: 12.5,
     remainingData: 7.5,
     usagePercentage: 62.5,
+    periodStartDate: '2025-01-01',
+    periodEndDate: '2025-01-31',
     resetDate: '2025-02-01',
     additionalData: 0,
+    carryOverData: 0,
   }
 
   describe('レンダリング', () => {

@@ -31,6 +31,7 @@ describe('ContractDetails', () => {
         optionId: 'opt-001',
         optionName: 'かけ放題オプション',
         monthlyFee: 1100,
+        startDate: '2023-04-01',
       },
     ],
     contractor: {
@@ -147,7 +148,7 @@ describe('ContractDetails', () => {
       // Arrange
       const eSimDetails = {
         ...mockDetails,
-        simInfo: { ...mockDetails.simInfo, simType: 'esim' as const },
+        simInfo: { ...mockDetails.simInfo, simType: 'eSIM' as const },
       }
 
       // Act
