@@ -93,9 +93,7 @@ describe('PasswordChangeForm', () => {
 
       // Assert
       await waitFor(() => {
-        expect(screen.getByRole('alert')).toHaveTextContent(
-          '現在のパスワードを入力してください'
-        )
+        expect(screen.getByRole('alert')).toHaveTextContent('現在のパスワードを入力してください')
       })
       expect(handleSubmit).not.toHaveBeenCalled()
     })

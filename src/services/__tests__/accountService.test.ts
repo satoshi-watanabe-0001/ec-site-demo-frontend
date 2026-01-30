@@ -118,9 +118,7 @@ describe('accountService', () => {
       })
 
       // Act & Assert
-      await expect(updateAccountProfile(updateData)).rejects.toThrow(
-        ERROR_MESSAGES.SERVER_ERROR
-      )
+      await expect(updateAccountProfile(updateData)).rejects.toThrow(ERROR_MESSAGES.SERVER_ERROR)
     })
   })
 

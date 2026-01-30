@@ -9,11 +9,7 @@
  */
 
 import type { ContractSummary, ContractDetails, DeviceInfo } from '@/types'
-import {
-  getContractSummary,
-  getContractDetails,
-  getDeviceInfo,
-} from '@/services/contractService'
+import { getContractSummary, getContractDetails, getDeviceInfo } from '@/services/contractService'
 
 const mockFetch = jest.fn()
 global.fetch = mockFetch

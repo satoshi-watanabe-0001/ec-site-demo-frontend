@@ -9,11 +9,7 @@
  */
 
 import type { CurrentBilling, BillingHistoryItem, PaymentMethod } from '@/types'
-import {
-  getCurrentBilling,
-  getBillingHistory,
-  getPaymentMethod,
-} from '@/services/billingService'
+import { getCurrentBilling, getBillingHistory, getPaymentMethod } from '@/services/billingService'
 
 const mockFetch = jest.fn()
 global.fetch = mockFetch
