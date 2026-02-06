@@ -8,5 +8,11 @@
 import { productHandlers } from './productHandlers'
 import { marketingHandlers } from './marketingHandlers'
 import { authHandlers } from './authHandlers'
+import { mypageHandlers } from './mypageHandlers'
 
-export const handlers = [...productHandlers, ...marketingHandlers, ...authHandlers]
+export const handlers = [
+  ...productHandlers,
+  ...marketingHandlers,
+  ...authHandlers,
+  ...mypageHandlers,
+]
