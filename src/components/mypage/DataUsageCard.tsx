@@ -18,10 +18,7 @@ interface DataUsageCardProps {
   className?: string
 }
 
-export function DataUsageCard({
-  dataUsage,
-  className,
-}: DataUsageCardProps): React.ReactElement {
+export function DataUsageCard({ dataUsage, className }: DataUsageCardProps): React.ReactElement {
   const { currentUsage, remaining, totalCapacity, lastUpdated } = dataUsage
   const usagePercentage = Math.round((currentUsage / totalCapacity) * 100)
 
@@ -61,28 +58,25 @@ export function DataUsageCard({
           {currentUsage.toFixed(1)}
           <span className="text-lg text-gray-500 ml-1">GB</span>
         </div>
-        <div className="text-sm text-gray-500 mt-1">
-          / {totalCapacity}GB 中
-        </div>
+        <div className="text-sm text-gray-500 mt-1">/ {totalCapacity}GB 中</div>
       </div>
 
       <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
         <div
-          className={cn('h-3 rounded-full transition-all duration-500', getProgressColor(usagePercentage))}
+          className={cn(
+            'h-3 rounded-full transition-all duration-500',
+            getProgressColor(usagePercentage)
+          )}
           style={{ width: `${Math.min(usagePercentage, 100)}%` }}
         />
       </div>
 
       <div className="flex justify-between text-sm">
         <span className="text-gray-500">使用済み: {usagePercentage}%</span>
-        <span className="font-medium text-gray-900">
-          残り {remaining.toFixed(1)}GB
-        </span>
+        <span className="font-medium text-gray-900">残り {remaining.toFixed(1)}GB</span>
       </div>
 
-      <div className="mt-3 text-xs text-gray-400 text-right">
-        最終更新: {formattedLastUpdated}
-      </div>
+      <div className="mt-3 text-xs text-gray-400 text-right">最終更新: {formattedLastUpdated}</div>
     </div>
   )
 }

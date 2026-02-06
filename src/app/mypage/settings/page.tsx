@@ -21,11 +21,7 @@ import {
   changePassword,
   updateNotificationPreferences,
 } from '@/services/mypageService'
-import type {
-  ProfileUpdateRequest,
-  PasswordChangeRequest,
-  NotificationPreferences,
-} from '@/types'
+import type { ProfileUpdateRequest, PasswordChangeRequest, NotificationPreferences } from '@/types'
 
 export default function SettingsPage(): React.ReactElement {
   const router = useRouter()
@@ -37,7 +33,9 @@ export default function SettingsPage(): React.ReactElement {
   const [currentPassword, setCurrentPassword] = React.useState('')
   const [newPassword, setNewPassword] = React.useState('')
   const [confirmPassword, setConfirmPassword] = React.useState('')
-  const [message, setMessage] = React.useState<{ type: 'success' | 'error'; text: string } | null>(null)
+  const [message, setMessage] = React.useState<{ type: 'success' | 'error'; text: string } | null>(
+    null
+  )
   const [isSubmitting, setIsSubmitting] = React.useState(false)
 
   const [emailNotification, setEmailNotification] = React.useState(true)
@@ -195,7 +193,7 @@ export default function SettingsPage(): React.ReactElement {
                   id="profile-name"
                   type="text"
                   value={profileName}
-                  onChange={(e) => setProfileName(e.target.value)}
+                  onChange={e => setProfileName(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 />
               </div>
@@ -207,7 +205,7 @@ export default function SettingsPage(): React.ReactElement {
                   id="profile-email"
                   type="email"
                   value={profileEmail}
-                  onChange={(e) => setProfileEmail(e.target.value)}
+                  onChange={e => setProfileEmail(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 />
               </div>
@@ -233,7 +231,7 @@ export default function SettingsPage(): React.ReactElement {
                   id="current-password"
                   type="password"
                   value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  onChange={e => setCurrentPassword(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 />
               </div>
@@ -245,7 +243,7 @@ export default function SettingsPage(): React.ReactElement {
                   id="new-password"
                   type="password"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={e => setNewPassword(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 />
               </div>
@@ -257,7 +255,7 @@ export default function SettingsPage(): React.ReactElement {
                   id="confirm-password"
                   type="password"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={e => setConfirmPassword(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 />
               </div>
@@ -280,7 +278,7 @@ export default function SettingsPage(): React.ReactElement {
                 <input
                   type="checkbox"
                   checked={emailNotification}
-                  onChange={(e) => setEmailNotification(e.target.checked)}
+                  onChange={e => setEmailNotification(e.target.checked)}
                   className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
               </label>
@@ -289,7 +287,7 @@ export default function SettingsPage(): React.ReactElement {
                 <input
                   type="checkbox"
                   checked={campaignNotification}
-                  onChange={(e) => setCampaignNotification(e.target.checked)}
+                  onChange={e => setCampaignNotification(e.target.checked)}
                   className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
               </label>
@@ -298,7 +296,7 @@ export default function SettingsPage(): React.ReactElement {
                 <input
                   type="checkbox"
                   checked={billingNotification}
-                  onChange={(e) => setBillingNotification(e.target.checked)}
+                  onChange={e => setBillingNotification(e.target.checked)}
                   className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
               </label>
@@ -307,7 +305,7 @@ export default function SettingsPage(): React.ReactElement {
                 <input
                   type="checkbox"
                   checked={dataUsageAlert}
-                  onChange={(e) => setDataUsageAlert(e.target.checked)}
+                  onChange={e => setDataUsageAlert(e.target.checked)}
                   className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
               </label>
@@ -323,7 +321,7 @@ export default function SettingsPage(): React.ReactElement {
                     max="95"
                     step="5"
                     value={dataUsageAlertThreshold}
-                    onChange={(e) => setDataUsageAlertThreshold(Number(e.target.value))}
+                    onChange={e => setDataUsageAlertThreshold(Number(e.target.value))}
                     className="w-full"
                   />
                 </div>

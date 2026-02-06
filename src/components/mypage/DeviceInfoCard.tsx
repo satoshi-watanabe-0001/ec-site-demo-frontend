@@ -16,10 +16,7 @@ interface DeviceInfoCardProps {
   className?: string
 }
 
-export function DeviceInfoCard({
-  device,
-  className,
-}: DeviceInfoCardProps): React.ReactElement {
+export function DeviceInfoCard({ device, className }: DeviceInfoCardProps): React.ReactElement {
   if (!device) {
     return (
       <div

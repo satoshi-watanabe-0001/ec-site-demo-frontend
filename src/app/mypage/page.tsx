@@ -68,7 +68,7 @@ export default function MypageDashboard(): React.ReactElement {
           <div className="animate-pulse space-y-6">
             <div className="h-8 bg-gray-200 rounded w-1/3" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {[1, 2, 3, 4, 5].map(i => (
                 <div key={i} className="h-64 bg-gray-200 rounded-2xl" />
               ))}
             </div>
@@ -84,9 +84,7 @@ export default function MypageDashboard(): React.ReactElement {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-50 to-blue-50 opacity-90" />
         <div className="relative z-10 container mx-auto px-4 py-12">
           <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
-            <p className="text-red-600 font-medium">
-              データの取得に失敗しました。
-            </p>
+            <p className="text-red-600 font-medium">データの取得に失敗しました。</p>
             <p className="text-sm text-red-500 mt-2">{error.message}</p>
             <button
               type="button"
@@ -126,16 +124,12 @@ export default function MypageDashboard(): React.ReactElement {
 
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-            マイページ
-          </h1>
-          <p className="text-gray-500 mt-1">
-            {user?.name}さん、こんにちは
-          </p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">マイページ</h1>
+          <p className="text-gray-500 mt-1">{user?.name}さん、こんにちは</p>
         </div>
 
         <nav className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-8">
-          {menuItems.map((item) => (
+          {menuItems.map(item => (
             <Link
               key={item.href}
               href={item.href}

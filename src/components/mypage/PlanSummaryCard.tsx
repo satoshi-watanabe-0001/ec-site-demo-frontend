@@ -18,10 +18,7 @@ interface PlanSummaryCardProps {
   className?: string
 }
 
-export function PlanSummaryCard({
-  contract,
-  className,
-}: PlanSummaryCardProps): React.ReactElement {
+export function PlanSummaryCard({ contract, className }: PlanSummaryCardProps): React.ReactElement {
   const { plan, phoneNumber, options } = contract
   const optionTotal = options.reduce((sum, opt) => sum + opt.monthlyFee, 0)
 
@@ -50,9 +47,7 @@ export function PlanSummaryCard({
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm text-gray-500">月額料金</span>
-          <span className="font-semibold text-gray-900">
-            ¥{plan.monthlyFee.toLocaleString()}
-          </span>
+          <span className="font-semibold text-gray-900">¥{plan.monthlyFee.toLocaleString()}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm text-gray-500">データ容量</span>
@@ -66,12 +61,10 @@ export function PlanSummaryCard({
           <div className="border-t pt-3 mt-3">
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-500">オプション ({options.length}件)</span>
-              <span className="font-semibold text-gray-900">
-                +¥{optionTotal.toLocaleString()}
-              </span>
+              <span className="font-semibold text-gray-900">+¥{optionTotal.toLocaleString()}</span>
             </div>
             <ul className="mt-2 space-y-1">
-              {options.map((opt) => (
+              {options.map(opt => (
                 <li key={opt.optionId} className="text-xs text-gray-500 flex justify-between">
                   <span>{opt.optionName}</span>
                   <span>¥{opt.monthlyFee.toLocaleString()}/月</span>

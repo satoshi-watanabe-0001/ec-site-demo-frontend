@@ -81,7 +81,7 @@ export default function OptionsPage(): React.ReactElement {
           <div className="animate-pulse space-y-4">
             <div className="h-6 bg-gray-200 rounded w-1/4" />
             <div className="space-y-4">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3, 4].map(i => (
                 <div key={i} className="h-32 bg-gray-200 rounded-2xl" />
               ))}
             </div>
@@ -104,8 +104,8 @@ export default function OptionsPage(): React.ReactElement {
     )
   }
 
-  const subscribedOptions = options.filter((opt) => opt.isSubscribed)
-  const availableOptions = options.filter((opt) => !opt.isSubscribed)
+  const subscribedOptions = options.filter(opt => opt.isSubscribed)
+  const availableOptions = options.filter(opt => !opt.isSubscribed)
 
   return (
     <div className="min-h-screen relative">
@@ -149,7 +149,7 @@ export default function OptionsPage(): React.ReactElement {
               </div>
             ) : (
               <div className="space-y-4">
-                {subscribedOptions.map((option) => (
+                {subscribedOptions.map(option => (
                   <div key={option.optionId} className="rounded-2xl bg-white shadow-md p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -167,9 +167,7 @@ export default function OptionsPage(): React.ReactElement {
                       </div>
                       <button
                         type="button"
-                        onClick={() =>
-                          handleOptionToggle(option.optionId, option.isSubscribed)
-                        }
+                        onClick={() => handleOptionToggle(option.optionId, option.isSubscribed)}
                         disabled={processingId === option.optionId}
                         className="ml-4 px-4 py-2 text-sm border border-red-300 text-red-600 rounded-lg hover:bg-red-50 transition-colors disabled:opacity-50 flex-shrink-0"
                       >
@@ -192,7 +190,7 @@ export default function OptionsPage(): React.ReactElement {
               </div>
             ) : (
               <div className="space-y-4">
-                {availableOptions.map((option) => (
+                {availableOptions.map(option => (
                   <div key={option.optionId} className="rounded-2xl bg-white shadow-md p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -210,9 +208,7 @@ export default function OptionsPage(): React.ReactElement {
                       </div>
                       <button
                         type="button"
-                        onClick={() =>
-                          handleOptionToggle(option.optionId, option.isSubscribed)
-                        }
+                        onClick={() => handleOptionToggle(option.optionId, option.isSubscribed)}
                         disabled={processingId === option.optionId}
                         className="ml-4 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex-shrink-0"
                       >

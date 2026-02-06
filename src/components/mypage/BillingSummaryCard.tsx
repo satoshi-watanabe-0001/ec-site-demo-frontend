@@ -24,9 +24,7 @@ export function BillingSummaryCard({
 }: BillingSummaryCardProps): React.ReactElement {
   const { currentMonthEstimate, history, paymentMethod } = billing
   const lastMonth = history[0]
-  const diff = lastMonth
-    ? currentMonthEstimate.totalAmount - lastMonth.totalAmount
-    : 0
+  const diff = lastMonth ? currentMonthEstimate.totalAmount - lastMonth.totalAmount : 0
 
   return (
     <div
@@ -55,10 +53,7 @@ export function BillingSummaryCard({
         </div>
         {diff !== 0 && (
           <div
-            className={cn(
-              'text-sm mt-2 font-medium',
-              diff > 0 ? 'text-red-500' : 'text-green-600'
-            )}
+            className={cn('text-sm mt-2 font-medium', diff > 0 ? 'text-red-500' : 'text-green-600')}
           >
             前月比 {diff > 0 ? '+' : ''}¥{diff.toLocaleString()}
           </div>

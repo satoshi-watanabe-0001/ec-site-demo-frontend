@@ -343,10 +343,7 @@ export const mypageHandlers = [
     const body = (await request.json()) as OptionChangeRequest
     const response: OptionChangeResponse = {
       success: true,
-      message:
-        body.action === 'add'
-          ? 'オプションを追加しました。'
-          : 'オプションを解除しました。',
+      message: body.action === 'add' ? 'オプションを追加しました。' : 'オプションを解除しました。',
     }
     return HttpResponse.json(response)
   }),

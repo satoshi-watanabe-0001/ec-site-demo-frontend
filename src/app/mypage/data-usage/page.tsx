@@ -73,7 +73,7 @@ export default function DataUsageDetailPage(): React.ReactElement {
     return 'bg-blue-500'
   }
 
-  const maxDailyUsage = Math.max(...data.dailyUsage.map((d) => d.usage), 1)
+  const maxDailyUsage = Math.max(...data.dailyUsage.map(d => d.usage), 1)
 
   return (
     <div className="min-h-screen relative">
@@ -133,7 +133,7 @@ export default function DataUsageDetailPage(): React.ReactElement {
           <div className="rounded-2xl bg-white shadow-md p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">日別データ使用量</h2>
             <div className="space-y-2">
-              {data.dailyUsage.map((day) => {
+              {data.dailyUsage.map(day => {
                 const barWidth = (day.usage / maxDailyUsage) * 100
                 const dateStr = new Date(day.date).toLocaleDateString('ja-JP', {
                   month: 'short',
@@ -162,15 +162,11 @@ export default function DataUsageDetailPage(): React.ReactElement {
           <div className="rounded-2xl bg-white shadow-md p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">月別データ使用量履歴</h2>
             <div className="space-y-3">
-              {data.monthlyHistory.map((month) => {
-                const monthUsagePercent = Math.round(
-                  (month.usage / month.capacity) * 100
-                )
+              {data.monthlyHistory.map(month => {
+                const monthUsagePercent = Math.round((month.usage / month.capacity) * 100)
                 return (
                   <div key={month.month} className="flex items-center gap-3">
-                    <span className="text-sm text-gray-500 w-20 flex-shrink-0">
-                      {month.month}
-                    </span>
+                    <span className="text-sm text-gray-500 w-20 flex-shrink-0">{month.month}</span>
                     <div className="flex-1 bg-gray-100 rounded-full h-6 relative">
                       <div
                         className={cn(

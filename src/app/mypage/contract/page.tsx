@@ -153,15 +153,12 @@ export default function ContractDetailPage(): React.ReactElement {
             <div className="rounded-2xl bg-white shadow-md p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-bold text-gray-900">ご契約オプション</h2>
-                <Link
-                  href="/mypage/options"
-                  className="text-sm text-blue-600 hover:text-blue-800"
-                >
+                <Link href="/mypage/options" className="text-sm text-blue-600 hover:text-blue-800">
                   オプション管理
                 </Link>
               </div>
               <div className="space-y-4">
-                {data.options.map((option) => (
+                {data.options.map(option => (
                   <div key={option.optionId} className="p-4 border rounded-xl">
                     <div className="flex justify-between items-start">
                       <div>

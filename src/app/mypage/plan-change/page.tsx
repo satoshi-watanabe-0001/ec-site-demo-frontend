@@ -161,16 +161,12 @@ export default function PlanChangePage(): React.ReactElement {
             )}
           >
             <p>{result.message}</p>
-            {result.effectiveDate && (
-              <p className="mt-1 text-xs">
-                適用日: {result.effectiveDate}
-              </p>
-            )}
+            {result.effectiveDate && <p className="mt-1 text-xs">適用日: {result.effectiveDate}</p>}
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {PLAN_OPTIONS.map((plan) => {
+          {PLAN_OPTIONS.map(plan => {
             const isCurrent = plan.planId === currentPlanId
             const isSelected = plan.planId === selectedPlanId
             return (
@@ -207,7 +203,7 @@ export default function PlanChangePage(): React.ReactElement {
                   <span className="text-sm font-normal text-gray-500">/月（税込）</span>
                 </div>
                 <ul className="space-y-2">
-                  {plan.features.map((feature) => (
+                  {plan.features.map(feature => (
                     <li key={feature} className="flex items-start text-sm text-gray-600">
                       <span className="text-blue-500 mr-2 flex-shrink-0">●</span>
                       {feature}
@@ -221,9 +217,7 @@ export default function PlanChangePage(): React.ReactElement {
 
         {selectedPlanId && selectedPlanId !== currentPlanId && (
           <div className="text-center">
-            <p className="text-sm text-gray-500 mb-4">
-              プラン変更は翌月1日より適用されます。
-            </p>
+            <p className="text-sm text-gray-500 mb-4">プラン変更は翌月1日より適用されます。</p>
             <button
               type="button"
               onClick={handlePlanChange}

@@ -89,7 +89,9 @@ export default function BillingDetailPage(): React.ReactElement {
               {data.currentMonthEstimate.month} のご利用料金
             </h2>
             <p className="text-xs text-gray-500 mb-4">
-              {data.currentMonthEstimate.isConfirmed ? '確定済み' : '※ 見込み額です。確定後に変動する場合があります。'}
+              {data.currentMonthEstimate.isConfirmed
+                ? '確定済み'
+                : '※ 見込み額です。確定後に変動する場合があります。'}
             </p>
             <div className="text-center mb-6">
               <div className="text-4xl font-bold text-gray-900">
@@ -138,7 +140,7 @@ export default function BillingDetailPage(): React.ReactElement {
           <div className="rounded-2xl bg-white shadow-md p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">請求履歴</h2>
             <div className="space-y-4">
-              {data.history.map((billing) => (
+              {data.history.map(billing => (
                 <div key={billing.month} className="p-4 border rounded-xl">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-medium text-gray-900">{billing.month}</h3>

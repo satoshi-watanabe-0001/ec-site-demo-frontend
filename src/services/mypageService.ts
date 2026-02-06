@@ -25,8 +25,7 @@ import type {
 /**
  * マイページAPIのベースURL
  */
-const MYPAGE_API_BASE_URL: string =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+const MYPAGE_API_BASE_URL: string = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
 /**
  * エラーメッセージの定数
@@ -103,10 +102,9 @@ async function handleResponse<T>(response: Response, errorMessage: string): Prom
  */
 export async function getDashboardData(): Promise<DashboardData> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/dashboard`,
-      { cache: 'no-store' }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/dashboard`, {
+      cache: 'no-store',
+    })
     return handleResponse<DashboardData>(response, ERROR_MESSAGES.FETCH_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -121,10 +119,9 @@ export async function getDashboardData(): Promise<DashboardData> {
  */
 export async function getContractDetails(): Promise<ContractInfo> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/contract`,
-      { cache: 'no-store' }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/contract`, {
+      cache: 'no-store',
+    })
     return handleResponse<ContractInfo>(response, ERROR_MESSAGES.FETCH_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -139,10 +136,9 @@ export async function getContractDetails(): Promise<ContractInfo> {
  */
 export async function getDataUsage(): Promise<DataUsage> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/data-usage`,
-      { cache: 'no-store' }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/data-usage`, {
+      cache: 'no-store',
+    })
     return handleResponse<DataUsage>(response, ERROR_MESSAGES.FETCH_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -157,10 +153,9 @@ export async function getDataUsage(): Promise<DataUsage> {
  */
 export async function getBillingInfo(): Promise<BillingInfo> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/billing`,
-      { cache: 'no-store' }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/billing`, {
+      cache: 'no-store',
+    })
     return handleResponse<BillingInfo>(response, ERROR_MESSAGES.FETCH_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -175,10 +170,9 @@ export async function getBillingInfo(): Promise<BillingInfo> {
  */
 export async function getAvailableOptions(): Promise<AvailableOption[]> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/options`,
-      { cache: 'no-store' }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/options`, {
+      cache: 'no-store',
+    })
     return handleResponse<AvailableOption[]>(response, ERROR_MESSAGES.FETCH_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -285,18 +279,13 @@ export async function updateNotificationPreferences(
  * @returns プラン変更結果
  * @throws ネットワークエラーまたはAPIエラー
  */
-export async function changePlan(
-  request: PlanChangeRequest
-): Promise<PlanChangeResponse> {
+export async function changePlan(request: PlanChangeRequest): Promise<PlanChangeResponse> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/plan`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(request),
-      }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/plan`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(request),
+    })
     return handleResponse<PlanChangeResponse>(response, ERROR_MESSAGES.UPDATE_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
@@ -310,18 +299,13 @@ export async function changePlan(
  * @returns オプション変更結果
  * @throws ネットワークエラーまたはAPIエラー
  */
-export async function manageOption(
-  request: OptionChangeRequest
-): Promise<OptionChangeResponse> {
+export async function manageOption(request: OptionChangeRequest): Promise<OptionChangeResponse> {
   try {
-    const response: Response = await fetch(
-      `${MYPAGE_API_BASE_URL}/api/v1/mypage/options`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(request),
-      }
-    )
+    const response: Response = await fetch(`${MYPAGE_API_BASE_URL}/api/v1/mypage/options`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(request),
+    })
     return handleResponse<OptionChangeResponse>(response, ERROR_MESSAGES.UPDATE_FAILED)
   } catch (error) {
     return handleApiError(error, ERROR_MESSAGES.UNEXPECTED_ERROR)
