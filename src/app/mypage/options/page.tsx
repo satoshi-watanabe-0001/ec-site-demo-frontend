@@ -13,7 +13,12 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { useAuthStore } from '@/store/auth-store'
-import { getContractInfo, getAvailableOptions, addOption, removeOption } from '@/services/contractService'
+import {
+  getContractInfo,
+  getAvailableOptions,
+  addOption,
+  removeOption,
+} from '@/services/contractService'
 import { OptionManager } from '@/components/mypage'
 
 export default function OptionsPage(): React.ReactElement {

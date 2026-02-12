@@ -108,17 +108,11 @@ export default function MypageDashboard(): React.ReactElement {
             <BillingSummary billing={data.billing} />
           </DashboardCard>
 
-          <DashboardCard
-            title="契約中端末"
-            icon={<Smartphone className="h-5 w-5" />}
-          >
+          <DashboardCard title="契約中端末" icon={<Smartphone className="h-5 w-5" />}>
             <DeviceInfo device={data.device} />
           </DashboardCard>
 
-          <DashboardCard
-            title="通知・お知らせ"
-            icon={<Bell className="h-5 w-5" />}
-          >
+          <DashboardCard title="通知・お知らせ" icon={<Bell className="h-5 w-5" />}>
             <NotificationList notifications={data.notifications} />
           </DashboardCard>
 
@@ -128,9 +122,7 @@ export default function MypageDashboard(): React.ReactElement {
             icon={<Settings className="h-5 w-5" />}
           >
             <div className="space-y-2">
-              <p className="text-sm text-slate-400">
-                メール、パスワード、通知設定の変更
-              </p>
+              <p className="text-sm text-slate-400">メール、パスワード、通知設定の変更</p>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-slate-400">支払い方法</span>
                 <span className="text-slate-300">

@@ -629,9 +629,7 @@ test.describe('オプション管理ページ (EC-278)', () => {
 })
 
 test.describe('未認証アクセス (EC-278)', () => {
-  test('未認証でマイページにアクセスするとログインページにリダイレクトされる', async ({
-    page,
-  }) => {
+  test('未認証でマイページにアクセスするとログインページにリダイレクトされる', async ({ page }) => {
     await page.goto('/mypage')
 
     await page.waitForURL('/login')

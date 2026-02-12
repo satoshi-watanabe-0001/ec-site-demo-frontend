@@ -43,7 +43,11 @@ export function BillingSummary({ billing }: BillingSummaryProps): React.ReactEle
           {diff === 0 && <Minus className="h-4 w-4 text-slate-400" />}
           <span
             className={
-              diff > 0 ? 'text-sm text-red-400' : diff < 0 ? 'text-sm text-green-400' : 'text-sm text-slate-400'
+              diff > 0
+                ? 'text-sm text-red-400'
+                : diff < 0
+                  ? 'text-sm text-green-400'
+                  : 'text-sm text-slate-400'
             }
           >
             {diff > 0 ? '+' : ''}

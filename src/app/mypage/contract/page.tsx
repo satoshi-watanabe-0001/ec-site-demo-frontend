@@ -164,9 +164,7 @@ export default function ContractPage(): React.ReactElement {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-medium text-white">{option.name}</span>
-                        <Badge
-                          variant={option.status === 'active' ? 'success' : 'warning'}
-                        >
+                        <Badge variant={option.status === 'active' ? 'success' : 'warning'}>
                           {option.status === 'active' ? '利用中' : '申込中'}
                         </Badge>
                       </div>

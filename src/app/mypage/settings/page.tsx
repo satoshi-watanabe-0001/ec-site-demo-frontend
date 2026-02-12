@@ -13,10 +13,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Save } from 'lucide-react'
 import { useAuthStore } from '@/store/auth-store'
-import {
-  getAccountSettings,
-  updateAccountSettings,
-} from '@/services/accountService'
+import { getAccountSettings, updateAccountSettings } from '@/services/accountService'
 import type { UpdateSettingsRequest } from '@/services/accountService'
 import { Button } from '@/components/ui/button'
 
@@ -58,8 +55,7 @@ export default function SettingsPage(): React.ReactElement {
   }, [data])
 
   const updateMutation = useMutation({
-    mutationFn: (settings: UpdateSettingsRequest) =>
-      updateAccountSettings('mock-token', settings),
+    mutationFn: (settings: UpdateSettingsRequest) => updateAccountSettings('mock-token', settings),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['accountSettings'] })
       setSaveMessage('設定を保存しました')
