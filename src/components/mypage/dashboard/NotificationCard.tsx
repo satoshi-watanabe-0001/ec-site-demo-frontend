@@ -17,9 +17,7 @@ interface NotificationCardProps {
   notifications: NotificationInfo
 }
 
-export function NotificationCard({
-  notifications,
-}: NotificationCardProps): React.ReactElement {
+export function NotificationCard({ notifications }: NotificationCardProps): React.ReactElement {
   const getTypeStyle = (type: 'info' | 'warning' | 'important'): string => {
     switch (type) {
       case 'important':
@@ -59,7 +57,9 @@ export function NotificationCard({
             key={notification.id}
             className={cn(
               'rounded-lg border p-3',
-              notification.isRead ? 'border-slate-700 bg-slate-700/30' : 'border-slate-600 bg-slate-700/60'
+              notification.isRead
+                ? 'border-slate-700 bg-slate-700/30'
+                : 'border-slate-600 bg-slate-700/60'
             )}
           >
             <div className="mb-1 flex items-center gap-2">
@@ -71,9 +71,7 @@ export function NotificationCard({
               >
                 {getTypeLabel(notification.type)}
               </span>
-              {!notification.isRead && (
-                <span className="h-2 w-2 rounded-full bg-blue-500" />
-              )}
+              {!notification.isRead && <span className="h-2 w-2 rounded-full bg-blue-500" />}
               <span className="ml-auto text-xs text-slate-500">
                 {format(new Date(notification.date), 'M月d日', { locale: ja })}
               </span>

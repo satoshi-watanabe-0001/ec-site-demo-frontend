@@ -1,15 +1,15 @@
 ---
-title: "ahamoマイページ アカウント管理API契約書"
-version: "1.0.0"
-template_version: "1.0.0"
-created_date: "2026-02-13"
-phase: "Phase 2A (Pre-Implementation Design)"
-status: "draft"
-owner: "Devin AI"
+title: 'ahamoマイページ アカウント管理API契約書'
+version: '1.0.0'
+template_version: '1.0.0'
+created_date: '2026-02-13'
+phase: 'Phase 2A (Pre-Implementation Design)'
+status: 'draft'
+owner: 'Devin AI'
 reviewers: []
-approved_by: ""
-approved_date: ""
-related_ticket: "EC-278"
+approved_by: ''
+approved_date: ''
+related_ticket: 'EC-278'
 ---
 
 # API契約書: ahamoマイページ アカウント管理
@@ -23,14 +23,14 @@ related_ticket: "EC-278"
 
 ## メタデータ
 
-| 項目 | 内容 |
-|-----|------|
-| **プロジェクト名** | ahamoマイページ アカウント管理 |
-| **プロジェクトコード** | EC-278 |
-| **作成日** | 2026-02-13 |
-| **作成者** | Devin AI |
-| **ステータス** | `draft` |
-| **関連チケット** | EC-278 |
+| 項目                   | 内容                           |
+| ---------------------- | ------------------------------ |
+| **プロジェクト名**     | ahamoマイページ アカウント管理 |
+| **プロジェクトコード** | EC-278                         |
+| **作成日**             | 2026-02-13                     |
+| **作成者**             | Devin AI                       |
+| **ステータス**         | `draft`                        |
+| **関連チケット**       | EC-278                         |
 
 ---
 
@@ -39,6 +39,7 @@ related_ticket: "EC-278"
 ### 目的
 
 ahamoマイページのアカウント管理APIを提供し、以下を実現する：
+
 - ダッシュボード情報の一括取得
 - 契約情報の参照
 - データ使用量のリアルタイム確認
@@ -49,6 +50,7 @@ ahamoマイページのアカウント管理APIを提供し、以下を実現す
 ### スコープ
 
 **対象範囲**:
+
 - ダッシュボード統合データの取得
 - 契約情報の参照（読み取り専用）
 - データ使用量の参照
@@ -57,6 +59,7 @@ ahamoマイページのアカウント管理APIを提供し、以下を実現す
 - 通知情報の取得
 
 **対象外範囲**:
+
 - プラン変更処理（Phase 3で対応）
 - オプション追加・解約処理（Phase 3で対応）
 - 支払い方法の変更（Phase 3で対応）
@@ -64,12 +67,12 @@ ahamoマイページのアカウント管理APIを提供し、以下を実現す
 
 ### ベースURL
 
-| 環境 | URL | 用途 |
-|------|-----|------|
-| **開発環境（MSW）** | `http://localhost:3000` | フロントエンド開発（モック） |
-| **開発環境** | `https://dev-api.ahamo-demo.example.com` | バックエンド連携テスト |
-| **ステージング** | `https://staging-api.ahamo-demo.example.com` | 受入テスト |
-| **本番環境** | `https://api.ahamo-demo.example.com` | 本番サービス |
+| 環境                | URL                                          | 用途                         |
+| ------------------- | -------------------------------------------- | ---------------------------- |
+| **開発環境（MSW）** | `http://localhost:3000`                      | フロントエンド開発（モック） |
+| **開発環境**        | `https://dev-api.ahamo-demo.example.com`     | バックエンド連携テスト       |
+| **ステージング**    | `https://staging-api.ahamo-demo.example.com` | 受入テスト                   |
+| **本番環境**        | `https://api.ahamo-demo.example.com`         | 本番サービス                 |
 
 ---
 
@@ -91,48 +94,48 @@ naming_convention:
 
 ```yaml
 endpoint: GET /api/v1/mypage/dashboard
-summary: "マイページダッシュボードに表示する統合データを一括取得"
+summary: 'マイページダッシュボードに表示する統合データを一括取得'
 description: |
   契約情報・データ使用量・請求情報・端末情報・通知情報を
   一括で取得し、ダッシュボードの初期表示に使用する。
 
 request:
   headers:
-    - "Authorization: Bearer {access_token}"
+    - 'Authorization: Bearer {access_token}'
   query_parameters:
     - userId: string
-      description: "ユーザーID"
+      description: 'ユーザーID'
       required: true
 
 response:
   success:
     status_code: 200
-    description: "ダッシュボードデータ取得成功"
+    description: 'ダッシュボードデータ取得成功'
     body_schema:
       - contract: ContractInfo
-        description: "契約情報"
+        description: '契約情報'
       - dataUsage: DataUsage
-        description: "データ使用状況"
+        description: 'データ使用状況'
       - billing: BillingInfo
-        description: "請求情報"
+        description: '請求情報'
       - device: DeviceInfo
-        description: "端末情報"
+        description: '端末情報'
       - notifications: NotificationInfo
-        description: "通知情報"
+        description: '通知情報'
 
   error:
     - status_code: 401
-      error_code: "UNAUTHORIZED"
-      description: "認証トークンが無効または期限切れ"
+      error_code: 'UNAUTHORIZED'
+      description: '認証トークンが無効または期限切れ'
     - status_code: 403
-      error_code: "FORBIDDEN"
-      description: "アクセス権限なし"
+      error_code: 'FORBIDDEN'
+      description: 'アクセス権限なし'
     - status_code: 500
-      error_code: "INTERNAL_ERROR"
-      description: "サーバーエラー"
+      error_code: 'INTERNAL_ERROR'
+      description: 'サーバーエラー'
 
-authentication: "必須（Bearer Token）"
-rate_limit: "60リクエスト/分/ユーザー"
+authentication: '必須（Bearer Token）'
+rate_limit: '60リクエスト/分/ユーザー'
 ```
 
 ---
@@ -141,48 +144,48 @@ rate_limit: "60リクエスト/分/ユーザー"
 
 ```yaml
 endpoint: GET /api/v1/contracts/{contractId}
-summary: "指定契約IDの契約情報を取得"
+summary: '指定契約IDの契約情報を取得'
 
 path_parameters:
   - contractId: string
-    description: "契約ID"
-    example: "contract-001"
+    description: '契約ID'
+    example: 'contract-001'
 
 request:
   headers:
-    - "Authorization: Bearer {access_token}"
+    - 'Authorization: Bearer {access_token}'
 
 response:
   success:
     status_code: 200
-    description: "契約情報取得成功"
+    description: '契約情報取得成功'
     body_schema:
       - id: string
-        description: "契約ID"
+        description: '契約ID'
       - planName: string
-        description: "プラン名（ahamo / ahamo大盛り）"
+        description: 'プラン名（ahamo / ahamo大盛り）'
       - monthlyFee: number
-        description: "月額料金（税込）"
+        description: '月額料金（税込）'
         example: 2970
       - dataCapacity: string
-        description: "データ容量"
-        example: "30GB"
+        description: 'データ容量'
+        example: '30GB'
       - contractDate: string
-        description: "契約開始日（ISO 8601形式）"
+        description: '契約開始日（ISO 8601形式）'
       - phoneNumber: string
-        description: "電話番号"
+        description: '電話番号'
       - options: ContractOption[]
-        description: "契約中オプション一覧"
+        description: '契約中オプション一覧'
 
   error:
     - status_code: 401
-      error_code: "UNAUTHORIZED"
+      error_code: 'UNAUTHORIZED'
     - status_code: 404
-      error_code: "CONTRACT_NOT_FOUND"
-      description: "契約情報が見つからない"
+      error_code: 'CONTRACT_NOT_FOUND'
+      description: '契約情報が見つからない'
 
-authentication: "必須（Bearer Token）"
-rate_limit: "100リクエスト/分/ユーザー"
+authentication: '必須（Bearer Token）'
+rate_limit: '100リクエスト/分/ユーザー'
 ```
 
 ---
@@ -191,43 +194,43 @@ rate_limit: "100リクエスト/分/ユーザー"
 
 ```yaml
 endpoint: GET /api/v1/data-usage/{contractId}
-summary: "指定契約のデータ使用量を取得"
+summary: '指定契約のデータ使用量を取得'
 
 path_parameters:
   - contractId: string
-    description: "契約ID"
+    description: '契約ID'
 
 request:
   headers:
-    - "Authorization: Bearer {access_token}"
+    - 'Authorization: Bearer {access_token}'
 
 response:
   success:
     status_code: 200
-    description: "データ使用量取得成功"
+    description: 'データ使用量取得成功'
     body_schema:
       - contractId: string
-        description: "契約ID"
+        description: '契約ID'
       - currentMonth: object
-        description: "当月のデータ使用状況"
+        description: '当月のデータ使用状況'
         fields:
           - used: number
-            description: "使用済みデータ量（MB単位）"
+            description: '使用済みデータ量（MB単位）'
           - total: number
-            description: "総データ容量（MB単位）"
+            description: '総データ容量（MB単位）'
           - lastUpdated: string
-            description: "最終更新日時（ISO 8601形式）"
+            description: '最終更新日時（ISO 8601形式）'
       - dailyUsage: DailyUsage[]
-        description: "日別データ使用量"
+        description: '日別データ使用量'
 
   error:
     - status_code: 401
-      error_code: "UNAUTHORIZED"
+      error_code: 'UNAUTHORIZED'
     - status_code: 404
-      error_code: "CONTRACT_NOT_FOUND"
+      error_code: 'CONTRACT_NOT_FOUND'
 
-authentication: "必須（Bearer Token）"
-rate_limit: "100リクエスト/分/ユーザー"
+authentication: '必須（Bearer Token）'
+rate_limit: '100リクエスト/分/ユーザー'
 notes: |
   - データ使用量は最大1時間の遅延がある場合がある
   - dailyUsageは当月1日から現在日までのデータを返却
@@ -239,47 +242,47 @@ notes: |
 
 ```yaml
 endpoint: GET /api/v1/billing/{contractId}
-summary: "指定契約の請求情報を取得"
+summary: '指定契約の請求情報を取得'
 
 path_parameters:
   - contractId: string
-    description: "契約ID"
+    description: '契約ID'
 
 request:
   headers:
-    - "Authorization: Bearer {access_token}"
+    - 'Authorization: Bearer {access_token}'
 
 response:
   success:
     status_code: 200
-    description: "請求情報取得成功"
+    description: '請求情報取得成功'
     body_schema:
       - contractId: string
-        description: "契約ID"
+        description: '契約ID'
       - currentBill: object
-        description: "今月の請求予定額"
+        description: '今月の請求予定額'
         fields:
           - basicFee: number
-            description: "基本料金（税込）"
+            description: '基本料金（税込）'
           - optionFee: number
-            description: "オプション料金（税込）"
+            description: 'オプション料金（税込）'
           - callFee: number
-            description: "通話料（税込）"
+            description: '通話料（税込）'
           - total: number
-            description: "合計金額（税込）"
+            description: '合計金額（税込）'
           - previousMonthTotal: number
-            description: "前月の合計金額（税込）"
+            description: '前月の合計金額（税込）'
       - history: BillingHistory[]
-        description: "過去の請求履歴"
+        description: '過去の請求履歴'
 
   error:
     - status_code: 401
-      error_code: "UNAUTHORIZED"
+      error_code: 'UNAUTHORIZED'
     - status_code: 404
-      error_code: "CONTRACT_NOT_FOUND"
+      error_code: 'CONTRACT_NOT_FOUND'
 
-authentication: "必須（Bearer Token）"
-rate_limit: "100リクエスト/分/ユーザー"
+authentication: '必須（Bearer Token）'
+rate_limit: '100リクエスト/分/ユーザー'
 notes: |
   - 請求情報は毎月5日に確定
   - 確定前の当月分は見積額として表示
@@ -291,40 +294,40 @@ notes: |
 
 ```yaml
 endpoint: GET /api/v1/devices/{contractId}
-summary: "指定契約に紐づく端末情報を取得"
+summary: '指定契約に紐づく端末情報を取得'
 
 path_parameters:
   - contractId: string
-    description: "契約ID"
+    description: '契約ID'
 
 request:
   headers:
-    - "Authorization: Bearer {access_token}"
+    - 'Authorization: Bearer {access_token}'
 
 response:
   success:
     status_code: 200
-    description: "端末情報取得成功"
+    description: '端末情報取得成功'
     body_schema:
       - id: string
-        description: "端末ID"
+        description: '端末ID'
       - name: string
-        description: "端末名"
+        description: '端末名'
       - imageUrl: string
-        description: "端末画像URL"
+        description: '端末画像URL'
       - purchaseDate: string
-        description: "購入日（ISO 8601形式）"
+        description: '購入日（ISO 8601形式）'
       - remainingBalance: number (optional)
-        description: "分割払い残額（一括払いの場合はnull）"
+        description: '分割払い残額（一括払いの場合はnull）'
 
   error:
     - status_code: 401
-      error_code: "UNAUTHORIZED"
+      error_code: 'UNAUTHORIZED'
     - status_code: 404
-      error_code: "DEVICE_NOT_FOUND"
+      error_code: 'DEVICE_NOT_FOUND'
 
-authentication: "必須（Bearer Token）"
-rate_limit: "100リクエスト/分/ユーザー"
+authentication: '必須（Bearer Token）'
+rate_limit: '100リクエスト/分/ユーザー'
 ```
 
 ---
@@ -374,13 +377,13 @@ rate_limit: "100リクエスト/分/ユーザー"
 
 ### 追加エンドポイント（Phase 2以降で詳細化）
 
-| Method | Endpoint | Summary | Phase |
-|--------|----------|---------|-------|
-| PUT | /api/v1/contracts/{contractId}/plan | プラン変更 | Phase 3 |
-| POST | /api/v1/contracts/{contractId}/options | オプション追加 | Phase 3 |
-| DELETE | /api/v1/contracts/{contractId}/options/{optionId} | オプション解約 | Phase 3 |
-| PUT | /api/v1/notifications/{notificationId}/read | 通知既読 | Phase 2 |
-| PUT | /api/v1/users/{userId}/settings | アカウント設定変更 | Phase 3 |
+| Method | Endpoint                                          | Summary            | Phase   |
+| ------ | ------------------------------------------------- | ------------------ | ------- |
+| PUT    | /api/v1/contracts/{contractId}/plan               | プラン変更         | Phase 3 |
+| POST   | /api/v1/contracts/{contractId}/options            | オプション追加     | Phase 3 |
+| DELETE | /api/v1/contracts/{contractId}/options/{optionId} | オプション解約     | Phase 3 |
+| PUT    | /api/v1/notifications/{notificationId}/read       | 通知既読           | Phase 2 |
+| PUT    | /api/v1/users/{userId}/settings                   | アカウント設定変更 | Phase 3 |
 
 **詳細**: 各Phase完了時にAPI仕様書を更新
 
@@ -392,20 +395,20 @@ rate_limit: "100リクエスト/分/ユーザー"
 
 ```yaml
 mechanism:
-  type: "JWT (JSON Web Token)"
-  format: "Bearer Token"
+  type: 'JWT (JSON Web Token)'
+  format: 'Bearer Token'
 
 token_structure:
   access_token:
-    type: "JWT"
-    expiry: "1時間（rememberMe=false）/ 7時間（rememberMe=true）"
-    storage: "メモリ または localStorage"
+    type: 'JWT'
+    expiry: '1時間（rememberMe=false）/ 7時間（rememberMe=true）'
+    storage: 'メモリ または localStorage'
     claims:
-      - sub: "ユーザーID"
-      - email: "メールアドレス"
-      - exp: "有効期限（Unix timestamp）"
+      - sub: 'ユーザーID'
+      - email: 'メールアドレス'
+      - exp: '有効期限（Unix timestamp）'
 
-header_format: "Authorization: Bearer {access_token}"
+header_format: 'Authorization: Bearer {access_token}'
 ```
 
 ### 認可ルール
@@ -421,6 +424,7 @@ header_format: "Authorization: Bearer {access_token}"
 ### 共通レスポンス構造
 
 **成功レスポンス**:
+
 ```json
 {
   "data": { ... }
@@ -428,6 +432,7 @@ header_format: "Authorization: Bearer {access_token}"
 ```
 
 **エラーレスポンス**:
+
 ```json
 {
   "error": {
@@ -440,15 +445,15 @@ header_format: "Authorization: Bearer {access_token}"
 
 ### HTTPステータスコード
 
-| コード | 意味 | 使用場面 |
-|-------|------|---------|
-| 200 | OK | 正常取得 |
-| 400 | Bad Request | リクエストパラメータ不正 |
-| 401 | Unauthorized | 認証失敗・トークン期限切れ |
-| 403 | Forbidden | アクセス権限なし |
-| 404 | Not Found | リソースが見つからない |
-| 429 | Too Many Requests | レート制限超過 |
-| 500 | Internal Server Error | サーバー内部エラー |
+| コード | 意味                  | 使用場面                   |
+| ------ | --------------------- | -------------------------- |
+| 200    | OK                    | 正常取得                   |
+| 400    | Bad Request           | リクエストパラメータ不正   |
+| 401    | Unauthorized          | 認証失敗・トークン期限切れ |
+| 403    | Forbidden             | アクセス権限なし           |
+| 404    | Not Found             | リソースが見つからない     |
+| 429    | Too Many Requests     | レート制限超過             |
+| 500    | Internal Server Error | サーバー内部エラー         |
 
 ---
 
@@ -456,16 +461,16 @@ header_format: "Authorization: Bearer {access_token}"
 
 ### エラーコード一覧
 
-| エラーコード | HTTPステータス | 説明 |
-|------------|--------------|------|
-| UNAUTHORIZED | 401 | 認証トークンが無効または期限切れ |
-| FORBIDDEN | 403 | アクセス権限なし |
-| CONTRACT_NOT_FOUND | 404 | 契約情報が見つからない |
-| DEVICE_NOT_FOUND | 404 | 端末情報が見つからない |
-| USER_NOT_FOUND | 404 | ユーザーが見つからない |
-| VALIDATION_ERROR | 400 | リクエストパラメータのバリデーションエラー |
-| RATE_LIMIT_EXCEEDED | 429 | レート制限超過 |
-| INTERNAL_ERROR | 500 | サーバー内部エラー |
+| エラーコード        | HTTPステータス | 説明                                       |
+| ------------------- | -------------- | ------------------------------------------ |
+| UNAUTHORIZED        | 401            | 認証トークンが無効または期限切れ           |
+| FORBIDDEN           | 403            | アクセス権限なし                           |
+| CONTRACT_NOT_FOUND  | 404            | 契約情報が見つからない                     |
+| DEVICE_NOT_FOUND    | 404            | 端末情報が見つからない                     |
+| USER_NOT_FOUND      | 404            | ユーザーが見つからない                     |
+| VALIDATION_ERROR    | 400            | リクエストパラメータのバリデーションエラー |
+| RATE_LIMIT_EXCEEDED | 429            | レート制限超過                             |
+| INTERNAL_ERROR      | 500            | サーバー内部エラー                         |
 
 ### クライアント側エラーハンドリング
 
@@ -479,14 +484,14 @@ header_format: "Authorization: Bearer {access_token}"
 
 ## レート制限
 
-| エンドポイント | 制限 | 単位 |
-|-------------|------|------|
-| GET /api/v1/mypage/dashboard | 60リクエスト | /分/ユーザー |
-| GET /api/v1/contracts/* | 100リクエスト | /分/ユーザー |
-| GET /api/v1/data-usage/* | 100リクエスト | /分/ユーザー |
-| GET /api/v1/billing/* | 100リクエスト | /分/ユーザー |
-| GET /api/v1/devices/* | 100リクエスト | /分/ユーザー |
-| GET /api/v1/notifications/* | 100リクエスト | /分/ユーザー |
+| エンドポイント               | 制限          | 単位         |
+| ---------------------------- | ------------- | ------------ |
+| GET /api/v1/mypage/dashboard | 60リクエスト  | /分/ユーザー |
+| GET /api/v1/contracts/\*     | 100リクエスト | /分/ユーザー |
+| GET /api/v1/data-usage/\*    | 100リクエスト | /分/ユーザー |
+| GET /api/v1/billing/\*       | 100リクエスト | /分/ユーザー |
+| GET /api/v1/devices/\*       | 100リクエスト | /分/ユーザー |
+| GET /api/v1/notifications/\* | 100リクエスト | /分/ユーザー |
 
 ### レート制限レスポンスヘッダー
 
@@ -504,9 +509,9 @@ X-RateLimit-Reset: 1708858800
 
 ```yaml
 versioning:
-  strategy: "URLパスベース"
-  format: "/api/v{major}/"
-  current_version: "v1"
+  strategy: 'URLパスベース'
+  format: '/api/v{major}/'
+  current_version: 'v1'
 
 rules:
   - 破壊的変更: メジャーバージョンをインクリメント（v1 → v2）
@@ -524,14 +529,14 @@ deprecation_policy:
 
 ### 料金プランデータ
 
-| プラン名 | データ容量 | 月額料金（税込） |
-|---------|----------|---------------|
-| ahamo | 30GB | ¥2,970 |
-| ahamo大盛り | 110GB | ¥4,950 |
+| プラン名    | データ容量 | 月額料金（税込） |
+| ----------- | ---------- | ---------------- |
+| ahamo       | 30GB       | ¥2,970           |
+| ahamo大盛り | 110GB      | ¥4,950           |
 
 ### オプション一覧
 
-| オプション名 | 月額料金（税込） |
-|------------|---------------|
-| かけ放題オプション | ¥1,100 |
-| ahamo大盛りオプション | ¥1,980 |
+| オプション名          | 月額料金（税込） |
+| --------------------- | ---------------- |
+| かけ放題オプション    | ¥1,100           |
+| ahamo大盛りオプション | ¥1,980           |

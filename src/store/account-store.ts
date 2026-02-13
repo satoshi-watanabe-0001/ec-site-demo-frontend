@@ -30,8 +30,7 @@ export const useAccountStore = create<AccountState>()(set => ({
       const data = await getDashboardData(userId)
       set({ dashboardData: data, isLoading: false })
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'データの取得に失敗しました。'
+      const message = error instanceof Error ? error.message : 'データの取得に失敗しました。'
       set({ error: message, isLoading: false })
     }
   },

@@ -83,9 +83,7 @@ export default function MypageDashboard(): React.ReactElement {
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-white sm:text-3xl">マイページ</h1>
-          <p className="mt-1 text-sm text-slate-400">
-            {user?.name}さんのアカウント情報
-          </p>
+          <p className="mt-1 text-sm text-slate-400">{user?.name}さんのアカウント情報</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

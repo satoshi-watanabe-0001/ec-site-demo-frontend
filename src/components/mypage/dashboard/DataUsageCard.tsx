@@ -36,10 +36,7 @@ export function DataUsageCard({ dataUsage }: DataUsageCardProps): React.ReactEle
     <div className="rounded-xl bg-slate-800 p-6 shadow-lg">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-bold text-white">データ使用状況</h2>
-        <Link
-          href="/mypage/data-usage"
-          className="text-sm text-primary hover:underline"
-        >
+        <Link href="/mypage/data-usage" className="text-sm text-primary hover:underline">
           詳細を見る →
         </Link>
       </div>

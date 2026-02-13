@@ -20,10 +20,7 @@ export function ContractSummary({ contract }: ContractSummaryProps): React.React
     <div className="rounded-xl bg-slate-800 p-6 shadow-lg">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-bold text-white">契約情報</h2>
-        <Link
-          href="/mypage/contract"
-          className="text-sm text-primary hover:underline"
-        >
+        <Link href="/mypage/contract" className="text-sm text-primary hover:underline">
           詳細を見る →
         </Link>
       </div>
