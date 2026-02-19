@@ -48,7 +48,7 @@ describe('AccountApiService', () => {
 
   describe('updateContact', () => {
     test('updateContact_WithValidRequest_ShouldReturnSuccessResponse', async () => {
-      const request = { email: 'new@docomo.ne.jp', phone: '090-1234-5678' }
+      const request = { email: 'new@docomo.ne.jp', phoneNumber: '090-1234-5678' }
       const mockResponse = { success: true, message: '連絡先を更新しました' }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -72,7 +72,7 @@ describe('AccountApiService', () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 400 })
 
       await expect(
-        updateContact({ email: 'invalid', phone: '090-1234-5678' })
+        updateContact({ email: 'invalid', phoneNumber: '090-1234-5678' })
       ).rejects.toThrow('連絡先の更新に失敗しました: 400')
     })
   })
@@ -118,7 +118,7 @@ describe('AccountApiService', () => {
 
   describe('updateNotificationSettings', () => {
     test('updateNotificationSettings_WithValidRequest_ShouldReturnSuccessResponse', async () => {
-      const request = { emailNotifications: true, smsNotifications: false }
+      const request = { email: true, sms: false }
       const mockResponse = { success: true, message: '通知設定を更新しました' }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -142,7 +142,7 @@ describe('AccountApiService', () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
       await expect(
-        updateNotificationSettings({ emailNotifications: true, smsNotifications: false })
+        updateNotificationSettings({ email: true, sms: false })
       ).rejects.toThrow('通知設定の更新に失敗しました: 500')
     })
   })

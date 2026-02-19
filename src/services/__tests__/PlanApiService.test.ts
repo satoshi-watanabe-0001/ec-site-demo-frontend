@@ -76,7 +76,7 @@ describe('PlanApiService', () => {
 
   describe('changePlan', () => {
     test('changePlan_WithValidRequest_ShouldReturnSuccessResponse', async () => {
-      const request = { planId: 'ahamo-large', effectiveDate: '2026-03-01' }
+      const request = { newPlanId: 'ahamo-large', effectiveDate: 'next_month' as const }
       const mockResponse = { success: true, message: 'プラン変更を受け付けました' }
       mockFetch.mockResolvedValueOnce({
         ok: true,
@@ -100,7 +100,7 @@ describe('PlanApiService', () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 400 })
 
       await expect(
-        changePlan({ planId: 'invalid', effectiveDate: '2026-03-01' })
+        changePlan({ newPlanId: 'invalid', effectiveDate: 'immediate' as const })
       ).rejects.toThrow('プラン変更に失敗しました: 400')
     })
   })
