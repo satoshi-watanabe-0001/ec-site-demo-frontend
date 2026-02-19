@@ -33,9 +33,7 @@ export function PlanSummary({ plan }: PlanSummaryProps): React.ReactElement {
       </div>
       <p className="text-sm text-slate-400 mb-3">{plan.description}</p>
       <div className="flex items-baseline gap-1">
-        <span className="text-3xl font-bold text-white">
-          ¥{plan.monthlyFee.toLocaleString()}
-        </span>
+        <span className="text-3xl font-bold text-white">¥{plan.monthlyFee.toLocaleString()}</span>
         <span className="text-sm text-slate-400">/月（税込）</span>
       </div>
       <div className="mt-3 text-sm text-slate-400">

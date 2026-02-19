@@ -70,23 +70,35 @@ export default function BillingPage(): React.ReactElement {
 
   const getCategoryLabel = (category: string): string => {
     switch (category) {
-      case 'base': return '基本料金'
-      case 'usage': return '通信料'
-      case 'option': return 'オプション'
-      case 'discount': return '割引'
-      case 'device': return '端末代金'
-      default: return 'その他'
+      case 'base':
+        return '基本料金'
+      case 'usage':
+        return '通信料'
+      case 'option':
+        return 'オプション'
+      case 'discount':
+        return '割引'
+      case 'device':
+        return '端末代金'
+      default:
+        return 'その他'
     }
   }
 
   const getCategoryColor = (category: string): string => {
     switch (category) {
-      case 'base': return 'text-cyan-400'
-      case 'usage': return 'text-blue-400'
-      case 'option': return 'text-purple-400'
-      case 'discount': return 'text-green-400'
-      case 'device': return 'text-yellow-400'
-      default: return 'text-slate-400'
+      case 'base':
+        return 'text-cyan-400'
+      case 'usage':
+        return 'text-blue-400'
+      case 'option':
+        return 'text-purple-400'
+      case 'discount':
+        return 'text-green-400'
+      case 'device':
+        return 'text-yellow-400'
+      default:
+        return 'text-slate-400'
     }
   }
 
@@ -103,15 +115,21 @@ export default function BillingPage(): React.ReactElement {
         <section className="rounded-xl bg-slate-800 p-6 border border-slate-700">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-white">{billing.billingMonth}分</h2>
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-              billing.isPaid ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-            }`}>
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium ${
+                billing.isPaid
+                  ? 'bg-green-500/20 text-green-400'
+                  : 'bg-yellow-500/20 text-yellow-400'
+              }`}
+            >
               {billing.isPaid ? '支払い済み' : '未払い'}
             </span>
           </div>
 
           <div className="text-center py-4 mb-4 border-b border-slate-700">
-            <span className="text-4xl font-bold text-white">¥{billing.totalAmount.toLocaleString()}</span>
+            <span className="text-4xl font-bold text-white">
+              ¥{billing.totalAmount.toLocaleString()}
+            </span>
             <span className="text-slate-400 text-sm ml-1">（税込）</span>
           </div>
 
@@ -119,7 +137,9 @@ export default function BillingPage(): React.ReactElement {
             {billing.items.map((item, index) => (
               <div key={index} className="flex items-center justify-between py-2">
                 <div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full mr-2 ${getCategoryColor(item.category)} bg-slate-700`}>
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded-full mr-2 ${getCategoryColor(item.category)} bg-slate-700`}
+                  >
                     {getCategoryLabel(item.category)}
                   </span>
                   <span className="text-white text-sm">{item.itemName}</span>
@@ -138,7 +158,9 @@ export default function BillingPage(): React.ReactElement {
             </div>
             <div className="border-t border-slate-600 pt-3 flex justify-between">
               <span className="text-white font-semibold">合計</span>
-              <span className="text-white font-bold text-lg">¥{billing.totalAmount.toLocaleString()}</span>
+              <span className="text-white font-bold text-lg">
+                ¥{billing.totalAmount.toLocaleString()}
+              </span>
             </div>
           </div>
         </section>
@@ -152,15 +174,21 @@ export default function BillingPage(): React.ReactElement {
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">カード番号</span>
-              <span className="text-white md:block md:mt-1">**** **** **** {billing.cardLastFour}</span>
+              <span className="text-white md:block md:mt-1">
+                **** **** **** {billing.cardLastFour}
+              </span>
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">請求確定日</span>
-              <span className="text-white md:block md:mt-1">{new Date(billing.billingDate).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white md:block md:mt-1">
+                {new Date(billing.billingDate).toLocaleDateString('ja-JP')}
+              </span>
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">お支払い期限</span>
-              <span className="text-white md:block md:mt-1">{new Date(billing.paymentDueDate).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white md:block md:mt-1">
+                {new Date(billing.paymentDueDate).toLocaleDateString('ja-JP')}
+              </span>
             </div>
           </div>
         </section>
@@ -170,7 +198,10 @@ export default function BillingPage(): React.ReactElement {
             <h2 className="text-lg font-semibold text-white mb-4">請求履歴</h2>
             <div className="space-y-2">
               {history.history.map((entry, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg">
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg"
+                >
                   <div>
                     <span className="text-white text-sm">{entry.billingMonth}</span>
                     {entry.paymentDate && (
@@ -180,10 +211,16 @@ export default function BillingPage(): React.ReactElement {
                     )}
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-white font-medium">¥{entry.totalAmount.toLocaleString()}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      entry.isPaid ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                    }`}>
+                    <span className="text-white font-medium">
+                      ¥{entry.totalAmount.toLocaleString()}
+                    </span>
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded-full ${
+                        entry.isPaid
+                          ? 'bg-green-500/20 text-green-400'
+                          : 'bg-yellow-500/20 text-yellow-400'
+                      }`}
+                    >
                       {entry.isPaid ? '済' : '未'}
                     </span>
                   </div>

@@ -13,7 +13,10 @@ interface NotificationsWidgetProps {
   unreadCount: number
 }
 
-export function NotificationsWidget({ notifications, unreadCount }: NotificationsWidgetProps): React.ReactElement {
+export function NotificationsWidget({
+  notifications,
+  unreadCount,
+}: NotificationsWidgetProps): React.ReactElement {
   const getTypeIcon = (type: Notification['type']): string => {
     switch (type) {
       case 'warning':
@@ -60,12 +63,16 @@ export function NotificationsWidget({ notifications, unreadCount }: Notification
               <span className="text-sm mt-0.5">{getTypeIcon(notification.type)}</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${getTypeBadgeClass(notification.type)}`}>
-                    {notification.type === 'warning' ? '注意' : notification.type === 'important' ? '重要' : 'お知らせ'}
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded-full ${getTypeBadgeClass(notification.type)}`}
+                  >
+                    {notification.type === 'warning'
+                      ? '注意'
+                      : notification.type === 'important'
+                        ? '重要'
+                        : 'お知らせ'}
                   </span>
-                  {!notification.isRead && (
-                    <span className="w-2 h-2 bg-cyan-400 rounded-full" />
-                  )}
+                  {!notification.isRead && <span className="w-2 h-2 bg-cyan-400 rounded-full" />}
                 </div>
                 <p className="text-sm text-white font-medium truncate">{notification.title}</p>
                 <p className="text-xs text-slate-400 mt-1 line-clamp-2">{notification.message}</p>

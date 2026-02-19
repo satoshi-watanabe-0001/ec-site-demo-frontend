@@ -86,7 +86,9 @@ export default function ContractPage(): React.ReactElement {
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">契約日</span>
-              <span className="text-white md:block md:mt-1">{new Date(contract.contractDate).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white md:block md:mt-1">
+                {new Date(contract.contractDate).toLocaleDateString('ja-JP')}
+              </span>
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">契約状態</span>
@@ -99,7 +101,9 @@ export default function ContractPage(): React.ReactElement {
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">次回更新日</span>
-              <span className="text-white md:block md:mt-1">{new Date(contract.nextRenewalDate).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white md:block md:mt-1">
+                {new Date(contract.nextRenewalDate).toLocaleDateString('ja-JP')}
+              </span>
             </div>
           </div>
         </section>
@@ -112,7 +116,9 @@ export default function ContractPage(): React.ReactElement {
               <p className="text-slate-400 text-sm mt-1">{contract.plan.description}</p>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold text-white">¥{contract.plan.monthlyFee.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-white">
+                ¥{contract.plan.monthlyFee.toLocaleString()}
+              </p>
               <p className="text-slate-400 text-sm">/月（税込）</p>
             </div>
           </div>
@@ -139,7 +145,9 @@ export default function ContractPage(): React.ReactElement {
             </div>
             <div className="flex justify-between md:block">
               <span className="text-slate-400">自動更新</span>
-              <span className="text-white md:block md:mt-1">{contract.autoRenewal ? 'あり' : 'なし'}</span>
+              <span className="text-white md:block md:mt-1">
+                {contract.autoRenewal ? 'あり' : 'なし'}
+              </span>
             </div>
           </div>
         </section>
@@ -152,12 +160,15 @@ export default function ContractPage(): React.ReactElement {
             </div>
             <div>
               <p className="text-white font-medium">{contract.device.deviceName}</p>
-              <p className="text-sm text-slate-400">購入日: {new Date(contract.device.purchaseDate).toLocaleDateString('ja-JP')}</p>
+              <p className="text-sm text-slate-400">
+                購入日: {new Date(contract.device.purchaseDate).toLocaleDateString('ja-JP')}
+              </p>
               <p className="text-sm text-slate-400">{contract.device.paymentStatus}</p>
               {contract.device.remainingBalance !== null && (
                 <p className="text-sm text-yellow-400">
                   残り ¥{contract.device.remainingBalance.toLocaleString()}
-                  {contract.device.monthlyPayment !== null && ` (月々¥${contract.device.monthlyPayment.toLocaleString()})`}
+                  {contract.device.monthlyPayment !== null &&
+                    ` (月々¥${contract.device.monthlyPayment.toLocaleString()})`}
                 </p>
               )}
             </div>
@@ -168,20 +179,27 @@ export default function ContractPage(): React.ReactElement {
           <h2 className="text-lg font-semibold text-white mb-4">オプションサービス</h2>
           <div className="space-y-3">
             {contract.options.map(option => (
-              <div key={option.optionId} className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg">
+              <div
+                key={option.optionId}
+                className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg"
+              >
                 <div>
                   <p className="text-white text-sm font-medium">{option.optionName}</p>
                   {option.startDate && (
-                    <p className="text-xs text-slate-400">開始日: {new Date(option.startDate).toLocaleDateString('ja-JP')}</p>
+                    <p className="text-xs text-slate-400">
+                      開始日: {new Date(option.startDate).toLocaleDateString('ja-JP')}
+                    </p>
                   )}
                 </div>
                 <div className="text-right">
                   <p className="text-white text-sm">¥{option.monthlyFee.toLocaleString()}/月</p>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    option.status === 'active'
-                      ? 'bg-green-500/20 text-green-400'
-                      : 'bg-slate-600 text-slate-400'
-                  }`}>
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded-full ${
+                      option.status === 'active'
+                        ? 'bg-green-500/20 text-green-400'
+                        : 'bg-slate-600 text-slate-400'
+                    }`}
+                  >
                     {option.status === 'active' ? '契約中' : '未契約'}
                   </span>
                 </div>

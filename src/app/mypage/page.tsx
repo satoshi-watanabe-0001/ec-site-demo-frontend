@@ -89,12 +89,8 @@ export default function MyPageDashboard(): React.ReactElement {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold text-white">
-          マイページ
-        </h1>
-        <p className="text-slate-400 mt-1">
-          {user?.name}さん、こんにちは
-        </p>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">マイページ</h1>
+        <p className="text-slate-400 mt-1">{user?.name}さん、こんにちは</p>
       </div>
 
       <nav className="flex flex-wrap gap-2 mb-8" aria-label="マイページナビゲーション">

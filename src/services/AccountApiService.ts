@@ -35,7 +35,9 @@ export async function updateContact(request: ContactUpdateRequest): Promise<Cont
   return response.json()
 }
 
-export async function changePassword(request: PasswordChangeRequest): Promise<PasswordChangeResponse> {
+export async function changePassword(
+  request: PasswordChangeRequest
+): Promise<PasswordChangeResponse> {
   const response = await fetch(`${BASE_URL}/api/v1/mypage/account/password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

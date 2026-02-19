@@ -72,7 +72,12 @@ export default function SettingsPage(): React.ReactElement {
         setSuccessMessage(result.message)
         setIsEditingContact(false)
         if (account) {
-          setAccount({ ...account, email: editEmail, address: editAddress, postalCode: editPostalCode })
+          setAccount({
+            ...account,
+            email: editEmail,
+            address: editAddress,
+            postalCode: editPostalCode,
+          })
         }
       }
     } catch (err) {
@@ -181,7 +186,9 @@ export default function SettingsPage(): React.ReactElement {
             </div>
             <div>
               <span className="text-slate-400 block">生年月日</span>
-              <span className="text-white mt-1 block">{new Date(account.dateOfBirth).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white mt-1 block">
+                {new Date(account.dateOfBirth).toLocaleDateString('ja-JP')}
+              </span>
             </div>
             <div>
               <span className="text-slate-400 block">電話番号</span>
@@ -189,7 +196,9 @@ export default function SettingsPage(): React.ReactElement {
             </div>
             <div>
               <span className="text-slate-400 block">登録日</span>
-              <span className="text-white mt-1 block">{new Date(account.registeredAt).toLocaleDateString('ja-JP')}</span>
+              <span className="text-white mt-1 block">
+                {new Date(account.registeredAt).toLocaleDateString('ja-JP')}
+              </span>
             </div>
           </div>
         </section>
@@ -210,7 +219,9 @@ export default function SettingsPage(): React.ReactElement {
           {isEditingContact ? (
             <div className="space-y-4">
               <div>
-                <label htmlFor="edit-email" className="text-slate-400 text-sm block mb-1">メールアドレス</label>
+                <label htmlFor="edit-email" className="text-slate-400 text-sm block mb-1">
+                  メールアドレス
+                </label>
                 <input
                   id="edit-email"
                   type="email"
@@ -220,7 +231,9 @@ export default function SettingsPage(): React.ReactElement {
                 />
               </div>
               <div>
-                <label htmlFor="edit-postal" className="text-slate-400 text-sm block mb-1">郵便番号</label>
+                <label htmlFor="edit-postal" className="text-slate-400 text-sm block mb-1">
+                  郵便番号
+                </label>
                 <input
                   id="edit-postal"
                   type="text"
@@ -230,7 +243,9 @@ export default function SettingsPage(): React.ReactElement {
                 />
               </div>
               <div>
-                <label htmlFor="edit-address" className="text-slate-400 text-sm block mb-1">住所</label>
+                <label htmlFor="edit-address" className="text-slate-400 text-sm block mb-1">
+                  住所
+                </label>
                 <input
                   id="edit-address"
                   type="text"
@@ -298,7 +313,9 @@ export default function SettingsPage(): React.ReactElement {
                 </div>
               )}
               <div>
-                <label htmlFor="current-password" className="text-slate-400 text-sm block mb-1">現在のパスワード</label>
+                <label htmlFor="current-password" className="text-slate-400 text-sm block mb-1">
+                  現在のパスワード
+                </label>
                 <input
                   id="current-password"
                   type="password"
@@ -308,7 +325,9 @@ export default function SettingsPage(): React.ReactElement {
                 />
               </div>
               <div>
-                <label htmlFor="new-password" className="text-slate-400 text-sm block mb-1">新しいパスワード</label>
+                <label htmlFor="new-password" className="text-slate-400 text-sm block mb-1">
+                  新しいパスワード
+                </label>
                 <input
                   id="new-password"
                   type="password"
@@ -318,7 +337,9 @@ export default function SettingsPage(): React.ReactElement {
                 />
               </div>
               <div>
-                <label htmlFor="confirm-password" className="text-slate-400 text-sm block mb-1">新しいパスワード（確認）</label>
+                <label htmlFor="confirm-password" className="text-slate-400 text-sm block mb-1">
+                  新しいパスワード（確認）
+                </label>
                 <input
                   id="confirm-password"
                   type="password"
@@ -349,19 +370,33 @@ export default function SettingsPage(): React.ReactElement {
               </div>
             </div>
           ) : (
-            <p className="text-sm text-slate-400">セキュリティのため、定期的なパスワード変更をおすすめします。</p>
+            <p className="text-sm text-slate-400">
+              セキュリティのため、定期的なパスワード変更をおすすめします。
+            </p>
           )}
         </section>
 
         <section className="rounded-xl bg-slate-800 p-6 border border-slate-700">
           <h2 className="text-lg font-semibold text-white mb-4">通知設定</h2>
           <div className="space-y-4">
-            {([
-              { key: 'email' as const, label: 'メール通知', description: '重要なお知らせをメールで受信' },
+            {[
+              {
+                key: 'email' as const,
+                label: 'メール通知',
+                description: '重要なお知らせをメールで受信',
+              },
               { key: 'sms' as const, label: 'SMS通知', description: '重要なお知らせをSMSで受信' },
-              { key: 'push' as const, label: 'プッシュ通知', description: 'アプリのプッシュ通知を受信' },
-              { key: 'marketing' as const, label: 'マーケティング通知', description: 'キャンペーンやお得な情報を受信' },
-            ]).map(item => (
+              {
+                key: 'push' as const,
+                label: 'プッシュ通知',
+                description: 'アプリのプッシュ通知を受信',
+              },
+              {
+                key: 'marketing' as const,
+                label: 'マーケティング通知',
+                description: 'キャンペーンやお得な情報を受信',
+              },
+            ].map(item => (
               <div key={item.key} className="flex items-center justify-between py-2">
                 <div>
                   <span className="text-white text-sm font-medium">{item.label}</span>

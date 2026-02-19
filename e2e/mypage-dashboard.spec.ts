@@ -68,7 +68,9 @@ class DashboardPage {
   }
 
   async clickNavLink(label: string) {
-    await this.page.locator(`nav[aria-label="マイページナビゲーション"] a:has-text("${label}")`).click()
+    await this.page
+      .locator(`nav[aria-label="マイページナビゲーション"] a:has-text("${label}")`)
+      .click()
   }
 }
 
@@ -82,7 +84,9 @@ test.describe('マイページダッシュボード (EC-278)', () => {
   })
 
   test.describe('シナリオ1: 認証チェック', () => {
-    test('未認証でマイページにアクセスするとログインページにリダイレクトされる', async ({ page }) => {
+    test('未認証でマイページにアクセスするとログインページにリダイレクトされる', async ({
+      page,
+    }) => {
       await dashboardPage.goto()
       await page.waitForURL(/\/login/)
       expect(page.url()).toContain('/login')

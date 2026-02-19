@@ -92,7 +92,7 @@ export default function PlanPage(): React.ReactElement {
       if (result.success) {
         setSuccessMessage(result.message)
         setOptions(prev =>
-          prev.map(o => o.optionId === optionId ? { ...o, isSubscribed: true } : o)
+          prev.map(o => (o.optionId === optionId ? { ...o, isSubscribed: true } : o))
         )
       }
     } catch (err) {
@@ -135,7 +135,9 @@ export default function PlanPage(): React.ReactElement {
         <Link href="/mypage" className="text-cyan-400 hover:text-cyan-300 text-sm">
           ← マイページに戻る
         </Link>
-        <h1 className="text-2xl md:text-3xl font-bold text-white mt-2">プラン変更・オプション管理</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white mt-2">
+          プラン変更・オプション管理
+        </h1>
       </div>
 
       {successMessage && (
@@ -173,7 +175,9 @@ export default function PlanPage(): React.ReactElement {
                 </div>
                 <p className="text-slate-400 text-sm mb-4">{plan.description}</p>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-3xl font-bold text-white">¥{plan.monthlyFee.toLocaleString()}</span>
+                  <span className="text-3xl font-bold text-white">
+                    ¥{plan.monthlyFee.toLocaleString()}
+                  </span>
                   <span className="text-sm text-slate-400">/月（税込）</span>
                 </div>
                 <ul className="space-y-2 mb-6">
@@ -218,7 +222,9 @@ export default function PlanPage(): React.ReactElement {
                     <h3 className="text-white font-medium mt-1">{option.optionName}</h3>
                   </div>
                   <div className="text-right">
-                    <span className="text-white font-bold">¥{option.monthlyFee.toLocaleString()}</span>
+                    <span className="text-white font-bold">
+                      ¥{option.monthlyFee.toLocaleString()}
+                    </span>
                     <span className="text-xs text-slate-400">/月</span>
                   </div>
                 </div>

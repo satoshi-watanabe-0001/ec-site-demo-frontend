@@ -38,7 +38,13 @@ export function DataUsageWidget({ dataUsage }: DataUsageWidgetProps): React.Reac
         <span className="text-3xl font-bold text-white">{dataUsage.usedGB}</span>
         <span className="text-sm text-slate-400">/ {dataUsage.totalGB}GB</span>
       </div>
-      <div className="w-full bg-slate-600 rounded-full h-3 mb-3" role="progressbar" aria-valuenow={dataUsage.usagePercentage} aria-valuemin={0} aria-valuemax={100}>
+      <div
+        className="w-full bg-slate-600 rounded-full h-3 mb-3"
+        role="progressbar"
+        aria-valuenow={dataUsage.usagePercentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <div
           className={`h-3 rounded-full transition-all duration-500 ${getBarColor(dataUsage.usagePercentage)}`}
           style={{ width: `${dataUsage.usagePercentage}%` }}

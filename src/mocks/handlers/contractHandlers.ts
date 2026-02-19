@@ -144,9 +144,24 @@ const mockBillingDetail: BillingDetail = {
   paymentMethod: 'クレジットカード',
   cardLastFour: '4242',
   items: [
-    { itemName: 'ahamo基本料金', category: 'base', amount: 2970, description: '20GB + 5分かけ放題' },
-    { itemName: 'あんしんセキュリティ', category: 'option', amount: 550, description: 'セキュリティオプション' },
-    { itemName: '端末分割支払金', category: 'device', amount: 3000, description: 'iPhone 15 Pro (24回中12回目)' },
+    {
+      itemName: 'ahamo基本料金',
+      category: 'base',
+      amount: 2970,
+      description: '20GB + 5分かけ放題',
+    },
+    {
+      itemName: 'あんしんセキュリティ',
+      category: 'option',
+      amount: 550,
+      description: 'セキュリティオプション',
+    },
+    {
+      itemName: '端末分割支払金',
+      category: 'device',
+      amount: 3000,
+      description: 'iPhone 15 Pro (24回中12回目)',
+    },
   ],
   subtotal: 6520,
   tax: 593,

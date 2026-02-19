@@ -90,7 +90,13 @@ export default function DataUsagePage(): React.ReactElement {
             <span className="text-4xl font-bold text-white">{dataUsage.currentMonth.usedGB}</span>
             <span className="text-lg text-slate-400">/ {dataUsage.currentMonth.totalGB}GB</span>
           </div>
-          <div className="w-full bg-slate-600 rounded-full h-4 mb-3" role="progressbar" aria-valuenow={dataUsage.currentMonth.usagePercentage} aria-valuemin={0} aria-valuemax={100}>
+          <div
+            className="w-full bg-slate-600 rounded-full h-4 mb-3"
+            role="progressbar"
+            aria-valuenow={dataUsage.currentMonth.usagePercentage}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
             <div
               className={`h-4 rounded-full transition-all duration-500 ${getBarColor(dataUsage.currentMonth.usagePercentage)}`}
               style={{ width: `${dataUsage.currentMonth.usagePercentage}%` }}
@@ -99,11 +105,15 @@ export default function DataUsagePage(): React.ReactElement {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm">
             <div className="bg-slate-700/50 rounded-lg p-3">
               <span className="text-slate-400 block">残りデータ</span>
-              <span className="text-white font-bold text-lg">{dataUsage.currentMonth.remainingGB}GB</span>
+              <span className="text-white font-bold text-lg">
+                {dataUsage.currentMonth.remainingGB}GB
+              </span>
             </div>
             <div className="bg-slate-700/50 rounded-lg p-3">
               <span className="text-slate-400 block">使用率</span>
-              <span className="text-white font-bold text-lg">{dataUsage.currentMonth.usagePercentage}%</span>
+              <span className="text-white font-bold text-lg">
+                {dataUsage.currentMonth.usagePercentage}%
+              </span>
             </div>
             <div className="bg-slate-700/50 rounded-lg p-3">
               <span className="text-slate-400 block">1日平均</span>
@@ -127,8 +137,15 @@ export default function DataUsagePage(): React.ReactElement {
               const heightPercentage = (day.usageGB / maxDailyUsage) * 100
               const dayNum = new Date(day.date).getDate()
               return (
-                <div key={day.date} className="flex flex-col items-center flex-shrink-0" style={{ minWidth: '24px' }}>
-                  <div className="flex-1 w-full flex items-end justify-center" style={{ height: '140px' }}>
+                <div
+                  key={day.date}
+                  className="flex flex-col items-center flex-shrink-0"
+                  style={{ minWidth: '24px' }}
+                >
+                  <div
+                    className="flex-1 w-full flex items-end justify-center"
+                    style={{ height: '140px' }}
+                  >
                     <div
                       className="w-4 bg-cyan-500 rounded-t transition-all hover:bg-cyan-400"
                       style={{ height: `${Math.max(heightPercentage, 4)}%` }}
@@ -147,12 +164,16 @@ export default function DataUsagePage(): React.ReactElement {
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-slate-700/50 rounded-lg p-4">
               <span className="text-slate-400 text-sm block mb-1">今月</span>
-              <span className="text-2xl font-bold text-white">{dataUsage.currentMonth.usedGB}GB</span>
+              <span className="text-2xl font-bold text-white">
+                {dataUsage.currentMonth.usedGB}GB
+              </span>
               <span className="text-slate-400 text-sm"> / {dataUsage.currentMonth.totalGB}GB</span>
             </div>
             <div className="bg-slate-700/50 rounded-lg p-4">
               <span className="text-slate-400 text-sm block mb-1">先月</span>
-              <span className="text-2xl font-bold text-white">{dataUsage.previousMonth.usedGB}GB</span>
+              <span className="text-2xl font-bold text-white">
+                {dataUsage.previousMonth.usedGB}GB
+              </span>
               <span className="text-slate-400 text-sm"> / {dataUsage.previousMonth.totalGB}GB</span>
             </div>
           </div>
