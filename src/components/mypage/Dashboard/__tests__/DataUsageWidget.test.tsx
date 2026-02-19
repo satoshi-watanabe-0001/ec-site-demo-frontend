@@ -14,9 +14,11 @@ import { DataUsageWidget } from '../DataUsageWidget'
 import type { DataUsageSummary } from '@/types'
 
 jest.mock('next/link', () => {
-  return ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href}>{children}</a>
-  )
+  function MockLink({ children, href }: { children: React.ReactNode; href: string }) {
+    return <a href={href}>{children}</a>
+  }
+  MockLink.displayName = 'MockLink'
+  return MockLink
 })
 
 const mockDataUsage: DataUsageSummary = {
