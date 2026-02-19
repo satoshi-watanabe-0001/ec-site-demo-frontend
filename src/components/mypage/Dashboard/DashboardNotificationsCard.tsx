@@ -36,10 +36,7 @@ export function DashboardNotificationsCard({
             day: 'numeric',
           })
           return (
-            <div
-              key={announcement.id}
-              className="border-l-2 border-teal-500 pl-3 py-1"
-            >
+            <div key={announcement.id} className="border-l-2 border-teal-500 pl-3 py-1">
               <p className="text-sm text-white">{announcement.title}</p>
               <p className="text-xs text-slate-500">{date}</p>
             </div>

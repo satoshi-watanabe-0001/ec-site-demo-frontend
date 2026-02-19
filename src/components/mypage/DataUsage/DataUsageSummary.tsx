@@ -49,9 +49,7 @@ export function DataUsageSummary({ dataUsage }: DataUsageSummaryProps): React.Re
         </div>
         <div>
           <p className="text-slate-400">最終更新</p>
-          <p className="text-white">
-            {new Date(dataUsage.lastUpdated).toLocaleString('ja-JP')}
-          </p>
+          <p className="text-white">{new Date(dataUsage.lastUpdated).toLocaleString('ja-JP')}</p>
         </div>
       </div>
     </div>

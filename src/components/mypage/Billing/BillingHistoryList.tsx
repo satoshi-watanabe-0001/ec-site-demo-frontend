@@ -37,9 +37,7 @@ export function BillingHistoryList({ history }: BillingHistoryListProps): React.
                 {statusLabels[item.paymentStatus]}
               </span>
             </div>
-            <p className="text-lg font-bold text-white">
-              ¥{item.total.toLocaleString()}
-            </p>
+            <p className="text-lg font-bold text-white">¥{item.total.toLocaleString()}</p>
           </div>
         ))}
       </div>

@@ -69,11 +69,7 @@ export default function SettingsPage(): React.ReactElement {
     )
   }
 
-  const handleContactSubmit = async (data: {
-    email: string
-    phone: string
-    address: string
-  }) => {
+  const handleContactSubmit = async (data: { email: string; phone: string; address: string }) => {
     await updateContact({
       email: data.email,
       phoneNumber: data.phone,
@@ -81,10 +77,7 @@ export default function SettingsPage(): React.ReactElement {
     })
   }
 
-  const handlePasswordSubmit = async (data: {
-    currentPassword: string
-    newPassword: string
-  }) => {
+  const handlePasswordSubmit = async (data: { currentPassword: string; newPassword: string }) => {
     await changePassword(data)
   }
 
@@ -95,10 +88,7 @@ export default function SettingsPage(): React.ReactElement {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8" data-testid="settings-page">
       <div className="flex items-center gap-4 mb-8">
-        <Link
-          href="/mypage"
-          className="text-slate-400 hover:text-white transition-colors"
-        >
+        <Link href="/mypage" className="text-slate-400 hover:text-white transition-colors">
           ← マイページ
         </Link>
         <h1 className="text-2xl font-bold text-white">アカウント設定</h1>

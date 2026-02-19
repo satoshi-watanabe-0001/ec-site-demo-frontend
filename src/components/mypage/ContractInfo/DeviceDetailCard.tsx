@@ -40,9 +40,7 @@ export function DeviceDetailCard({ device }: DeviceDetailCardProps): React.React
               <>
                 <div>
                   <p className="text-sm text-slate-400">分割残額</p>
-                  <p className="text-white">
-                    ¥{device.remainingBalance?.toLocaleString()}
-                  </p>
+                  <p className="text-white">¥{device.remainingBalance?.toLocaleString()}</p>
                 </div>
                 <div>
                   <p className="text-sm text-slate-400">分割回数</p>

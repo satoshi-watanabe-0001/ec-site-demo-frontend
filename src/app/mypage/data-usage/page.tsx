@@ -62,10 +62,7 @@ export default function DataUsagePage(): React.ReactElement {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8" data-testid="data-usage-page">
       <div className="flex items-center gap-4 mb-8">
-        <Link
-          href="/mypage"
-          className="text-slate-400 hover:text-white transition-colors"
-        >
+        <Link href="/mypage" className="text-slate-400 hover:text-white transition-colors">
           ← マイページ
         </Link>
         <h1 className="text-2xl font-bold text-white">データ使用量</h1>

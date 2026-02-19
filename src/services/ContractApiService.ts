@@ -5,7 +5,12 @@
  * 契約情報・データ使用量の取得を行うAPIサービス。
  */
 
-import type { ContractResponse, DataUsageResponse, DashboardResponse, NotificationsResponse } from '@/types'
+import type {
+  ContractResponse,
+  DataUsageResponse,
+  DashboardResponse,
+  NotificationsResponse,
+} from '@/types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 

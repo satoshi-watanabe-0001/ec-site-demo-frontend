@@ -6,12 +6,7 @@
  */
 
 import { http, HttpResponse } from 'msw'
-import type {
-  AvailablePlan,
-  PlanChangeRequest,
-  PlanChangeResponse,
-  OptionsResponse,
-} from '@/types'
+import type { AvailablePlan, PlanChangeRequest, PlanChangeResponse, OptionsResponse } from '@/types'
 
 const mockCurrentPlan = {
   plan: {

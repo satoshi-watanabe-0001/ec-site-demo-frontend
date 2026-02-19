@@ -156,7 +156,8 @@ const mockNotifications: NotificationsResponse = {
     {
       id: 'notif-001',
       title: 'ahamo大盛りオプション キャンペーン実施中',
-      message: '今なら ahamo大盛りオプション（+80GB）が初月無料！期間限定キャンペーンをお見逃しなく。',
+      message:
+        '今なら ahamo大盛りオプション（+80GB）が初月無料！期間限定キャンペーンをお見逃しなく。',
       type: 'important',
       isRead: false,
       createdAt: '2026-02-15T10:00:00Z',
@@ -164,7 +165,8 @@ const mockNotifications: NotificationsResponse = {
     {
       id: 'notif-002',
       title: 'システムメンテナンスのお知らせ（2/25）',
-      message: '2月25日 2:00-5:00にシステムメンテナンスを実施します。この間、一部サービスがご利用いただけません。',
+      message:
+        '2月25日 2:00-5:00にシステムメンテナンスを実施します。この間、一部サービスがご利用いただけません。',
       type: 'warning',
       isRead: false,
       createdAt: '2026-02-14T09:00:00Z',

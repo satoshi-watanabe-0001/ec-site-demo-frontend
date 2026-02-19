@@ -29,9 +29,7 @@ export function BillingDetailCard({ billing }: BillingDetailCardProps): React.Re
         </span>
       </div>
       <div className="text-center mb-6">
-        <p className="text-sm text-slate-400">
-          {billing.billingMonth} 請求額
-        </p>
+        <p className="text-sm text-slate-400">{billing.billingMonth} 請求額</p>
         <p className="text-4xl font-bold text-white mt-1">
           ¥{billing.breakdown.total.toLocaleString()}
         </p>
@@ -44,16 +42,22 @@ export function BillingDetailCard({ billing }: BillingDetailCardProps): React.Re
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-slate-400">利用料金</span>
-          <span className="text-sm text-white">¥{billing.breakdown.usageCharges.toLocaleString()}</span>
+          <span className="text-sm text-white">
+            ¥{billing.breakdown.usageCharges.toLocaleString()}
+          </span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-slate-400">オプション料金</span>
-          <span className="text-sm text-white">¥{billing.breakdown.optionCharges.toLocaleString()}</span>
+          <span className="text-sm text-white">
+            ¥{billing.breakdown.optionCharges.toLocaleString()}
+          </span>
         </div>
         {billing.breakdown.discount > 0 && (
           <div className="flex justify-between items-center">
             <span className="text-sm text-slate-400">割引</span>
-            <span className="text-sm text-teal-400">-¥{billing.breakdown.discount.toLocaleString()}</span>
+            <span className="text-sm text-teal-400">
+              -¥{billing.breakdown.discount.toLocaleString()}
+            </span>
           </div>
         )}
         <div className="flex justify-between items-center">

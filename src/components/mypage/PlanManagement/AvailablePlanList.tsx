@@ -22,7 +22,10 @@ export function AvailablePlanList({
     setMessage(null)
     try {
       await onChangePlan(planId)
-      setMessage({ type: 'success', text: 'プラン変更申請を受け付けました。翌月から適用されます。' })
+      setMessage({
+        type: 'success',
+        text: 'プラン変更申請を受け付けました。翌月から適用されます。',
+      })
     } catch {
       setMessage({ type: 'error', text: 'プラン変更に失敗しました。もう一度お試しください。' })
     } finally {
@@ -52,9 +55,7 @@ export function AvailablePlanList({
             <div
               key={plan.id}
               className={`p-4 rounded-lg border ${
-                isCurrent
-                  ? 'border-teal-500/50 bg-teal-500/10'
-                  : 'border-slate-700 bg-slate-700/50'
+                isCurrent ? 'border-teal-500/50 bg-teal-500/10' : 'border-slate-700 bg-slate-700/50'
               }`}
               data-testid={`plan-option-${plan.id}`}
             >

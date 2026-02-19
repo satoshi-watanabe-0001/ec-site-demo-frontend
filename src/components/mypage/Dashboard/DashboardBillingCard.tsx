@@ -25,9 +25,7 @@ export function DashboardBillingCard({
         <span className="text-3xl font-bold text-white">
           ¥{currentMonthEstimate.toLocaleString()}
         </span>
-        <span
-          className={`text-sm font-medium ${isIncrease ? 'text-red-400' : 'text-teal-400'}`}
-        >
+        <span className={`text-sm font-medium ${isIncrease ? 'text-red-400' : 'text-teal-400'}`}>
           {isIncrease ? '↑' : '↓'} 前月比 ¥{Math.abs(difference).toLocaleString()}
         </span>
       </div>

@@ -37,9 +37,7 @@ export function DashboardDeviceCard({
               分割残額: ¥{remainingBalance.toLocaleString()}
             </p>
           )}
-          {paymentStatus === 'paid' && (
-            <p className="text-sm text-teal-400">支払い完了</p>
-          )}
+          {paymentStatus === 'paid' && <p className="text-sm text-teal-400">支払い完了</p>}
         </div>
       </div>
     </div>

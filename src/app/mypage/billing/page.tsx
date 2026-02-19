@@ -24,10 +24,7 @@ export default function BillingPage(): React.ReactElement {
 
     const fetchBillingData = async () => {
       try {
-        const [billingData, historyData] = await Promise.all([
-          getBilling(),
-          getBillingHistory(),
-        ])
+        const [billingData, historyData] = await Promise.all([getBilling(), getBillingHistory()])
         setBilling(billingData.billing)
         setHistory(historyData.history)
       } catch {
@@ -67,10 +64,7 @@ export default function BillingPage(): React.ReactElement {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8" data-testid="billing-page">
       <div className="flex items-center gap-4 mb-8">
-        <Link
-          href="/mypage"
-          className="text-slate-400 hover:text-white transition-colors"
-        >
+        <Link href="/mypage" className="text-slate-400 hover:text-white transition-colors">
           ← マイページ
         </Link>
         <h1 className="text-2xl font-bold text-white">請求情報</h1>

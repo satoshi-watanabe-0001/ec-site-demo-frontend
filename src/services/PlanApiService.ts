@@ -5,12 +5,7 @@
  * プラン情報の取得・変更、オプションサービスの管理を行うAPIサービス。
  */
 
-import type {
-  AvailablePlan,
-  PlanChangeRequest,
-  PlanChangeResponse,
-  OptionsResponse,
-} from '@/types'
+import type { AvailablePlan, PlanChangeRequest, PlanChangeResponse, OptionsResponse } from '@/types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 

@@ -37,8 +37,16 @@ export function NotificationSettingsForm({
   const toggleItems: { key: keyof NotificationSettings; label: string; description: string }[] = [
     { key: 'emailNotifications', label: 'メール通知', description: '重要なお知らせをメールで受信' },
     { key: 'smsNotifications', label: 'SMS通知', description: '契約に関する通知をSMSで受信' },
-    { key: 'promotionalEmails', label: 'キャンペーン通知', description: 'お得なキャンペーン情報を受信' },
-    { key: 'usageAlerts', label: 'データ使用量通知', description: 'データ使用量が閾値に達した際に通知' },
+    {
+      key: 'promotionalEmails',
+      label: 'キャンペーン通知',
+      description: 'お得なキャンペーン情報を受信',
+    },
+    {
+      key: 'usageAlerts',
+      label: 'データ使用量通知',
+      description: 'データ使用量が閾値に達した際に通知',
+    },
     { key: 'billingAlerts', label: '請求通知', description: '請求確定時に通知を受信' },
   ]
 
