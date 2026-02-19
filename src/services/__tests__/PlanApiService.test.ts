@@ -35,17 +35,13 @@ describe('PlanApiService', () => {
       const result = await getCurrentPlan()
 
       expect(result).toEqual(mockData)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:3001/api/v1/mypage/plans/current'
-      )
+      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/v1/mypage/plans/current')
     })
 
     test('getCurrentPlan_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
-      await expect(getCurrentPlan()).rejects.toThrow(
-        '現在のプラン情報の取得に失敗しました: 500'
-      )
+      await expect(getCurrentPlan()).rejects.toThrow('現在のプラン情報の取得に失敗しました: 500')
     })
   })
 
@@ -60,9 +56,7 @@ describe('PlanApiService', () => {
       const result = await getAvailablePlans()
 
       expect(result).toEqual(mockData)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:3001/api/v1/mypage/plans/available'
-      )
+      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/v1/mypage/plans/available')
     })
 
     test('getAvailablePlans_WithErrorResponse_ShouldThrowError', async () => {
@@ -86,14 +80,11 @@ describe('PlanApiService', () => {
       const result = await changePlan(request)
 
       expect(result).toEqual(mockResponse)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:3001/api/v1/mypage/plans/change',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(request),
-        }
-      )
+      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/v1/mypage/plans/change', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request),
+      })
     })
 
     test('changePlan_WithErrorResponse_ShouldThrowError', async () => {
@@ -122,9 +113,7 @@ describe('PlanApiService', () => {
     test('getOptions_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
-      await expect(getOptions()).rejects.toThrow(
-        'オプションサービス一覧の取得に失敗しました: 500'
-      )
+      await expect(getOptions()).rejects.toThrow('オプションサービス一覧の取得に失敗しました: 500')
     })
   })
 
@@ -151,9 +140,7 @@ describe('PlanApiService', () => {
     test('subscribeOption_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 409 })
 
-      await expect(subscribeOption('opt1')).rejects.toThrow(
-        'オプションの申込に失敗しました: 409'
-      )
+      await expect(subscribeOption('opt1')).rejects.toThrow('オプションの申込に失敗しました: 409')
     })
   })
 })

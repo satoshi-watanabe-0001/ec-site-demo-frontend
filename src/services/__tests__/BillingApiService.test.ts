@@ -35,9 +35,7 @@ describe('BillingApiService', () => {
     test('getBillingDetail_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
-      await expect(getBillingDetail()).rejects.toThrow(
-        '請求情報の取得に失敗しました: 500'
-      )
+      await expect(getBillingDetail()).rejects.toThrow('請求情報の取得に失敗しました: 500')
     })
   })
 
@@ -52,17 +50,13 @@ describe('BillingApiService', () => {
       const result = await getBillingHistory()
 
       expect(result).toEqual(mockData)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:3001/api/v1/mypage/billing/history'
-      )
+      expect(mockFetch).toHaveBeenCalledWith('http://localhost:3001/api/v1/mypage/billing/history')
     })
 
     test('getBillingHistory_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 404 })
 
-      await expect(getBillingHistory()).rejects.toThrow(
-        '請求履歴の取得に失敗しました: 404'
-      )
+      await expect(getBillingHistory()).rejects.toThrow('請求履歴の取得に失敗しました: 404')
     })
   })
 })

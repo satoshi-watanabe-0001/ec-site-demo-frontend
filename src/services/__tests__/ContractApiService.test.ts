@@ -38,9 +38,7 @@ describe('ContractApiService', () => {
     test('getDashboard_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
-      await expect(getDashboard()).rejects.toThrow(
-        'ダッシュボード情報の取得に失敗しました: 500'
-      )
+      await expect(getDashboard()).rejects.toThrow('ダッシュボード情報の取得に失敗しました: 500')
     })
   })
 
@@ -61,9 +59,7 @@ describe('ContractApiService', () => {
     test('getContractDetail_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 404 })
 
-      await expect(getContractDetail()).rejects.toThrow(
-        '契約情報の取得に失敗しました: 404'
-      )
+      await expect(getContractDetail()).rejects.toThrow('契約情報の取得に失敗しました: 404')
     })
   })
 

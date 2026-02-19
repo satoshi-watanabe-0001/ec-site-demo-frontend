@@ -40,9 +40,7 @@ describe('AccountApiService', () => {
     test('getAccountInfo_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 401 })
 
-      await expect(getAccountInfo()).rejects.toThrow(
-        'アカウント情報の取得に失敗しました: 401'
-      )
+      await expect(getAccountInfo()).rejects.toThrow('アカウント情報の取得に失敗しました: 401')
     })
   })
 
@@ -141,9 +139,9 @@ describe('AccountApiService', () => {
     test('updateNotificationSettings_WithErrorResponse_ShouldThrowError', async () => {
       mockFetch.mockResolvedValueOnce({ ok: false, status: 500 })
 
-      await expect(
-        updateNotificationSettings({ email: true, sms: false })
-      ).rejects.toThrow('通知設定の更新に失敗しました: 500')
+      await expect(updateNotificationSettings({ email: true, sms: false })).rejects.toThrow(
+        '通知設定の更新に失敗しました: 500'
+      )
     })
   })
 })

@@ -83,7 +83,9 @@ describe('NotificationsWidget', () => {
     render(<NotificationsWidget notifications={mockNotifications} unreadCount={2} />)
 
     const badges = screen.getAllByText('お知らせ')
-    const spanBadge = badges.find(el => el.tagName === 'SPAN' && el.className.includes('rounded-full'))
+    const spanBadge = badges.find(
+      el => el.tagName === 'SPAN' && el.className.includes('rounded-full')
+    )
     expect(spanBadge).toBeDefined()
   })
 
