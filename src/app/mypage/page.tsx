@@ -210,7 +210,7 @@ export default function MyPageDashboard(): React.ReactElement {
           {dataUsage ? (
             <div>
               <div className="flex items-end gap-2 mb-3">
-                <span className="text-3xl font-bold text-white">{dataUsage.usedData}</span>
+                <span className="text-3xl font-bold text-white">{dataUsage.usedData}GB</span>
                 <span className="text-slate-400 pb-1">/ {dataUsage.totalCapacity}GB</span>
               </div>
               {/* プログレスバー */}

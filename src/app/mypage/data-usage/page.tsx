@@ -78,7 +78,7 @@ export default function DataUsagePage(): React.ReactElement {
           </div>
 
           <div className="flex items-end gap-2 mb-4">
-            <span className="text-4xl font-bold text-white">{dataUsage.usedData}</span>
+            <span className="text-4xl font-bold text-white">{dataUsage.usedData}GB</span>
             <span className="text-slate-400 pb-1 text-lg">/ {dataUsage.totalCapacity}GB</span>
           </div>
 
