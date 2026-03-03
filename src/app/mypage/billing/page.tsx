@@ -9,14 +9,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import {
-  CreditCard,
-  Receipt,
-  History,
-  CheckCircle,
-  Clock,
-  AlertTriangle,
-} from 'lucide-react'
+import { CreditCard, Receipt, History, CheckCircle, Clock, AlertTriangle } from 'lucide-react'
 import type { CurrentBilling, BillingHistoryResponse, PaymentMethod } from '@/types/billing'
 
 /** API Base URL */
@@ -156,7 +149,8 @@ export default function BillingPage(): React.ReactElement {
                 <>
                   <p className="text-white font-medium">{paymentMethod.bankAccountInfo.bankName}</p>
                   <p className="text-slate-400 text-sm">
-                    {paymentMethod.bankAccountInfo.branchName} ****{paymentMethod.bankAccountInfo.accountLast4}
+                    {paymentMethod.bankAccountInfo.branchName} ****
+                    {paymentMethod.bankAccountInfo.accountLast4}
                   </p>
                 </>
               )}
@@ -183,15 +177,19 @@ export default function BillingPage(): React.ReactElement {
                 </tr>
               </thead>
               <tbody>
-                {billingHistory.history.map((item) => {
+                {billingHistory.history.map(item => {
                   const statusInfo = getPaymentStatusInfo(item.paymentStatus)
                   const StatusIcon = statusInfo.icon
                   return (
                     <tr key={item.billingMonth} className="border-b border-slate-700/50">
                       <td className="py-3 pr-4 text-slate-300">{item.billingMonth}</td>
-                      <td className="py-3 pr-4 text-right text-white">¥{formatCurrency(item.totalAmount)}</td>
+                      <td className="py-3 pr-4 text-right text-white">
+                        ¥{formatCurrency(item.totalAmount)}
+                      </td>
                       <td className="py-3 pr-4 text-center">
-                        <span className={`inline-flex items-center gap-1 text-xs ${statusInfo.className}`}>
+                        <span
+                          className={`inline-flex items-center gap-1 text-xs ${statusInfo.className}`}
+                        >
                           <StatusIcon className="h-3 w-3" />
                           {statusInfo.label}
                         </span>

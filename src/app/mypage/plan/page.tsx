@@ -9,12 +9,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import {
-  Smartphone,
-  CheckCircle,
-  AlertCircle,
-  Check,
-} from 'lucide-react'
+import { Smartphone, CheckCircle, AlertCircle, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { ContractPlan, AvailablePlansResponse } from '@/types/contract'
 
@@ -74,8 +69,10 @@ export default function PlanPage(): React.ReactElement {
         body: JSON.stringify({ planId: plan.id }),
       })
       if (res.ok) {
-        setSuccessMessage(`${plan.name}プランへの変更が完了しました。次の請求サイクルから適用されます。`)
-        setPlansData((prev) => prev ? { ...prev, currentPlanId: plan.id } : prev)
+        setSuccessMessage(
+          `${plan.name}プランへの変更が完了しました。次の請求サイクルから適用されます。`
+        )
+        setPlansData(prev => (prev ? { ...prev, currentPlanId: plan.id } : prev))
         setSelectedPlanId(plan.id)
       } else {
         setErrorMessage('プランの変更に失敗しました')
@@ -108,13 +105,19 @@ export default function PlanPage(): React.ReactElement {
 
       {/* メッセージ表示 */}
       {successMessage && (
-        <div className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
           <p className="text-green-300 text-sm">{successMessage}</p>
         </div>
       )}
       {errorMessage && (
-        <div className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
           <p className="text-red-300 text-sm">{errorMessage}</p>
         </div>
@@ -123,7 +126,7 @@ export default function PlanPage(): React.ReactElement {
       {/* プラン一覧 */}
       {plansData && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {plansData.plans.map((plan) => {
+          {plansData.plans.map(plan => {
             const isCurrent = plan.id === plansData.currentPlanId
             const isSelected = plan.id === selectedPlanId
             return (
@@ -185,12 +188,15 @@ export default function PlanPage(): React.ReactElement {
 
                 {/* アクションボタン */}
                 {isCurrent ? (
-                  <Button disabled className="w-full bg-slate-700 text-slate-400 cursor-not-allowed">
+                  <Button
+                    disabled
+                    className="w-full bg-slate-700 text-slate-400 cursor-not-allowed"
+                  >
                     ご利用中のプラン
                   </Button>
                 ) : (
                   <Button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.stopPropagation()
                       handleChangePlan(plan)
                     }}

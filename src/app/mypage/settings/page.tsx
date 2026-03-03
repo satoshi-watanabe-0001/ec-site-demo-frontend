@@ -9,14 +9,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import {
-  User,
-  Lock,
-  Bell,
-  Save,
-  CheckCircle,
-  AlertCircle,
-} from 'lucide-react'
+import { User, Lock, Bell, Save, CheckCircle, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import type { UserProfile, NotificationSettings } from '@/types/account'
@@ -31,7 +24,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
  */
 export default function SettingsPage(): React.ReactElement {
   const [profile, setProfile] = useState<UserProfile | null>(null)
-  const [notificationSettings, setNotificationSettings] = useState<NotificationSettings | null>(null)
+  const [notificationSettings, setNotificationSettings] = useState<NotificationSettings | null>(
+    null
+  )
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'profile' | 'password' | 'notifications'>('profile')
   const [successMessage, setSuccessMessage] = useState<string>('')
@@ -45,9 +40,7 @@ export default function SettingsPage(): React.ReactElement {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [profileRes] = await Promise.all([
-          fetch(`${BASE_URL}/api/v1/account/profile`),
-        ])
+        const [profileRes] = await Promise.all([fetch(`${BASE_URL}/api/v1/account/profile`)])
         if (profileRes.ok) setProfile(await profileRes.json())
       } catch (error) {
         console.error('設定情報の取得に失敗しました:', error)
@@ -181,21 +174,31 @@ export default function SettingsPage(): React.ReactElement {
 
       {/* メッセージ表示 */}
       {successMessage && (
-        <div className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
           <p className="text-green-300 text-sm">{successMessage}</p>
         </div>
       )}
       {errorMessage && (
-        <div className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
           <p className="text-red-300 text-sm">{errorMessage}</p>
         </div>
       )}
 
       {/* タブナビゲーション */}
-      <div className="flex border-b border-slate-700 overflow-x-auto" role="tablist" aria-label="設定カテゴリ">
-        {tabs.map((tab) => (
+      <div
+        className="flex border-b border-slate-700 overflow-x-auto"
+        role="tablist"
+        aria-label="設定カテゴリ"
+      >
+        {tabs.map(tab => (
           <button
             key={tab.id}
             role="tab"
@@ -221,35 +224,43 @@ export default function SettingsPage(): React.ReactElement {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm text-slate-400 mb-1">名前</label>
+              <label htmlFor="name" className="block text-sm text-slate-400 mb-1">
+                名前
+              </label>
               <Input
                 id="name"
                 value={profile.name}
-                onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                onChange={e => setProfile({ ...profile, name: e.target.value })}
                 className="bg-slate-700 border-slate-600 text-white"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-slate-400 mb-1">メールアドレス</label>
+              <label htmlFor="email" className="block text-sm text-slate-400 mb-1">
+                メールアドレス
+              </label>
               <Input
                 id="email"
                 type="email"
                 value={profile.email}
-                onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+                onChange={e => setProfile({ ...profile, email: e.target.value })}
                 className="bg-slate-700 border-slate-600 text-white"
               />
             </div>
             <div>
-              <label htmlFor="phone" className="block text-sm text-slate-400 mb-1">電話番号</label>
+              <label htmlFor="phone" className="block text-sm text-slate-400 mb-1">
+                電話番号
+              </label>
               <Input
                 id="phone"
                 value={profile.phoneNumber}
-                onChange={(e) => setProfile({ ...profile, phoneNumber: e.target.value })}
+                onChange={e => setProfile({ ...profile, phoneNumber: e.target.value })}
                 className="bg-slate-700 border-slate-600 text-white"
               />
             </div>
             <div>
-              <label htmlFor="dob" className="block text-sm text-slate-400 mb-1">生年月日</label>
+              <label htmlFor="dob" className="block text-sm text-slate-400 mb-1">
+                生年月日
+              </label>
               <Input
                 id="dob"
                 value={profile.dateOfBirth}
@@ -263,47 +274,82 @@ export default function SettingsPage(): React.ReactElement {
             <h3 className="text-sm font-medium text-slate-300 mb-3">住所</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="postal" className="block text-sm text-slate-400 mb-1">郵便番号</label>
+                <label htmlFor="postal" className="block text-sm text-slate-400 mb-1">
+                  郵便番号
+                </label>
                 <Input
                   id="postal"
                   value={profile.address.postalCode}
-                  onChange={(e) => setProfile({ ...profile, address: { ...profile.address, postalCode: e.target.value } })}
+                  onChange={e =>
+                    setProfile({
+                      ...profile,
+                      address: { ...profile.address, postalCode: e.target.value },
+                    })
+                  }
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
               <div>
-                <label htmlFor="prefecture" className="block text-sm text-slate-400 mb-1">都道府県</label>
+                <label htmlFor="prefecture" className="block text-sm text-slate-400 mb-1">
+                  都道府県
+                </label>
                 <Input
                   id="prefecture"
                   value={profile.address.prefecture}
-                  onChange={(e) => setProfile({ ...profile, address: { ...profile.address, prefecture: e.target.value } })}
+                  onChange={e =>
+                    setProfile({
+                      ...profile,
+                      address: { ...profile.address, prefecture: e.target.value },
+                    })
+                  }
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
               <div>
-                <label htmlFor="city" className="block text-sm text-slate-400 mb-1">市区町村</label>
+                <label htmlFor="city" className="block text-sm text-slate-400 mb-1">
+                  市区町村
+                </label>
                 <Input
                   id="city"
                   value={profile.address.city}
-                  onChange={(e) => setProfile({ ...profile, address: { ...profile.address, city: e.target.value } })}
+                  onChange={e =>
+                    setProfile({
+                      ...profile,
+                      address: { ...profile.address, city: e.target.value },
+                    })
+                  }
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
               <div>
-                <label htmlFor="street" className="block text-sm text-slate-400 mb-1">番地</label>
+                <label htmlFor="street" className="block text-sm text-slate-400 mb-1">
+                  番地
+                </label>
                 <Input
                   id="street"
                   value={profile.address.street}
-                  onChange={(e) => setProfile({ ...profile, address: { ...profile.address, street: e.target.value } })}
+                  onChange={e =>
+                    setProfile({
+                      ...profile,
+                      address: { ...profile.address, street: e.target.value },
+                    })
+                  }
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="building" className="block text-sm text-slate-400 mb-1">建物名・部屋番号</label>
+                <label htmlFor="building" className="block text-sm text-slate-400 mb-1">
+                  建物名・部屋番号
+                </label>
                 <Input
                   id="building"
                   value={profile.address.building || ''}
-                  onChange={(e) => setProfile({ ...profile, address: { ...profile.address, building: e.target.value } })}
+                  onChange={e =>
+                    setProfile({
+                      ...profile,
+                      address: { ...profile.address, building: e.target.value },
+                    })
+                  }
                   className="bg-slate-700 border-slate-600 text-white"
                 />
               </div>
@@ -325,33 +371,39 @@ export default function SettingsPage(): React.ReactElement {
           <h2 className="text-lg font-semibold text-white mb-4">パスワード変更</h2>
           <div className="max-w-md space-y-4">
             <div>
-              <label htmlFor="currentPassword" className="block text-sm text-slate-400 mb-1">現在のパスワード</label>
+              <label htmlFor="currentPassword" className="block text-sm text-slate-400 mb-1">
+                現在のパスワード
+              </label>
               <Input
                 id="currentPassword"
                 type="password"
                 value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
+                onChange={e => setCurrentPassword(e.target.value)}
                 className="bg-slate-700 border-slate-600 text-white"
               />
             </div>
             <div>
-              <label htmlFor="newPassword" className="block text-sm text-slate-400 mb-1">新しいパスワード</label>
+              <label htmlFor="newPassword" className="block text-sm text-slate-400 mb-1">
+                新しいパスワード
+              </label>
               <Input
                 id="newPassword"
                 type="password"
                 value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
+                onChange={e => setNewPassword(e.target.value)}
                 className="bg-slate-700 border-slate-600 text-white"
                 placeholder="8文字以上"
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm text-slate-400 mb-1">新しいパスワード（確認）</label>
+              <label htmlFor="confirmPassword" className="block text-sm text-slate-400 mb-1">
+                新しいパスワード（確認）
+              </label>
               <Input
                 id="confirmPassword"
                 type="password"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={e => setConfirmPassword(e.target.value)}
                 className="bg-slate-700 border-slate-600 text-white"
               />
             </div>
@@ -371,7 +423,11 @@ export default function SettingsPage(): React.ReactElement {
 
       {/* 通知設定タブ */}
       {activeTab === 'notifications' && (
-        <div id="panel-notifications" role="tabpanel" className="bg-slate-800 rounded-lg p-6 space-y-4">
+        <div
+          id="panel-notifications"
+          role="tabpanel"
+          className="bg-slate-800 rounded-lg p-6 space-y-4"
+        >
           <h2 className="text-lg font-semibold text-white mb-4">通知設定</h2>
           {!notificationSettings ? (
             <div className="space-y-4">
@@ -415,7 +471,12 @@ export default function SettingsPage(): React.ReactElement {
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                       notificationSettings[key] ? 'bg-blue-600' : 'bg-slate-600'
                     }`}
-                    onClick={() => setNotificationSettings({ ...notificationSettings, [key]: !notificationSettings[key] })}
+                    onClick={() =>
+                      setNotificationSettings({
+                        ...notificationSettings,
+                        [key]: !notificationSettings[key],
+                      })
+                    }
                   >
                     <span
                       className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -438,10 +499,12 @@ export default function SettingsPage(): React.ReactElement {
                     max="100"
                     step="5"
                     value={notificationSettings.dataUsageAlertThreshold}
-                    onChange={(e) => setNotificationSettings({
-                      ...notificationSettings,
-                      dataUsageAlertThreshold: parseInt(e.target.value),
-                    })}
+                    onChange={e =>
+                      setNotificationSettings({
+                        ...notificationSettings,
+                        dataUsageAlertThreshold: parseInt(e.target.value),
+                      })
+                    }
                     className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
                   />
                 </div>

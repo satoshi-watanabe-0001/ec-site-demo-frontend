@@ -58,12 +58,18 @@ const getCategoryIcon = (category: string) => {
  */
 const getCategoryLabel = (category: string): string => {
   switch (category) {
-    case 'data': return 'データ通信'
-    case 'call': return '通話'
-    case 'insurance': return '補償'
-    case 'entertainment': return 'エンターテインメント'
-    case 'security': return 'セキュリティ'
-    default: return 'その他'
+    case 'data':
+      return 'データ通信'
+    case 'call':
+      return '通話'
+    case 'insurance':
+      return '補償'
+    case 'entertainment':
+      return 'エンターテインメント'
+    case 'security':
+      return 'セキュリティ'
+    default:
+      return 'その他'
   }
 }
 
@@ -123,9 +129,7 @@ export default function OptionsPage(): React.ReactElement {
         method: 'POST',
       })
       if (res.ok) {
-        setOptions((prev) =>
-          prev.map((o) => o.id === option.id ? { ...o, isSubscribed: true } : o)
-        )
+        setOptions(prev => prev.map(o => (o.id === option.id ? { ...o, isSubscribed: true } : o)))
         showMessage('success', `${option.name}を追加しました`)
       } else {
         showMessage('error', `${option.name}の追加に失敗しました`)
@@ -147,9 +151,7 @@ export default function OptionsPage(): React.ReactElement {
         method: 'DELETE',
       })
       if (res.ok) {
-        setOptions((prev) =>
-          prev.map((o) => o.id === option.id ? { ...o, isSubscribed: false } : o)
-        )
+        setOptions(prev => prev.map(o => (o.id === option.id ? { ...o, isSubscribed: false } : o)))
         showMessage('success', `${option.name}を解除しました`)
       } else {
         showMessage('error', `${option.name}の解除に失敗しました`)
@@ -172,8 +174,8 @@ export default function OptionsPage(): React.ReactElement {
     )
   }
 
-  const subscribedOptions = options.filter((o) => o.isSubscribed)
-  const availableOptions = options.filter((o) => !o.isSubscribed)
+  const subscribedOptions = options.filter(o => o.isSubscribed)
+  const availableOptions = options.filter(o => !o.isSubscribed)
   const totalOptionCost = subscribedOptions.reduce((sum, o) => sum + o.monthlyPrice, 0)
 
   return (
@@ -186,13 +188,19 @@ export default function OptionsPage(): React.ReactElement {
 
       {/* メッセージ表示 */}
       {successMessage && (
-        <div className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-green-900/30 border border-green-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
           <p className="text-green-300 text-sm">{successMessage}</p>
         </div>
       )}
       {errorMessage && (
-        <div className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4" role="alert">
+        <div
+          className="flex items-center gap-2 bg-red-900/30 border border-red-700/50 rounded-lg p-4"
+          role="alert"
+        >
           <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
           <p className="text-red-300 text-sm">{errorMessage}</p>
         </div>
@@ -219,10 +227,13 @@ export default function OptionsPage(): React.ReactElement {
         <div>
           <h2 className="text-lg font-semibold text-white mb-4">利用中のオプション</h2>
           <div className="space-y-3">
-            {subscribedOptions.map((option) => {
+            {subscribedOptions.map(option => {
               const CategoryIcon = getCategoryIcon(option.category)
               return (
-                <div key={option.id} className="bg-slate-800 rounded-lg p-5 border border-blue-700/30">
+                <div
+                  key={option.id}
+                  className="bg-slate-800 rounded-lg p-5 border border-blue-700/30"
+                >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -238,7 +249,10 @@ export default function OptionsPage(): React.ReactElement {
                         <p className="text-slate-400 text-sm mt-1">{option.description}</p>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {option.features.map((feature, index) => (
-                            <span key={index} className="text-xs text-slate-400 bg-slate-700/50 px-2 py-0.5 rounded">
+                            <span
+                              key={index}
+                              className="text-xs text-slate-400 bg-slate-700/50 px-2 py-0.5 rounded"
+                            >
                               {feature}
                             </span>
                           ))}
@@ -274,10 +288,13 @@ export default function OptionsPage(): React.ReactElement {
         <div>
           <h2 className="text-lg font-semibold text-white mb-4">追加可能なオプション</h2>
           <div className="space-y-3">
-            {availableOptions.map((option) => {
+            {availableOptions.map(option => {
               const CategoryIcon = getCategoryIcon(option.category)
               return (
-                <div key={option.id} className="bg-slate-800 rounded-lg p-5 border border-slate-700">
+                <div
+                  key={option.id}
+                  className="bg-slate-800 rounded-lg p-5 border border-slate-700"
+                >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -293,7 +310,10 @@ export default function OptionsPage(): React.ReactElement {
                         <p className="text-slate-400 text-sm mt-1">{option.description}</p>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {option.features.map((feature, index) => (
-                            <span key={index} className="text-xs text-slate-400 bg-slate-700/50 px-2 py-0.5 rounded">
+                            <span
+                              key={index}
+                              className="text-xs text-slate-400 bg-slate-700/50 px-2 py-0.5 rounded"
+                            >
                               {feature}
                             </span>
                           ))}

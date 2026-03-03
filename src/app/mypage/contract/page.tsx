@@ -115,19 +115,27 @@ export default function ContractPage(): React.ReactElement {
             <Shield className="h-5 w-5 text-blue-400" />
             <h2 className="text-lg font-semibold text-white">現在のプラン</h2>
           </div>
-          <Link href="/mypage/plan" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
+          <Link
+            href="/mypage/plan"
+            className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1"
+          >
             プラン変更 <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-2xl font-bold text-white">{contract.currentPlan.name}</span>
-            <span className="text-lg text-white">月額 ¥{formatCurrency(contract.currentPlan.monthlyPrice)}</span>
+            <span className="text-lg text-white">
+              月額 ¥{formatCurrency(contract.currentPlan.monthlyPrice)}
+            </span>
           </div>
           <p className="text-slate-400 text-sm">{contract.currentPlan.description}</p>
           <div className="flex flex-wrap gap-2 mt-2">
             {contract.currentPlan.features.map((feature, index) => (
-              <span key={index} className="inline-flex items-center px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300">
+              <span
+                key={index}
+                className="inline-flex items-center px-3 py-1 rounded-full text-xs bg-slate-700 text-slate-300"
+              >
                 {feature}
               </span>
             ))}
@@ -171,19 +179,28 @@ export default function ContractPage(): React.ReactElement {
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-slate-400">月額: </span>
-                    <span className="text-white">¥{formatCurrency(contract.device.installmentInfo.monthlyAmount)}</span>
+                    <span className="text-white">
+                      ¥{formatCurrency(contract.device.installmentInfo.monthlyAmount)}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-400">残回数: </span>
-                    <span className="text-white">{contract.device.installmentInfo.remainingInstallments}/{contract.device.installmentInfo.totalInstallments}回</span>
+                    <span className="text-white">
+                      {contract.device.installmentInfo.remainingInstallments}/
+                      {contract.device.installmentInfo.totalInstallments}回
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-400">残債額: </span>
-                    <span className="text-white">¥{formatCurrency(contract.device.installmentInfo.remainingAmount)}</span>
+                    <span className="text-white">
+                      ¥{formatCurrency(contract.device.installmentInfo.remainingAmount)}
+                    </span>
                   </div>
                   <div>
                     <span className="text-slate-400">端末総額: </span>
-                    <span className="text-white">¥{formatCurrency(contract.device.installmentInfo.totalAmount)}</span>
+                    <span className="text-white">
+                      ¥{formatCurrency(contract.device.installmentInfo.totalAmount)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -201,7 +218,9 @@ export default function ContractPage(): React.ReactElement {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
           <div>
             <p className="text-slate-400">SIM種別</p>
-            <p className="text-white mt-1">{contract.simInfo.simType === 'esim' ? 'eSIM' : '物理SIM'}</p>
+            <p className="text-white mt-1">
+              {contract.simInfo.simType === 'esim' ? 'eSIM' : '物理SIM'}
+            </p>
           </div>
           <div>
             <p className="text-slate-400">電話番号</p>
@@ -221,21 +240,29 @@ export default function ContractPage(): React.ReactElement {
             <CreditCard className="h-5 w-5 text-blue-400" />
             <h2 className="text-lg font-semibold text-white">契約オプション</h2>
           </div>
-          <Link href="/mypage/options" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
+          <Link
+            href="/mypage/options"
+            className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1"
+          >
             オプション管理 <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
         {contract.options.length > 0 ? (
           <div className="space-y-3">
-            {contract.options.map((option) => (
-              <div key={option.id} className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg">
+            {contract.options.map(option => (
+              <div
+                key={option.id}
+                className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg"
+              >
                 <div>
                   <p className="text-white font-medium">{option.name}</p>
                   <p className="text-slate-400 text-sm">{option.description}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-white">¥{formatCurrency(option.monthlyPrice)}/月</p>
-                  <span className={`text-xs ${option.status === 'active' ? 'text-green-400' : 'text-yellow-400'}`}>
+                  <span
+                    className={`text-xs ${option.status === 'active' ? 'text-green-400' : 'text-yellow-400'}`}
+                  >
                     {option.status === 'active' ? '利用中' : option.status}
                   </span>
                 </div>

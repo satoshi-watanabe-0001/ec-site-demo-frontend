@@ -85,7 +85,7 @@ export default function MyPageLayout({
                 </Link>
               </div>
               <ul className="space-y-1">
-                {navigationItems.map((item) => (
+                {navigationItems.map(item => (
                   <li key={item.href}>
                     <Link
                       href={item.href}

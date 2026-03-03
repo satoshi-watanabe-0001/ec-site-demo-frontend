@@ -25,11 +25,7 @@ import type {
   DevicesResponse,
   ContractDevice,
 } from '@/types/contract'
-import type {
-  CurrentBilling,
-  BillingHistoryResponse,
-  PaymentMethod,
-} from '@/types/billing'
+import type { CurrentBilling, BillingHistoryResponse, PaymentMethod } from '@/types/billing'
 import type {
   DataUsage,
   DataUsageHistoryResponse,
@@ -240,7 +236,12 @@ const mockAvailablePlans: ContractPlan[] = [
     dataCapacity: 100,
     freeCallMinutes: 5,
     description: '100GBのデータ通信と5分以内の国内通話無料',
-    features: ['100GBのデータ通信', '5分以内の国内通話無料', '海外82カ国でのデータ通信', 'テザリング無制限'],
+    features: [
+      '100GBのデータ通信',
+      '5分以内の国内通話無料',
+      '海外82カ国でのデータ通信',
+      'テザリング無制限',
+    ],
   },
 ]
 
@@ -366,12 +367,48 @@ export const accountHandlers = [
   http.get('*/api/v1/account/data-usage/history', () => {
     const response: DataUsageHistoryResponse = {
       history: [
-        { month: '2026-03', totalCapacity: 100, usedData: 45.2, usagePercentage: 45.2, additionalData: 0 },
-        { month: '2026-02', totalCapacity: 100, usedData: 78.5, usagePercentage: 78.5, additionalData: 0 },
-        { month: '2026-01', totalCapacity: 100, usedData: 62.3, usagePercentage: 62.3, additionalData: 0 },
-        { month: '2025-12', totalCapacity: 20, usedData: 18.7, usagePercentage: 93.5, additionalData: 0 },
-        { month: '2025-11', totalCapacity: 20, usedData: 15.2, usagePercentage: 76.0, additionalData: 0 },
-        { month: '2025-10', totalCapacity: 20, usedData: 19.8, usagePercentage: 99.0, additionalData: 1.0 },
+        {
+          month: '2026-03',
+          totalCapacity: 100,
+          usedData: 45.2,
+          usagePercentage: 45.2,
+          additionalData: 0,
+        },
+        {
+          month: '2026-02',
+          totalCapacity: 100,
+          usedData: 78.5,
+          usagePercentage: 78.5,
+          additionalData: 0,
+        },
+        {
+          month: '2026-01',
+          totalCapacity: 100,
+          usedData: 62.3,
+          usagePercentage: 62.3,
+          additionalData: 0,
+        },
+        {
+          month: '2025-12',
+          totalCapacity: 20,
+          usedData: 18.7,
+          usagePercentage: 93.5,
+          additionalData: 0,
+        },
+        {
+          month: '2025-11',
+          totalCapacity: 20,
+          usedData: 15.2,
+          usagePercentage: 76.0,
+          additionalData: 0,
+        },
+        {
+          month: '2025-10',
+          totalCapacity: 20,
+          usedData: 19.8,
+          usagePercentage: 99.0,
+          additionalData: 1.0,
+        },
       ],
       totalCount: 6,
     }
@@ -382,9 +419,27 @@ export const accountHandlers = [
   http.get('*/api/v1/account/data-charge/history', () => {
     const response: DataChargeHistoryResponse = {
       history: [
-        { id: 'charge-001', chargedAt: '2025-10-25T14:30:00Z', amount: 1.0, price: 550, type: 'manual' },
-        { id: 'charge-002', chargedAt: '2025-08-15T09:00:00Z', amount: 1.0, price: 550, type: 'auto' },
-        { id: 'charge-003', chargedAt: '2025-06-01T00:00:00Z', amount: 3.0, price: 0, type: 'campaign' },
+        {
+          id: 'charge-001',
+          chargedAt: '2025-10-25T14:30:00Z',
+          amount: 1.0,
+          price: 550,
+          type: 'manual',
+        },
+        {
+          id: 'charge-002',
+          chargedAt: '2025-08-15T09:00:00Z',
+          amount: 1.0,
+          price: 550,
+          type: 'auto',
+        },
+        {
+          id: 'charge-003',
+          chargedAt: '2025-06-01T00:00:00Z',
+          amount: 3.0,
+          price: 0,
+          type: 'campaign',
+        },
       ],
       totalCount: 3,
     }
@@ -404,12 +459,48 @@ export const accountHandlers = [
   http.get('*/api/v1/account/billing/history', () => {
     const response: BillingHistoryResponse = {
       history: [
-        { billingMonth: '2026-02', totalAmount: 6687, paymentStatus: 'paid', paidAt: '2026-02-26', isConfirmed: true },
-        { billingMonth: '2026-01', totalAmount: 6687, paymentStatus: 'paid', paidAt: '2026-01-26', isConfirmed: true },
-        { billingMonth: '2025-12', totalAmount: 4290, paymentStatus: 'paid', paidAt: '2025-12-26', isConfirmed: true },
-        { billingMonth: '2025-11', totalAmount: 4290, paymentStatus: 'paid', paidAt: '2025-11-26', isConfirmed: true },
-        { billingMonth: '2025-10', totalAmount: 4840, paymentStatus: 'paid', paidAt: '2025-10-26', isConfirmed: true },
-        { billingMonth: '2025-09', totalAmount: 4290, paymentStatus: 'paid', paidAt: '2025-09-26', isConfirmed: true },
+        {
+          billingMonth: '2026-02',
+          totalAmount: 6687,
+          paymentStatus: 'paid',
+          paidAt: '2026-02-26',
+          isConfirmed: true,
+        },
+        {
+          billingMonth: '2026-01',
+          totalAmount: 6687,
+          paymentStatus: 'paid',
+          paidAt: '2026-01-26',
+          isConfirmed: true,
+        },
+        {
+          billingMonth: '2025-12',
+          totalAmount: 4290,
+          paymentStatus: 'paid',
+          paidAt: '2025-12-26',
+          isConfirmed: true,
+        },
+        {
+          billingMonth: '2025-11',
+          totalAmount: 4290,
+          paymentStatus: 'paid',
+          paidAt: '2025-11-26',
+          isConfirmed: true,
+        },
+        {
+          billingMonth: '2025-10',
+          totalAmount: 4840,
+          paymentStatus: 'paid',
+          paidAt: '2025-10-26',
+          isConfirmed: true,
+        },
+        {
+          billingMonth: '2025-09',
+          totalAmount: 4290,
+          paymentStatus: 'paid',
+          paidAt: '2025-09-26',
+          isConfirmed: true,
+        },
       ],
       totalCount: 6,
     }

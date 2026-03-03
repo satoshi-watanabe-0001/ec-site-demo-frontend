@@ -9,13 +9,12 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import {
-  BarChart3,
-  TrendingUp,
-  Calendar,
-  AlertTriangle,
-} from 'lucide-react'
-import type { DataUsage, DataUsageHistoryResponse, DataChargeHistoryResponse } from '@/types/data-usage'
+import { BarChart3, TrendingUp, Calendar, AlertTriangle } from 'lucide-react'
+import type {
+  DataUsage,
+  DataUsageHistoryResponse,
+  DataChargeHistoryResponse,
+} from '@/types/data-usage'
 
 /** API Base URL */
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
@@ -134,7 +133,7 @@ export default function DataUsagePage(): React.ReactElement {
 
           {/* 棒グラフ風の表示 */}
           <div className="space-y-2 max-h-96 overflow-y-auto">
-            {dataUsage.dailyUsage.map((daily) => {
+            {dataUsage.dailyUsage.map(daily => {
               const maxUsage = Math.max(...dataUsage.dailyUsage.map(d => d.usage))
               const barWidth = maxUsage > 0 ? (daily.usage / maxUsage) * 100 : 0
               return (
@@ -148,7 +147,9 @@ export default function DataUsagePage(): React.ReactElement {
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
-                  <span className="text-slate-300 w-16 text-right flex-shrink-0">{daily.usage}GB</span>
+                  <span className="text-slate-300 w-16 text-right flex-shrink-0">
+                    {daily.usage}GB
+                  </span>
                 </div>
               )
             })}
@@ -175,16 +176,21 @@ export default function DataUsagePage(): React.ReactElement {
                 </tr>
               </thead>
               <tbody>
-                {history.history.map((item) => (
+                {history.history.map(item => (
                   <tr key={item.month} className="border-b border-slate-700/50">
                     <td className="py-3 pr-4 text-slate-300">{item.month}</td>
                     <td className="py-3 pr-4 text-right text-white">{item.usedData}GB</td>
                     <td className="py-3 pr-4 text-right text-slate-400">{item.totalCapacity}GB</td>
                     <td className="py-3 text-right">
-                      <span className={`${
-                        item.usagePercentage >= 90 ? 'text-red-400' :
-                        item.usagePercentage >= 70 ? 'text-yellow-400' : 'text-green-400'
-                      }`}>
+                      <span
+                        className={`${
+                          item.usagePercentage >= 90
+                            ? 'text-red-400'
+                            : item.usagePercentage >= 70
+                              ? 'text-yellow-400'
+                              : 'text-green-400'
+                        }`}
+                      >
                         {item.usagePercentage}%
                       </span>
                     </td>
@@ -201,18 +207,27 @@ export default function DataUsagePage(): React.ReactElement {
         <div className="bg-slate-800 rounded-lg p-6">
           <h2 className="text-lg font-semibold text-white mb-4">データチャージ履歴</h2>
           <div className="space-y-3">
-            {chargeHistory.history.map((charge) => (
-              <div key={charge.id} className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg">
+            {chargeHistory.history.map(charge => (
+              <div
+                key={charge.id}
+                className="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg"
+              >
                 <div>
                   <p className="text-white text-sm">+{charge.amount}GB</p>
                   <p className="text-slate-400 text-xs">
-                    {new Date(charge.chargedAt).toLocaleDateString('ja-JP')}
-                    {' '}
-                    ({charge.type === 'manual' ? '手動' : charge.type === 'auto' ? '自動' : 'キャンペーン'})
+                    {new Date(charge.chargedAt).toLocaleDateString('ja-JP')} (
+                    {charge.type === 'manual'
+                      ? '手動'
+                      : charge.type === 'auto'
+                        ? '自動'
+                        : 'キャンペーン'}
+                    )
                   </p>
                 </div>
                 <p className="text-white text-sm">
-                  {charge.price > 0 ? `¥${new Intl.NumberFormat('ja-JP').format(charge.price)}` : '無料'}
+                  {charge.price > 0
+                    ? `¥${new Intl.NumberFormat('ja-JP').format(charge.price)}`
+                    : '無料'}
                 </p>
               </div>
             ))}

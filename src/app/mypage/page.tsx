@@ -41,20 +41,50 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
  */
 const quickLinks = [
   { href: '/mypage/contract', label: '契約内容', icon: FileText, description: '契約情報の確認' },
-  { href: '/mypage/data-usage', label: 'データ使用量', icon: BarChart3, description: '使用量の確認' },
-  { href: '/mypage/billing', label: '請求・支払い', icon: CreditCard, description: '請求情報の確認' },
+  {
+    href: '/mypage/data-usage',
+    label: 'データ使用量',
+    icon: BarChart3,
+    description: '使用量の確認',
+  },
+  {
+    href: '/mypage/billing',
+    label: '請求・支払い',
+    icon: CreditCard,
+    description: '請求情報の確認',
+  },
   { href: '/mypage/settings', label: 'アカウント設定', icon: Settings, description: '設定の変更' },
-  { href: '/mypage/plan', label: 'プラン変更', icon: Smartphone, description: 'プランの確認・変更' },
-  { href: '/mypage/options', label: 'オプション管理', icon: Smartphone, description: 'オプションの管理' },
+  {
+    href: '/mypage/plan',
+    label: 'プラン変更',
+    icon: Smartphone,
+    description: 'プランの確認・変更',
+  },
+  {
+    href: '/mypage/options',
+    label: 'オプション管理',
+    icon: Smartphone,
+    description: 'オプションの管理',
+  },
 ]
 
 /**
  * サポートオプションの定義
  */
 const supportOptions = [
-  { label: 'チャットサポート', icon: MessageCircle, description: 'AIチャットで相談', action: 'chat' },
+  {
+    label: 'チャットサポート',
+    icon: MessageCircle,
+    description: 'AIチャットで相談',
+    action: 'chat',
+  },
   { label: 'よくある質問', icon: HelpCircle, description: 'FAQを確認', action: 'faq' },
-  { label: 'お問い合わせフォーム', icon: Mail, description: 'メールで問い合わせ', action: 'contact' },
+  {
+    label: 'お問い合わせフォーム',
+    icon: Mail,
+    description: 'メールで問い合わせ',
+    action: 'contact',
+  },
   { label: '電話サポート', icon: Phone, description: '0120-087-360', action: 'phone' },
 ]
 
@@ -118,9 +148,7 @@ export default function MyPageDashboard(): React.ReactElement {
       {/* ページヘッダー */}
       <div>
         <h1 className="text-2xl font-bold text-white">マイページ</h1>
-        <p className="text-slate-400 mt-1">
-          こんにちは、{user?.name || 'ゲスト'}さん
-        </p>
+        <p className="text-slate-400 mt-1">こんにちは、{user?.name || 'ゲスト'}さん</p>
       </div>
 
       {/* 通知バナー */}
@@ -272,8 +300,8 @@ export default function MyPageDashboard(): React.ReactElement {
                 </p>
                 {contract.device.installmentInfo && (
                   <p className="text-slate-400 text-sm mt-1">
-                    分割残: {contract.device.installmentInfo.remainingInstallments}回
-                    （月額 ¥{formatCurrency(contract.device.installmentInfo.monthlyAmount)}）
+                    分割残: {contract.device.installmentInfo.remainingInstallments}回 （月額 ¥
+                    {formatCurrency(contract.device.installmentInfo.monthlyAmount)}）
                   </p>
                 )}
               </div>
@@ -288,7 +316,7 @@ export default function MyPageDashboard(): React.ReactElement {
       <div>
         <h2 className="text-lg font-semibold text-white mb-4">各種手続き</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {quickLinks.map((link) => (
+          {quickLinks.map(link => (
             <Link
               key={link.href}
               href={link.href}
@@ -296,7 +324,9 @@ export default function MyPageDashboard(): React.ReactElement {
               aria-label={link.label}
             >
               <link.icon className="h-6 w-6 text-slate-400 group-hover:text-blue-400 mx-auto mb-2 transition-colors" />
-              <p className="text-sm text-slate-300 group-hover:text-white font-medium">{link.label}</p>
+              <p className="text-sm text-slate-300 group-hover:text-white font-medium">
+                {link.label}
+              </p>
               <p className="text-xs text-slate-500 mt-0.5 hidden sm:block">{link.description}</p>
             </Link>
           ))}
@@ -307,7 +337,7 @@ export default function MyPageDashboard(): React.ReactElement {
       <div>
         <h2 className="text-lg font-semibold text-white mb-4">サポート</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {supportOptions.map((option) => (
+          {supportOptions.map(option => (
             <Button
               key={option.action}
               variant="outline"

@@ -97,9 +97,7 @@ async function fetchWithErrorHandling<T>(url: string, options?: RequestInit): Pr
  * ユーザープロフィール取得
  */
 export async function getProfile(): Promise<UserProfile> {
-  return fetchWithErrorHandling<UserProfile>(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/profile`
-  )
+  return fetchWithErrorHandling<UserProfile>(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/profile`)
 }
 
 /**

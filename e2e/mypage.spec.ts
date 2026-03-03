@@ -251,7 +251,9 @@ test.describe('マイページ (EC-278)', () => {
       expect(page.url()).toContain('/mypage')
     })
 
-    test('未認証ユーザーがマイページにアクセスするとログインページにリダイレクトされる', async ({ page }) => {
+    test('未認証ユーザーがマイページにアクセスするとログインページにリダイレクトされる', async ({
+      page,
+    }) => {
       // Act
       await page.goto('/mypage')
 
