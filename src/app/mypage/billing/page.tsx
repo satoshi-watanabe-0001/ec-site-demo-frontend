@@ -94,7 +94,11 @@ export default function BillingPage(): React.ReactElement {
           <div className="flex items-center gap-3 mb-4">
             <Receipt className="h-5 w-5 text-blue-400" />
             <h2 className="text-lg font-semibold text-white">
-              {billing.billingMonth}月の請求
+              {(() => {
+                const [year, month] = billing.billingMonth.split('-')
+                return `${year}年${parseInt(month)}月`
+              })()}
+              の請求
               {!billing.isConfirmed && (
                 <span className="text-xs text-yellow-400 ml-2">（見積もり）</span>
               )}

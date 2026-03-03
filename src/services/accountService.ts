@@ -200,6 +200,15 @@ export async function getNotifications(): Promise<NotificationsResponse> {
 }
 
 /**
+ * 通知設定取得
+ */
+export async function getNotificationSettings(): Promise<NotificationSettings> {
+  return fetchWithErrorHandling<NotificationSettings>(
+    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/notification-settings`
+  )
+}
+
+/**
  * 通知設定更新
  */
 export async function updateNotificationSettings(

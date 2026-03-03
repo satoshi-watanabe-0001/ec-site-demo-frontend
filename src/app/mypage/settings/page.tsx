@@ -40,8 +40,12 @@ export default function SettingsPage(): React.ReactElement {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [profileRes] = await Promise.all([fetch(`${BASE_URL}/api/v1/account/profile`)])
+        const [profileRes, notifRes] = await Promise.all([
+          fetch(`${BASE_URL}/api/v1/account/profile`),
+          fetch(`${BASE_URL}/api/v1/account/notification-settings`),
+        ])
         if (profileRes.ok) setProfile(await profileRes.json())
+        if (notifRes.ok) setNotificationSettings(await notifRes.json())
       } catch (error) {
         console.error('設定情報の取得に失敗しました:', error)
       } finally {

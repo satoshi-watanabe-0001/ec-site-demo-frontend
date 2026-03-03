@@ -627,6 +627,11 @@ export const accountHandlers = [
     return HttpResponse.json(response)
   }),
 
+  /** 通知設定取得 */
+  http.get('*/api/v1/account/notification-settings', () => {
+    return HttpResponse.json(mockNotificationSettings)
+  }),
+
   /** 通知設定更新 */
   http.put('*/api/v1/account/notification-settings', async ({ request }) => {
     const body = (await request.json()) as NotificationSettings
