@@ -20,7 +20,6 @@ const mockEnrolledOption: AvailableOption = {
   description: '国内通話が24時間かけ放題',
   category: '通話',
   isEnrolled: true,
-  enrolledDate: '2023-04-01',
 }
 
 const mockNotEnrolledOption: AvailableOption = {

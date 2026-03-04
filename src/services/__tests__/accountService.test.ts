@@ -57,6 +57,8 @@ const mockDashboardResponse: DashboardResponse = {
     planName: 'ahamo',
     monthlyPrice: 2970,
     dataCapacity: 20,
+    contractStartDate: '2023-04-01',
+    status: 'active',
   },
   dataUsage: {
     usedData: 12.5,
@@ -71,9 +73,11 @@ const mockDashboardResponse: DashboardResponse = {
     paymentStatus: 'paid',
   },
   device: {
+    deviceId: 'dev-001',
     deviceName: 'iPhone 15 Pro',
     manufacturer: 'Apple',
     purchaseDate: '2024-03-15',
+    imei: '123456789012345',
     installmentRemaining: 20,
     installmentMonthly: 3520,
   },
@@ -82,6 +86,7 @@ const mockDashboardResponse: DashboardResponse = {
       id: 'n1',
       title: 'テスト通知',
       message: 'テストメッセージ',
+      type: 'info',
       isRead: false,
       createdAt: '2024-03-01T10:00:00Z',
     },
@@ -89,7 +94,7 @@ const mockDashboardResponse: DashboardResponse = {
 }
 
 const mockSuccessResponse: ApiSuccessResponse = {
-  success: true,
+  status: 'success',
   message: '正常に更新されました',
 }
 
@@ -207,6 +212,7 @@ describe('accountService', () => {
       },
       phoneNumber: '090-1234-5678',
       device: {
+        deviceId: 'dev-001',
         deviceName: 'iPhone 15 Pro',
         manufacturer: 'Apple',
         purchaseDate: '2024-03-15',
@@ -265,13 +271,13 @@ describe('accountService', () => {
 
   describe('getDataUsageDetail', () => {
     const mockDataUsage: DataUsageDetailResponse = {
-      currentUsage: {
+      current: {
         usedData: 12.5,
         remainingData: 7.5,
         totalData: 20,
         updatedAt: '2024-03-01T10:00:00Z',
       },
-      dailyUsage: [],
+      dailyHistory: [],
       monthlyHistory: [],
     }
 
@@ -297,14 +303,13 @@ describe('accountService', () => {
 
   describe('getBillingDetail', () => {
     const mockBilling: BillingDetailResponse = {
-      currentBilling: {
-        month: '2024年3月',
-        totalAmount: 3470,
-        breakdown: [],
+      summary: {
+        currentMonth: 3470,
         billingDate: '2024-03-25',
         paymentMethod: 'クレジットカード',
         paymentStatus: 'paid',
       },
+      breakdown: [],
       history: [],
     }
 
@@ -333,9 +338,12 @@ describe('accountService', () => {
       email: 'test@docomo.ne.jp',
       name: 'テストユーザー',
       phoneNumber: '090-1234-5678',
-      address: '東京都渋谷区',
-      billingEmail: 'test@docomo.ne.jp',
-      notificationEnabled: true,
+      notifications: {
+        email: true,
+        sms: true,
+        dataWarning: true,
+        billing: true,
+      },
     }
 
     test('getAccountSettings_WithValidAuth_ShouldReturnSettings', async () => {
@@ -361,7 +369,11 @@ describe('accountService', () => {
   describe('updateAccountSettings', () => {
     test('updateAccountSettings_WithValidData_ShouldCallPutEndpoint', async () => {
       // Arrange
-      const updateData = { name: '新しい名前', address: '大阪府大阪市' }
+      const updateData = {
+        name: '新しい名前',
+        email: 'new@docomo.ne.jp',
+        notifications: { email: true, sms: false, dataWarning: true, billing: true },
+      }
       mockFetch.mockResolvedValueOnce({
         ok: true,
         status: 200,
@@ -383,7 +395,11 @@ describe('accountService', () => {
 
     test('updateAccountSettings_WithValidData_ShouldReturnSuccess', async () => {
       // Arrange
-      const updateData = { name: '新しい名前' }
+      const updateData = {
+        name: '新しい名前',
+        email: 'test@docomo.ne.jp',
+        notifications: { email: true, sms: true, dataWarning: true, billing: true },
+      }
       mockFetch.mockResolvedValueOnce({
         ok: true,
         status: 200,
@@ -394,7 +410,7 @@ describe('accountService', () => {
       const result = await updateAccountSettings(updateData)
 
       // Assert
-      expect(result.success).toBe(true)
+      expect(result.status).toBe('success')
     })
   })
 
@@ -508,7 +524,6 @@ describe('accountService', () => {
           description: '国内通話が24時間かけ放題',
           category: '通話',
           isEnrolled: true,
-          enrolledDate: '2023-04-01',
         },
       ],
     }
