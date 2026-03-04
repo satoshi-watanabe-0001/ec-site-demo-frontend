@@ -29,16 +29,22 @@ export default function OptionsPage(): React.ReactElement {
 
   /**
    * オプション一覧を取得
+   *
+   * @param showLoading - ローディングスケルトンを表示するかどうか（初回読み込み時のみtrue）
    */
-  const fetchOptions = async (): Promise<void> => {
+  const fetchOptions = async (showLoading = true): Promise<void> => {
     try {
-      setIsLoading(true)
+      if (showLoading) {
+        setIsLoading(true)
+      }
       const data = await getOptions()
       setOptions(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'オプション情報の取得に失敗しました。')
     } finally {
-      setIsLoading(false)
+      if (showLoading) {
+        setIsLoading(false)
+      }
     }
   }
 
@@ -57,8 +63,8 @@ export default function OptionsPage(): React.ReactElement {
     try {
       const result = await addOption(optionId)
       setSuccess(result.message)
-      // オプション一覧を再取得
-      await fetchOptions()
+      // オプション一覧をバックグラウンドで再取得（スケルトン非表示）
+      await fetchOptions(false)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'オプションの追加に失敗しました。')
     } finally {
@@ -78,8 +84,8 @@ export default function OptionsPage(): React.ReactElement {
     try {
       const result = await cancelOption(optionId)
       setSuccess(result.message)
-      // オプション一覧を再取得
-      await fetchOptions()
+      // オプション一覧をバックグラウンドで再取得（スケルトン非表示）
+      await fetchOptions(false)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'オプションの解約に失敗しました。')
     } finally {
