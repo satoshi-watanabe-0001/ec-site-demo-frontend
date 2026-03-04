@@ -7,3 +7,4 @@
 
 export * from './productService'
 export * from './marketingService'
+export * from './accountService'

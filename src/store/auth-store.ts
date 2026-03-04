@@ -31,12 +31,15 @@ interface AuthState {
   isAuthenticated: boolean
   /** 読み込み中かどうか */
   isLoading: boolean
+  /** アクセストークン */
+  accessToken: string | null
 
   /**
    * ログイン処理
    * @param user - ログインするユーザー情報
+   * @param accessToken - アクセストークン
    */
-  login: (user: User) => void
+  login: (user: User, accessToken?: string) => void
 
   /**
    * ログアウト処理
@@ -62,12 +65,14 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       isAuthenticated: false,
       isLoading: false,
+      accessToken: null,
 
-      login: (user: User) => {
+      login: (user: User, accessToken?: string) => {
         set({
           user,
           isAuthenticated: true,
           isLoading: false,
+          accessToken: accessToken ?? null,
         })
       },
 
@@ -76,6 +81,7 @@ export const useAuthStore = create<AuthState>()(
           user: null,
           isAuthenticated: false,
           isLoading: false,
+          accessToken: null,
         })
       },
 
