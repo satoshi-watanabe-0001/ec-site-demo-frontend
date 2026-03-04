@@ -94,10 +94,7 @@ export default function BillingPage(): React.ReactElement {
       <h2 className="text-xl font-bold text-white">請求・支払い</h2>
 
       {/* 今月の請求予定額 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="current-billing-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="current-billing-title">
         <h3 id="current-billing-title" className="text-lg font-bold text-white mb-4">
           今月の請求予定額（{billing.currentBilling.billingMonth}）
         </h3>
@@ -145,10 +142,7 @@ export default function BillingPage(): React.ReactElement {
       </section>
 
       {/* 請求履歴 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="billing-history-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="billing-history-title">
         <h3 id="billing-history-title" className="text-lg font-bold text-white mb-4">
           請求履歴
         </h3>
@@ -169,9 +163,7 @@ export default function BillingPage(): React.ReactElement {
                   <td className="text-white py-3 px-3 text-right">
                     ¥{history.totalAmount.toLocaleString()}
                   </td>
-                  <td className="py-3 px-3 text-center">
-                    {getStatusBadge(history.paymentStatus)}
-                  </td>
+                  <td className="py-3 px-3 text-center">{getStatusBadge(history.paymentStatus)}</td>
                   <td className="py-3 px-3 text-center">
                     <Button
                       variant="ghost"
@@ -190,10 +182,7 @@ export default function BillingPage(): React.ReactElement {
       </section>
 
       {/* 支払い方法 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="payment-method-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="payment-method-title">
         <h3 id="payment-method-title" className="text-lg font-bold text-white mb-4">
           支払い方法
         </h3>
@@ -213,9 +202,7 @@ export default function BillingPage(): React.ReactElement {
                       <p className="text-white font-medium">
                         {method.cardBrand} •••• {method.lastFourDigits}
                       </p>
-                      <p className="text-slate-400 text-xs">
-                        有効期限: {method.expirationDate}
-                      </p>
+                      <p className="text-slate-400 text-xs">有効期限: {method.expirationDate}</p>
                     </>
                   )}
                   {method.type === 'bank_transfer' && (

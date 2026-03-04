@@ -69,10 +69,7 @@ export default function ContractPage(): React.ReactElement {
       <h2 className="text-xl font-bold text-white">契約情報</h2>
 
       {/* 契約者情報 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="contractor-info-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="contractor-info-title">
         <h3 id="contractor-info-title" className="text-lg font-bold text-white mb-4">
           契約者情報
         </h3>
@@ -107,10 +104,7 @@ export default function ContractPage(): React.ReactElement {
       </section>
 
       {/* 契約内容 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="contract-detail-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="contract-detail-title">
         <h3 id="contract-detail-title" className="text-lg font-bold text-white mb-4">
           契約内容
         </h3>
@@ -132,9 +126,7 @@ export default function ContractPage(): React.ReactElement {
           <div className="flex flex-col sm:flex-row sm:gap-4">
             <dt className="text-slate-400 text-sm sm:w-40 flex-shrink-0">契約中オプション</dt>
             <dd className="text-white">
-              {contract.activeOptions.length > 0
-                ? contract.activeOptions.join('、')
-                : 'なし'}
+              {contract.activeOptions.length > 0 ? contract.activeOptions.join('、') : 'なし'}
             </dd>
           </div>
         </dl>

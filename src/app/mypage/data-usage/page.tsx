@@ -71,22 +71,15 @@ export default function DataUsagePage(): React.ReactElement {
       <h2 className="text-xl font-bold text-white">データ使用量</h2>
 
       {/* 今月使用量サマリー */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="current-usage-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="current-usage-title">
         <h3 id="current-usage-title" className="text-lg font-bold text-white mb-4">
           今月の使用量
         </h3>
         <div className="space-y-4">
           <div className="flex items-end justify-between">
             <div>
-              <span className="text-4xl font-bold text-white">
-                {dataUsage.summary.usedAmount}
-              </span>
-              <span className="text-slate-400 ml-1">
-                / {dataUsage.summary.totalCapacity}GB
-              </span>
+              <span className="text-4xl font-bold text-white">{dataUsage.summary.usedAmount}</span>
+              <span className="text-slate-400 ml-1">/ {dataUsage.summary.totalCapacity}GB</span>
             </div>
             <span className="text-slate-400 text-sm">
               残り {dataUsage.summary.remainingAmount}GB
@@ -120,10 +113,7 @@ export default function DataUsagePage(): React.ReactElement {
       </section>
 
       {/* 日別使用量グラフ */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="daily-usage-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="daily-usage-title">
         <h3 id="daily-usage-title" className="text-lg font-bold text-white mb-4">
           日別使用量
         </h3>
@@ -144,9 +134,7 @@ export default function DataUsagePage(): React.ReactElement {
                     className="bg-primary h-5 rounded-full flex items-center justify-end pr-2 min-w-[2rem]"
                     style={{ width: `${Math.max(percentage, 10)}%` }}
                   >
-                    <span className="text-white text-xs font-medium">
-                      {daily.amount}GB
-                    </span>
+                    <span className="text-white text-xs font-medium">{daily.amount}GB</span>
                   </div>
                 </div>
               </div>
@@ -156,10 +144,7 @@ export default function DataUsagePage(): React.ReactElement {
       </section>
 
       {/* 月別使用量推移 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="monthly-usage-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="monthly-usage-title">
         <h3 id="monthly-usage-title" className="text-lg font-bold text-white mb-4">
           過去の使用量推移
         </h3>
@@ -175,14 +160,16 @@ export default function DataUsagePage(): React.ReactElement {
                   <div
                     className={cn(
                       'w-10 rounded-t-md transition-all',
-                      percentage > 90 ? 'bg-red-500' : percentage > 70 ? 'bg-yellow-500' : 'bg-primary'
+                      percentage > 90
+                        ? 'bg-red-500'
+                        : percentage > 70
+                          ? 'bg-yellow-500'
+                          : 'bg-primary'
                     )}
                     style={{ height: `${percentage}%` }}
                   />
                 </div>
-                <p className="text-white text-sm font-medium">
-                  {monthly.amount}GB
-                </p>
+                <p className="text-white text-sm font-medium">{monthly.amount}GB</p>
                 <p className="text-slate-400 text-xs">{monthStr}</p>
               </div>
             )
@@ -191,10 +178,7 @@ export default function DataUsagePage(): React.ReactElement {
       </section>
 
       {/* データチャージ履歴 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="charge-history-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="charge-history-title">
         <h3 id="charge-history-title" className="text-lg font-bold text-white mb-4">
           データチャージ履歴
         </h3>

@@ -154,10 +154,7 @@ export default function PlanChangePage(): React.ReactElement {
       )}
 
       {/* 現在のプラン */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="current-plan-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="current-plan-title">
         <h3 id="current-plan-title" className="text-lg font-bold text-white mb-4">
           現在のプラン
         </h3>
@@ -175,10 +172,7 @@ export default function PlanChangePage(): React.ReactElement {
       </section>
 
       {/* 変更可能プラン一覧 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="available-plans-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="available-plans-title">
         <h3 id="available-plans-title" className="text-lg font-bold text-white mb-4">
           変更可能プラン
         </h3>
@@ -245,9 +239,7 @@ export default function PlanChangePage(): React.ReactElement {
           </h3>
           <div className="space-y-4">
             <div className="flex items-center gap-4 text-white">
-              <span className="bg-slate-700 rounded-lg px-4 py-2">
-                {contract?.currentPlanName}
-              </span>
+              <span className="bg-slate-700 rounded-lg px-4 py-2">{contract?.currentPlanName}</span>
               <ArrowRight className="h-5 w-5 text-primary" />
               <span className="bg-primary/20 border border-primary rounded-lg px-4 py-2">
                 {availablePlans.find(p => p.id === selectedPlan)?.name}
@@ -291,9 +283,7 @@ export default function PlanChangePage(): React.ReactElement {
                   <p className="font-medium">注意事項</p>
                   <ul className="list-disc list-inside space-y-1 text-yellow-300/80">
                     <li>プラン変更は月1回まで可能です。</li>
-                    <li>
-                      即時適用の場合、日割り計算が適用されます。
-                    </li>
+                    <li>即時適用の場合、日割り計算が適用されます。</li>
                     <li>
                       大盛りオプションからahamoへの変更時、当月のデータ容量は変更後の容量が適用されます。
                     </li>

@@ -141,10 +141,7 @@ export default function OptionsPage(): React.ReactElement {
       )}
 
       {/* 契約中オプション */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="active-options-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="active-options-title">
         <h3 id="active-options-title" className="text-lg font-bold text-white mb-4">
           契約中オプション
         </h3>
@@ -210,10 +207,7 @@ export default function OptionsPage(): React.ReactElement {
       </section>
 
       {/* 追加可能オプション */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="available-options-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="available-options-title">
         <h3 id="available-options-title" className="text-lg font-bold text-white mb-4">
           追加可能オプション
         </h3>

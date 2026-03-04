@@ -74,10 +74,7 @@ export default function MypageDashboard(): React.ReactElement {
   return (
     <div className="space-y-6">
       {/* 契約情報サマリー */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="contract-summary-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="contract-summary-title">
         <div className="flex items-center justify-between mb-4">
           <h2 id="contract-summary-title" className="text-lg font-bold text-white">
             契約情報サマリー
@@ -102,20 +99,18 @@ export default function MypageDashboard(): React.ReactElement {
           </div>
           <div className="bg-slate-700/50 rounded-lg p-4">
             <p className="text-slate-400 text-sm">データ容量</p>
-            <p className="text-white text-xl font-bold mt-1">
-              {dashboard.contract.dataCapacity}GB
-            </p>
+            <p className="text-white text-xl font-bold mt-1">{dashboard.contract.dataCapacity}GB</p>
           </div>
         </div>
       </section>
 
       {/* データ使用状況 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="data-usage-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="data-usage-title">
         <div className="flex items-center justify-between mb-4">
-          <h2 id="data-usage-title" className="text-lg font-bold text-white flex items-center gap-2">
+          <h2
+            id="data-usage-title"
+            className="text-lg font-bold text-white flex items-center gap-2"
+          >
             <Wifi className="h-5 w-5 text-primary" />
             データ使用状況
           </h2>
@@ -132,16 +127,21 @@ export default function MypageDashboard(): React.ReactElement {
               <span className="text-3xl font-bold text-white">
                 {dashboard.dataUsage.usedAmount}
               </span>
-              <span className="text-slate-400 ml-1">
-                / {dashboard.dataUsage.totalCapacity}GB
-              </span>
+              <span className="text-slate-400 ml-1">/ {dashboard.dataUsage.totalCapacity}GB</span>
             </div>
             <span className="text-slate-400 text-sm">
               残り {dashboard.dataUsage.remainingAmount}GB
             </span>
           </div>
           {/* プログレスバー */}
-          <div className="w-full bg-slate-700 rounded-full h-4" role="progressbar" aria-valuenow={dashboard.dataUsage.usagePercentage} aria-valuemin={0} aria-valuemax={100} aria-label="データ使用率">
+          <div
+            className="w-full bg-slate-700 rounded-full h-4"
+            role="progressbar"
+            aria-valuenow={dashboard.dataUsage.usagePercentage}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="データ使用率"
+          >
             <div
               className={cn(
                 'h-4 rounded-full transition-all duration-500',
@@ -161,10 +161,7 @@ export default function MypageDashboard(): React.ReactElement {
       </section>
 
       {/* 請求予定額 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="billing-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="billing-title">
         <div className="flex items-center justify-between mb-4">
           <h2 id="billing-title" className="text-lg font-bold text-white flex items-center gap-2">
             <CreditCard className="h-5 w-5 text-primary" />
@@ -221,10 +218,7 @@ export default function MypageDashboard(): React.ReactElement {
       </section>
 
       {/* 契約端末情報 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="device-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="device-title">
         <h2 id="device-title" className="text-lg font-bold text-white flex items-center gap-2 mb-4">
           <Smartphone className="h-5 w-5 text-primary" />
           契約端末情報
@@ -249,10 +243,7 @@ export default function MypageDashboard(): React.ReactElement {
       </section>
 
       {/* 通知・お知らせ */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="notifications-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="notifications-title">
         <div className="flex items-center justify-between mb-4">
           <h2
             id="notifications-title"

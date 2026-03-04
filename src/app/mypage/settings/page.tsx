@@ -53,10 +53,7 @@ const passwordSchema = z
     newPassword: z
       .string()
       .min(8, 'パスワードは8文字以上で入力してください')
-      .regex(
-        /^(?=.*[a-zA-Z])(?=.*\d)/,
-        'パスワードには英字と数字を含めてください'
-      ),
+      .regex(/^(?=.*[a-zA-Z])(?=.*\d)/, 'パスワードには英字と数字を含めてください'),
     confirmPassword: z.string().min(1, 'パスワード（確認用）を入力してください'),
   })
   .refine(data => data.newPassword === data.confirmPassword, {
@@ -217,9 +214,7 @@ export default function SettingsPage(): React.ReactElement {
       setNotificationSettings(updatedSettings)
       setNotificationSuccess(result.message)
     } catch (err) {
-      setNotificationError(
-        err instanceof Error ? err.message : '通知設定の更新に失敗しました。'
-      )
+      setNotificationError(err instanceof Error ? err.message : '通知設定の更新に失敗しました。')
     } finally {
       setIsNotificationSubmitting(false)
     }
@@ -231,21 +226,24 @@ export default function SettingsPage(): React.ReactElement {
       <h2 className="text-xl font-bold text-white">設定</h2>
 
       {/* 連絡先情報 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="profile-settings-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="profile-settings-title">
         <h3 id="profile-settings-title" className="text-lg font-bold text-white mb-4">
           連絡先情報
         </h3>
 
         {profileSuccess && (
-          <div className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4" role="status">
+          <div
+            className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4"
+            role="status"
+          >
             {profileSuccess}
           </div>
         )}
         {profileError && (
-          <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4" role="alert">
+          <div
+            className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4"
+            role="alert"
+          >
             {profileError}
           </div>
         )}
@@ -326,10 +324,7 @@ export default function SettingsPage(): React.ReactElement {
               />
             </div>
             <div className="space-y-2">
-              <label
-                htmlFor="settings-postal"
-                className="block text-sm font-medium text-slate-300"
-              >
+              <label htmlFor="settings-postal" className="block text-sm font-medium text-slate-300">
                 郵便番号
               </label>
               <Input
@@ -369,21 +364,24 @@ export default function SettingsPage(): React.ReactElement {
       </section>
 
       {/* パスワード変更 */}
-      <section
-        className="bg-slate-800 rounded-lg p-6"
-        aria-labelledby="password-settings-title"
-      >
+      <section className="bg-slate-800 rounded-lg p-6" aria-labelledby="password-settings-title">
         <h3 id="password-settings-title" className="text-lg font-bold text-white mb-4">
           パスワード変更
         </h3>
 
         {passwordSuccess && (
-          <div className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4" role="status">
+          <div
+            className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4"
+            role="status"
+          >
             {passwordSuccess}
           </div>
         )}
         {passwordError && (
-          <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4" role="alert">
+          <div
+            className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4"
+            role="alert"
+          >
             {passwordError}
           </div>
         )}
@@ -394,10 +392,7 @@ export default function SettingsPage(): React.ReactElement {
           noValidate
         >
           <div className="space-y-2">
-            <label
-              htmlFor="current-password"
-              className="block text-sm font-medium text-slate-300"
-            >
+            <label htmlFor="current-password" className="block text-sm font-medium text-slate-300">
               現在のパスワード
             </label>
             <Input
@@ -426,10 +421,7 @@ export default function SettingsPage(): React.ReactElement {
             <p className="text-xs text-slate-500">8文字以上、英字と数字を含めてください</p>
           </div>
           <div className="space-y-2">
-            <label
-              htmlFor="confirm-password"
-              className="block text-sm font-medium text-slate-300"
-            >
+            <label htmlFor="confirm-password" className="block text-sm font-medium text-slate-300">
               新しいパスワード（確認用）
             </label>
             <Input
@@ -462,12 +454,18 @@ export default function SettingsPage(): React.ReactElement {
         </h3>
 
         {notificationSuccess && (
-          <div className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4" role="status">
+          <div
+            className="rounded-md bg-green-500/10 border border-green-500 p-4 text-green-400 text-sm mb-4"
+            role="status"
+          >
             {notificationSuccess}
           </div>
         )}
         {notificationError && (
-          <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4" role="alert">
+          <div
+            className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm mb-4"
+            role="alert"
+          >
             {notificationError}
           </div>
         )}
@@ -486,10 +484,7 @@ export default function SettingsPage(): React.ReactElement {
                   aria-label="メール通知の切り替え"
                   disabled={isNotificationSubmitting}
                   onClick={() =>
-                    handleNotificationToggle(
-                      'emailEnabled',
-                      !notificationSettings.emailEnabled
-                    )
+                    handleNotificationToggle('emailEnabled', !notificationSettings.emailEnabled)
                   }
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     notificationSettings.emailEnabled ? 'bg-primary' : 'bg-slate-600'
@@ -530,10 +525,7 @@ export default function SettingsPage(): React.ReactElement {
             <div className="space-y-4">
               <h4 className="text-sm font-medium text-slate-300">通知カテゴリ</h4>
               {notificationSettings.categories.map(category => (
-                <div
-                  key={category.categoryId}
-                  className="flex items-center justify-between"
-                >
+                <div key={category.categoryId} className="flex items-center justify-between">
                   <span className="text-white">{category.name}</span>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input

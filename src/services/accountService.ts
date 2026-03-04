@@ -356,12 +356,9 @@ export async function getOptions(): Promise<OptionService[]> {
  */
 export async function addOption(optionId: string): Promise<ApiResponse> {
   try {
-    const response = await fetch(
-      `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`,
-      {
-        method: 'POST',
-      }
-    )
+    const response = await fetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`, {
+      method: 'POST',
+    })
 
     if (!response.ok) {
       await handleErrorResponse(response, 'オプションの追加に失敗しました。')
@@ -382,12 +379,9 @@ export async function addOption(optionId: string): Promise<ApiResponse> {
  */
 export async function cancelOption(optionId: string): Promise<ApiResponse> {
   try {
-    const response = await fetch(
-      `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`,
-      {
-        method: 'DELETE',
-      }
-    )
+    const response = await fetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`, {
+      method: 'DELETE',
+    })
 
     if (!response.ok) {
       await handleErrorResponse(response, 'オプションの解約に失敗しました。')
