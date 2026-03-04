@@ -97,13 +97,19 @@ export default function OptionsPage() {
       <h2 className="text-xl font-bold text-white">オプション管理</h2>
 
       {successMessage && (
-        <div className="rounded-md bg-green-500/10 border border-green-500 p-4 text-sm text-green-400" role="alert">
+        <div
+          className="rounded-md bg-green-500/10 border border-green-500 p-4 text-sm text-green-400"
+          role="alert"
+        >
           {successMessage}
         </div>
       )}
 
       {error && options.length > 0 && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-sm text-red-400" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-sm text-red-400"
+          role="alert"
+        >
           {error}
         </div>
       )}

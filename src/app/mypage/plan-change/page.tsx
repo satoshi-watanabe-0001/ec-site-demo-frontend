@@ -37,11 +37,7 @@ export default function PlanChangePage() {
   }, [])
 
   const handleChangePlan = async (planId: string): Promise<void> => {
-    if (
-      !window.confirm(
-        '本当にプランを変更しますか？変更は翌月から適用されます。'
-      )
-    ) {
+    if (!window.confirm('本当にプランを変更しますか？変更は翌月から適用されます。')) {
       return
     }
     setIsChanging(true)
@@ -83,13 +79,19 @@ export default function PlanChangePage() {
       <h2 className="text-xl font-bold text-white">プラン変更</h2>
 
       {successMessage && (
-        <div className="rounded-md bg-green-500/10 border border-green-500 p-4 text-sm text-green-400" role="alert">
+        <div
+          className="rounded-md bg-green-500/10 border border-green-500 p-4 text-sm text-green-400"
+          role="alert"
+        >
           {successMessage}
         </div>
       )}
 
       {error && plans && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-sm text-red-400" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-sm text-red-400"
+          role="alert"
+        >
           {error}
         </div>
       )}

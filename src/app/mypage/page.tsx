@@ -85,9 +85,7 @@ export default function MypageDashboard() {
               </span>
               <span className="text-sm text-slate-400">/月（税込）</span>
             </div>
-            <p className="text-sm text-slate-400">
-              データ容量: {dashboard.plan.dataCapacity}GB
-            </p>
+            <p className="text-sm text-slate-400">データ容量: {dashboard.plan.dataCapacity}GB</p>
           </div>
         </DashboardCard>
 

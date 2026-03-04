@@ -112,9 +112,7 @@ export default function BillingPage() {
               className="flex items-center justify-between border-b border-slate-700/50 py-2 last:border-0"
             >
               <span className="text-sm text-slate-300">{item.label}</span>
-              <span
-                className={`font-medium ${item.amount < 0 ? 'text-green-400' : 'text-white'}`}
-              >
+              <span className={`font-medium ${item.amount < 0 ? 'text-green-400' : 'text-white'}`}>
                 {item.amount < 0 ? '-' : ''}
                 &yen;{Math.abs(item.amount).toLocaleString()}
               </span>

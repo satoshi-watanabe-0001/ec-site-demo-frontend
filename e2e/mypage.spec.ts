@@ -250,12 +250,18 @@ class SettingsPage {
 
   /** 成功メッセージが表示されているか */
   async isSuccessMessageVisible() {
-    return this.page.locator('[role="alert"]:has-text("更新しました"), [role="alert"]:has-text("変更しました")').first().isVisible()
+    return this.page
+      .locator('[role="alert"]:has-text("更新しました"), [role="alert"]:has-text("変更しました")')
+      .first()
+      .isVisible()
   }
 
   /** エラーメッセージが表示されているか */
   async isErrorMessageVisible() {
-    return this.page.locator('[role="alert"]:has-text("正しくありません"), [role="alert"]:has-text("失敗")').first().isVisible()
+    return this.page
+      .locator('[role="alert"]:has-text("正しくありません"), [role="alert"]:has-text("失敗")')
+      .first()
+      .isVisible()
   }
 }
 

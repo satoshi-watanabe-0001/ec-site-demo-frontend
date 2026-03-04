@@ -41,12 +41,7 @@ export function DashboardCard({
   children,
 }: DashboardCardProps): React.ReactElement {
   return (
-    <div
-      className={cn(
-        'rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-md',
-        className
-      )}
-    >
+    <div className={cn('rounded-lg border border-slate-700 bg-slate-800 p-6 shadow-md', className)}>
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-white">{title}</h2>
         {href && (

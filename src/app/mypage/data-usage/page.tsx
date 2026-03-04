@@ -62,10 +62,7 @@ export default function DataUsagePage() {
       {/* 現在の使用量 */}
       <section className="rounded-lg border border-slate-700 bg-slate-800 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">今月の使用量</h3>
-        <DataUsageProgressBar
-          usedData={data.current.usedData}
-          totalData={data.current.totalData}
-        />
+        <DataUsageProgressBar usedData={data.current.usedData} totalData={data.current.totalData} />
         <p className="mt-2 text-xs text-slate-500">
           最終更新: {new Date(data.current.updatedAt).toLocaleString('ja-JP')}
         </p>

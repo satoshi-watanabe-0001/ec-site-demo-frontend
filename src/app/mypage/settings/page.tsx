@@ -26,7 +26,10 @@ import type { AccountSettingsResponse } from '@/types/account'
  */
 const settingsSchema = z.object({
   name: z.string().min(1, '名前を入力してください'),
-  email: z.string().min(1, 'メールアドレスを入力してください').email('有効なメールアドレスを入力してください'),
+  email: z
+    .string()
+    .min(1, 'メールアドレスを入力してください')
+    .email('有効なメールアドレスを入力してください'),
   notifications: z.object({
     email: z.boolean(),
     sms: z.boolean(),
@@ -176,17 +179,27 @@ export default function SettingsPage() {
         <h3 className="mb-4 text-lg font-semibold text-white">基本情報</h3>
 
         {settingsSuccess && (
-          <div className="mb-4 rounded-md bg-green-500/10 border border-green-500 p-3 text-sm text-green-400" role="alert">
+          <div
+            className="mb-4 rounded-md bg-green-500/10 border border-green-500 p-3 text-sm text-green-400"
+            role="alert"
+          >
             {settingsSuccess}
           </div>
         )}
         {settingsError && (
-          <div className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-3 text-sm text-red-400" role="alert">
+          <div
+            className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-3 text-sm text-red-400"
+            role="alert"
+          >
             {settingsError}
           </div>
         )}
 
-        <form onSubmit={settingsForm.handleSubmit(onSettingsSubmit)} className="space-y-4" noValidate>
+        <form
+          onSubmit={settingsForm.handleSubmit(onSettingsSubmit)}
+          className="space-y-4"
+          noValidate
+        >
           <div className="space-y-2">
             <label htmlFor="settings-name" className="block text-sm font-medium text-slate-300">
               名前
@@ -256,17 +269,27 @@ export default function SettingsPage() {
         <h3 className="mb-4 text-lg font-semibold text-white">パスワード変更</h3>
 
         {passwordSuccess && (
-          <div className="mb-4 rounded-md bg-green-500/10 border border-green-500 p-3 text-sm text-green-400" role="alert">
+          <div
+            className="mb-4 rounded-md bg-green-500/10 border border-green-500 p-3 text-sm text-green-400"
+            role="alert"
+          >
             {passwordSuccess}
           </div>
         )}
         {passwordError && (
-          <div className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-3 text-sm text-red-400" role="alert">
+          <div
+            className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-3 text-sm text-red-400"
+            role="alert"
+          >
             {passwordError}
           </div>
         )}
 
-        <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-4" noValidate>
+        <form
+          onSubmit={passwordForm.handleSubmit(onPasswordSubmit)}
+          className="space-y-4"
+          noValidate
+        >
           <div className="space-y-2">
             <label htmlFor="current-password" className="block text-sm font-medium text-slate-300">
               現在のパスワード
