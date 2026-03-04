@@ -48,6 +48,28 @@ const ERROR_MESSAGES = {
 } as const
 
 /**
+ * ネットワークエラーかどうかを判定
+ *
+ * @param error - エラーオブジェクト
+ * @returns ネットワークエラーの場合true
+ */
+function isNetworkError(error: unknown): boolean {
+  if (error instanceof TypeError) {
+    return true
+  }
+  if (error instanceof Error) {
+    const message = error.message.toLowerCase()
+    return (
+      message.includes('failed to fetch') ||
+      message.includes('network') ||
+      message.includes('cors') ||
+      message.includes('timeout')
+    )
+  }
+  return false
+}
+
+/**
  * APIリクエストのラッパー関数
  */
 async function apiRequest<T>(url: string, options?: RequestInit): Promise<T> {
@@ -73,10 +95,18 @@ async function apiRequest<T>(url: string, options?: RequestInit): Promise<T> {
 
     return response.json()
   } catch (error) {
-    if (error instanceof Error && error.message !== ERROR_MESSAGES.NETWORK_ERROR) {
+    // 既に処理済みのエラー（上記でthrowしたもの）はそのまま再スロー
+    if (error instanceof Error && !isNetworkError(error)) {
       throw error
     }
-    throw new Error(ERROR_MESSAGES.NETWORK_ERROR)
+
+    // ネットワークエラー（fetch自体が失敗した場合）
+    if (isNetworkError(error)) {
+      throw new Error(ERROR_MESSAGES.NETWORK_ERROR)
+    }
+
+    // 想定外のエラー
+    throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR)
   }
 }
 

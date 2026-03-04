@@ -119,7 +119,9 @@ export default function MypageDashboard() {
                   className={
                     dashboard.billing.paymentStatus === 'paid'
                       ? 'text-green-400'
-                      : 'text-yellow-400'
+                      : dashboard.billing.paymentStatus === 'pending'
+                        ? 'text-yellow-400'
+                        : 'text-red-400'
                   }
                 >
                   {dashboard.billing.paymentStatus === 'paid'

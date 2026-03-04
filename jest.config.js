@@ -18,6 +18,9 @@ const customJestConfig = {
     '!src/**/__tests__/**',
     '!src/**/__mocks__/**',
     '!src/app/**',
+    '!src/mocks/**',
+    '!src/lib/env.ts',
+    '!src/lib/msw.ts',
   ],
   coverageThreshold: {
     global: {

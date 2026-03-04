@@ -80,7 +80,15 @@ export default function ContractPage() {
           <div>
             <dt className="text-sm text-slate-400">ステータス</dt>
             <dd className="mt-1">
-              <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-400">
+              <span
+                className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                  contract.plan.status === 'active'
+                    ? 'bg-green-500/20 text-green-400'
+                    : contract.plan.status === 'suspended'
+                      ? 'bg-yellow-500/20 text-yellow-400'
+                      : 'bg-red-500/20 text-red-400'
+                }`}
+              >
                 {contract.plan.status === 'active'
                   ? '契約中'
                   : contract.plan.status === 'suspended'
