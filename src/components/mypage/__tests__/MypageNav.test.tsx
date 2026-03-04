@@ -125,8 +125,8 @@ describe('MypageNav', () => {
 
       // Assert
       const contractLinks = screen.getAllByText('契約情報')
-      const activeLink = contractLinks.find(
-        link => link.closest('a')?.classList.contains('text-primary')
+      const activeLink = contractLinks.find(link =>
+        link.closest('a')?.classList.contains('text-primary')
       )
       expect(activeLink).toBeTruthy()
     })
