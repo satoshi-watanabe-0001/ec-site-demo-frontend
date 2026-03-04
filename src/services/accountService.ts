@@ -71,43 +71,41 @@ function isNetworkError(error: unknown): boolean {
 
 /**
  * APIリクエストのラッパー関数
+ *
+ * fetch自体の失敗（ネットワーク切断等）とレスポンス処理エラーを区別するため、
+ * fetch呼び出しのみを内側のtry/catchでラップし、レスポンス処理エラーはそのまま伝播させる。
  */
 async function apiRequest<T>(url: string, options?: RequestInit): Promise<T> {
+  let response: Response
+
+  // fetch呼び出し（ネットワークエラーのみキャッチ）
   try {
-    const response = await fetch(url, {
+    response = await fetch(url, {
       headers: getAuthHeaders(),
       ...options,
     })
-
-    if (response.status === 401) {
-      throw new Error(ERROR_MESSAGES.UNAUTHORIZED)
-    }
-
-    if (!response.ok) {
-      if (response.status >= 500) {
-        throw new Error(ERROR_MESSAGES.SERVER_ERROR)
-      }
-      const errorData = await response.json().catch(() => null)
-      throw new Error(
-        (errorData as { message?: string })?.message || ERROR_MESSAGES.UNEXPECTED_ERROR
-      )
-    }
-
-    return response.json()
   } catch (error) {
-    // 既に処理済みのエラー（上記でthrowしたもの）はそのまま再スロー
-    if (error instanceof Error && !isNetworkError(error)) {
-      throw error
-    }
-
-    // ネットワークエラー（fetch自体が失敗した場合）
+    // fetch自体が失敗した場合（ネットワーク切断、CORS、タイムアウト等）
     if (isNetworkError(error)) {
       throw new Error(ERROR_MESSAGES.NETWORK_ERROR)
     }
-
-    // 想定外のエラー
     throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR)
   }
+
+  // レスポンス処理（エラーはそのまま伝播）
+  if (response.status === 401) {
+    throw new Error(ERROR_MESSAGES.UNAUTHORIZED)
+  }
+
+  if (!response.ok) {
+    if (response.status >= 500) {
+      throw new Error(ERROR_MESSAGES.SERVER_ERROR)
+    }
+    const errorData = await response.json().catch(() => null)
+    throw new Error((errorData as { message?: string })?.message || ERROR_MESSAGES.UNEXPECTED_ERROR)
+  }
+
+  return response.json()
 }
 
 // ============================================================
