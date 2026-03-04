@@ -359,7 +359,7 @@ export const accountHandlers = [
   // プラン変更API
   http.put('*/api/v1/account/plan', async ({ request }) => {
     const body = (await request.json()) as ChangePlanRequest
-    const planName = body.newPlanId === 'ahamo-oomori' ? 'ahamo大盛り' : 'ahamo'
+    const planName = body.newPlanId === 'ahamo-large' ? 'ahamo大盛り' : 'ahamo'
     const timingText = body.applyTiming === 'next_month' ? '翌月から' : '即日'
 
     const response: ApiResponse = {
