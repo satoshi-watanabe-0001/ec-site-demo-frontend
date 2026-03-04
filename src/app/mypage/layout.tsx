@@ -27,6 +27,7 @@ export default function MypageLayout({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     if (!isAuthenticated) {
+      setIsReady(false)
       router.push('/login')
     } else {
       setIsReady(true)

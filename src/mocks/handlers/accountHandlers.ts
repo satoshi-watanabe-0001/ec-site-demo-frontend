@@ -162,9 +162,8 @@ const mockBillingDetail: BillingDetailResponse = {
     { label: 'SMS送信料', amount: 33 },
     { label: 'ユニバーサルサービス料', amount: 2 },
     { label: '電話リレーサービス料', amount: 1 },
-    { label: 'かけ放題オプション', amount: 1100 },
     { label: '割引（dカードお支払割）', amount: -187 },
-    { label: '消費税相当額', amount: 331 },
+    { label: '消費税相当額', amount: 431 },
   ],
   history: [
     { month: '2024-03', amount: 3470, status: 'pending', paidAt: null },
