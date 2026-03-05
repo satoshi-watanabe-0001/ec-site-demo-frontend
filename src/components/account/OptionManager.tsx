@@ -49,7 +49,10 @@ export function OptionManager() {
       setProcessingId(option.id)
       setMessage(null)
       await removeOption(option.id)
-      setMessage({ type: 'success', text: `「${option.name}」を解除しました。月末で適用終了となります。` })
+      setMessage({
+        type: 'success',
+        text: `「${option.name}」を解除しました。月末で適用終了となります。`,
+      })
       await refetch()
     } catch (err) {
       setMessage({
@@ -89,7 +92,9 @@ export function OptionManager() {
       {message && (
         <div
           className={`rounded-md p-4 text-sm ${
-            message.type === 'success' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
+            message.type === 'success'
+              ? 'bg-green-900/20 text-green-400'
+              : 'bg-red-900/20 text-red-400'
           }`}
           role="alert"
         >
@@ -105,7 +110,10 @@ export function OptionManager() {
         ) : (
           <div className="space-y-3">
             {data.subscribedOptions.map(option => (
-              <div key={option.id} className="flex flex-col gap-3 rounded-md bg-slate-700 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div
+                key={option.id}
+                className="flex flex-col gap-3 rounded-md bg-slate-700 p-4 sm:flex-row sm:items-center sm:justify-between"
+              >
                 <div>
                   <p className="font-medium">{option.name}</p>
                   <p className="text-sm text-slate-400">{option.description}</p>
@@ -152,8 +160,13 @@ export function OptionManager() {
                     {option.features.length > 0 && (
                       <ul className="mt-2 space-y-1">
                         {option.features.map((feature, index) => (
-                          <li key={index} className="flex items-center gap-2 text-sm text-slate-300">
-                            <span className="text-green-400" aria-hidden="true">✓</span>
+                          <li
+                            key={index}
+                            className="flex items-center gap-2 text-sm text-slate-300"
+                          >
+                            <span className="text-green-400" aria-hidden="true">
+                              ✓
+                            </span>
                             {feature}
                           </li>
                         ))}

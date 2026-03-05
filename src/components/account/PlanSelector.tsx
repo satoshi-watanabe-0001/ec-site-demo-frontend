@@ -21,7 +21,12 @@ const availablePlans = [
     price: 2970,
     data: 20,
     call: '5分以内の国内通話無料',
-    features: ['20GBのデータ容量', '5分以内の国内通話無料', '海外82の国・地域で使える', 'dカードボーナスパケット+1GB'],
+    features: [
+      '20GBのデータ容量',
+      '5分以内の国内通話無料',
+      '海外82の国・地域で使える',
+      'dカードボーナスパケット+1GB',
+    ],
   },
   {
     id: 'ahamo-100gb',
@@ -29,7 +34,13 @@ const availablePlans = [
     price: 4950,
     data: 100,
     call: '5分以内の国内通話無料',
-    features: ['100GBの大容量', '5分以内の国内通話無料', '海外82の国・地域で使える', 'テザリング100GBまで', 'dカードボーナスパケット+5GB'],
+    features: [
+      '100GBの大容量',
+      '5分以内の国内通話無料',
+      '海外82の国・地域で使える',
+      'テザリング100GBまで',
+      'dカードボーナスパケット+5GB',
+    ],
   },
 ]
 
@@ -86,7 +97,9 @@ export function PlanSelector() {
       {message && (
         <div
           className={`rounded-md p-4 text-sm ${
-            message.type === 'success' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
+            message.type === 'success'
+              ? 'bg-green-900/20 text-green-400'
+              : 'bg-red-900/20 text-red-400'
           }`}
           role="alert"
         >
@@ -127,7 +140,9 @@ export function PlanSelector() {
               <ul className="mt-4 space-y-2">
                 {plan.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm text-slate-300">
-                    <span className="text-green-400" aria-hidden="true">✓</span>
+                    <span className="text-green-400" aria-hidden="true">
+                      ✓
+                    </span>
                     {feature}
                   </li>
                 ))}

@@ -13,7 +13,11 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useAuthStore } from '@/store/auth-store'
-import { updateProfile, changePassword, updateNotificationSettings } from '@/services/accountService'
+import {
+  updateProfile,
+  changePassword,
+  updateNotificationSettings,
+} from '@/services/accountService'
 
 /**
  * プロフィール更新フォームのバリデーションスキーマ
@@ -28,14 +32,16 @@ type ProfileFormValues = z.infer<typeof profileSchema>
 /**
  * パスワード変更フォームのバリデーションスキーマ
  */
-const passwordSchema = z.object({
-  currentPassword: z.string().min(1, '現在のパスワードは必須です'),
-  newPassword: z.string().min(8, 'パスワードは8文字以上で入力してください'),
-  confirmPassword: z.string().min(1, '確認用パスワードは必須です'),
-}).refine(data => data.newPassword === data.confirmPassword, {
-  message: 'パスワードが一致しません',
-  path: ['confirmPassword'],
-})
+const passwordSchema = z
+  .object({
+    currentPassword: z.string().min(1, '現在のパスワードは必須です'),
+    newPassword: z.string().min(8, 'パスワードは8文字以上で入力してください'),
+    confirmPassword: z.string().min(1, '確認用パスワードは必須です'),
+  })
+  .refine(data => data.newPassword === data.confirmPassword, {
+    message: 'パスワードが一致しません',
+    path: ['confirmPassword'],
+  })
 
 type PasswordFormValues = z.infer<typeof passwordSchema>
 
@@ -61,9 +67,18 @@ type NotificationFormValues = z.infer<typeof notificationSchema>
  */
 export function AccountSettingsForm() {
   const { user } = useAuthStore()
-  const [profileMessage, setProfileMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
-  const [passwordMessage, setPasswordMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
-  const [notificationMessage, setNotificationMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+  const [profileMessage, setProfileMessage] = useState<{
+    type: 'success' | 'error'
+    text: string
+  } | null>(null)
+  const [passwordMessage, setPasswordMessage] = useState<{
+    type: 'success' | 'error'
+    text: string
+  } | null>(null)
+  const [notificationMessage, setNotificationMessage] = useState<{
+    type: 'success' | 'error'
+    text: string
+  } | null>(null)
 
   // プロフィールフォーム
   const profileForm = useForm<ProfileFormValues>({
@@ -149,7 +164,9 @@ export function AccountSettingsForm() {
         {profileMessage && (
           <div
             className={`mb-4 rounded-md p-3 text-sm ${
-              profileMessage.type === 'success' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
+              profileMessage.type === 'success'
+                ? 'bg-green-900/20 text-green-400'
+                : 'bg-red-900/20 text-red-400'
             }`}
             role="alert"
           >
@@ -168,7 +185,9 @@ export function AccountSettingsForm() {
               className="mt-1 w-full rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             {profileForm.formState.errors.name && (
-              <p className="mt-1 text-sm text-red-400">{profileForm.formState.errors.name.message}</p>
+              <p className="mt-1 text-sm text-red-400">
+                {profileForm.formState.errors.name.message}
+              </p>
             )}
           </div>
           <div>
@@ -182,7 +201,9 @@ export function AccountSettingsForm() {
               className="mt-1 w-full rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             {profileForm.formState.errors.email && (
-              <p className="mt-1 text-sm text-red-400">{profileForm.formState.errors.email.message}</p>
+              <p className="mt-1 text-sm text-red-400">
+                {profileForm.formState.errors.email.message}
+              </p>
             )}
           </div>
           <button
@@ -201,7 +222,9 @@ export function AccountSettingsForm() {
         {passwordMessage && (
           <div
             className={`mb-4 rounded-md p-3 text-sm ${
-              passwordMessage.type === 'success' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
+              passwordMessage.type === 'success'
+                ? 'bg-green-900/20 text-green-400'
+                : 'bg-red-900/20 text-red-400'
             }`}
             role="alert"
           >
@@ -220,7 +243,9 @@ export function AccountSettingsForm() {
               className="mt-1 w-full rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             {passwordForm.formState.errors.currentPassword && (
-              <p className="mt-1 text-sm text-red-400">{passwordForm.formState.errors.currentPassword.message}</p>
+              <p className="mt-1 text-sm text-red-400">
+                {passwordForm.formState.errors.currentPassword.message}
+              </p>
             )}
           </div>
           <div>
@@ -234,7 +259,9 @@ export function AccountSettingsForm() {
               className="mt-1 w-full rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             {passwordForm.formState.errors.newPassword && (
-              <p className="mt-1 text-sm text-red-400">{passwordForm.formState.errors.newPassword.message}</p>
+              <p className="mt-1 text-sm text-red-400">
+                {passwordForm.formState.errors.newPassword.message}
+              </p>
             )}
           </div>
           <div>
@@ -248,7 +275,9 @@ export function AccountSettingsForm() {
               className="mt-1 w-full rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             {passwordForm.formState.errors.confirmPassword && (
-              <p className="mt-1 text-sm text-red-400">{passwordForm.formState.errors.confirmPassword.message}</p>
+              <p className="mt-1 text-sm text-red-400">
+                {passwordForm.formState.errors.confirmPassword.message}
+              </p>
             )}
           </div>
           <button
@@ -267,7 +296,9 @@ export function AccountSettingsForm() {
         {notificationMessage && (
           <div
             className={`mb-4 rounded-md p-3 text-sm ${
-              notificationMessage.type === 'success' ? 'bg-green-900/20 text-green-400' : 'bg-red-900/20 text-red-400'
+              notificationMessage.type === 'success'
+                ? 'bg-green-900/20 text-green-400'
+                : 'bg-red-900/20 text-red-400'
             }`}
             role="alert"
           >

@@ -42,7 +42,9 @@ export function PaymentMethod({ paymentMethod }: PaymentMethodProps) {
       <h2 className="mb-4 text-lg font-semibold">お支払い方法</h2>
       <div className="flex items-center gap-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-700">
-          <span className="text-xl" aria-hidden="true">💳</span>
+          <span className="text-xl" aria-hidden="true">
+            💳
+          </span>
         </div>
         <div>
           <p className="font-medium">{paymentMethod.displayName}</p>

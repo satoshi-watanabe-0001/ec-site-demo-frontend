@@ -359,7 +359,7 @@ export const accountHandlers = [
   // 通知設定更新API
   http.put('*/api/v1/account/notifications', async ({ request }) => {
     if (!isAuthenticated(request)) return unauthorizedResponse()
-    await request.json() as NotificationSettings
+    ;(await request.json()) as NotificationSettings
     return HttpResponse.json({
       success: true,
       message: '通知設定を更新しました。',

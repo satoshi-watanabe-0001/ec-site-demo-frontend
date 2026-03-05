@@ -92,12 +92,19 @@ class MypagePage {
 
   /** ローディング状態が表示されているか */
   async isLoadingVisible() {
-    return this.page.locator('.animate-pulse').first().isVisible({ timeout: 1000 }).catch(() => false)
+    return this.page
+      .locator('.animate-pulse')
+      .first()
+      .isVisible({ timeout: 1000 })
+      .catch(() => false)
   }
 
   /** モバイルメニューボタンをクリック */
   async clickMobileMenuButton() {
-    await this.page.locator('button:has-text("メニュー"), button[aria-label*="メニュー"]').first().click()
+    await this.page
+      .locator('button:has-text("メニュー"), button[aria-label*="メニュー"]')
+      .first()
+      .click()
   }
 
   /** クイックアクションが表示されているか */
@@ -239,7 +246,9 @@ class OptionsPage {
 // ===== テストスイート =====
 
 test.describe('マイページ アクセス制御 (EC-278)', () => {
-  test('未ログイン状態でマイページにアクセスするとログインページにリダイレクトされる', async ({ page }) => {
+  test('未ログイン状態でマイページにアクセスするとログインページにリダイレクトされる', async ({
+    page,
+  }) => {
     // Arrange & Act
     await page.goto('/mypage')
 
@@ -248,7 +257,9 @@ test.describe('マイページ アクセス制御 (EC-278)', () => {
     expect(page.url()).toContain('/login')
   })
 
-  test('未ログイン状態で契約情報ページにアクセスするとログインページにリダイレクトされる', async ({ page }) => {
+  test('未ログイン状態で契約情報ページにアクセスするとログインページにリダイレクトされる', async ({
+    page,
+  }) => {
     // Arrange & Act
     await page.goto('/mypage/contract')
 

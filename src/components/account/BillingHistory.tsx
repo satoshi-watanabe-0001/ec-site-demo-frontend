@@ -83,7 +83,12 @@ export function BillingHistory({ history }: BillingHistoryProps) {
                     stroke="currentColor"
                     aria-hidden="true"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </div>
               </button>
@@ -101,9 +106,7 @@ export function BillingHistory({ history }: BillingHistoryProps) {
                     ))}
                   </div>
                   {bill.paymentDate && (
-                    <p className="mt-3 text-xs text-slate-400">
-                      支払い日: {bill.paymentDate}
-                    </p>
+                    <p className="mt-3 text-xs text-slate-400">支払い日: {bill.paymentDate}</p>
                   )}
                 </div>
               )}

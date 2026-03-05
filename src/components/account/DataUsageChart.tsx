@@ -12,21 +12,11 @@ import { lazy, Suspense } from 'react'
 import type { DailyUsage, MonthlyUsage } from '@/types'
 
 // rechartsをlazy loadする（パフォーマンス最適化）
-const LazyBarChart = lazy(() =>
-  import('recharts').then(mod => ({ default: mod.BarChart }))
-)
-const LazyBar = lazy(() =>
-  import('recharts').then(mod => ({ default: mod.Bar }))
-)
-const LazyXAxis = lazy(() =>
-  import('recharts').then(mod => ({ default: mod.XAxis }))
-)
-const LazyYAxis = lazy(() =>
-  import('recharts').then(mod => ({ default: mod.YAxis }))
-)
-const LazyTooltip = lazy(() =>
-  import('recharts').then(mod => ({ default: mod.Tooltip }))
-)
+const LazyBarChart = lazy(() => import('recharts').then(mod => ({ default: mod.BarChart })))
+const LazyBar = lazy(() => import('recharts').then(mod => ({ default: mod.Bar })))
+const LazyXAxis = lazy(() => import('recharts').then(mod => ({ default: mod.XAxis })))
+const LazyYAxis = lazy(() => import('recharts').then(mod => ({ default: mod.YAxis })))
+const LazyTooltip = lazy(() => import('recharts').then(mod => ({ default: mod.Tooltip })))
 const LazyResponsiveContainer = lazy(() =>
   import('recharts').then(mod => ({ default: mod.ResponsiveContainer }))
 )
@@ -106,7 +96,10 @@ export function DataUsageChart({ data, type }: DataUsageChartProps) {
                 borderRadius: '8px',
                 color: '#f1f5f9',
               }}
-              formatter={(value: number | string | ReadonlyArray<number | string> | undefined) => [`${value ?? 0}GB`, '使用量']}
+              formatter={(value: number | string | ReadonlyArray<number | string> | undefined) => [
+                `${value ?? 0}GB`,
+                '使用量',
+              ]}
             />
             <LazyBar dataKey="usage" fill="#3b82f6" radius={[4, 4, 0, 0]} />
           </LazyBarChart>

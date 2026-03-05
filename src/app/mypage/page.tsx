@@ -98,9 +98,7 @@ export default function MypageDashboard() {
             ¥{data.currentBillAmount.toLocaleString()}
             <span className="text-sm font-normal text-slate-400">（税込）</span>
           </p>
-          <p className="mt-2 text-sm text-slate-400">
-            請求締め日: {data.billingDate}
-          </p>
+          <p className="mt-2 text-sm text-slate-400">請求締め日: {data.billingDate}</p>
         </div>
 
         {/* 端末情報カード */}
@@ -113,14 +111,17 @@ export default function MypageDashboard() {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-slate-700">
-              <span className="text-2xl" aria-hidden="true">📱</span>
+              <span className="text-2xl" aria-hidden="true">
+                📱
+              </span>
             </div>
             <div>
               <p className="font-medium">{data.device.name}</p>
               <p className="text-sm text-slate-400">{data.device.manufacturer}</p>
               {data.device.installmentRemaining > 0 && (
                 <p className="text-xs text-slate-500">
-                  分割残り {data.device.installmentRemaining}回（月々¥{data.device.monthlyInstallment.toLocaleString()}）
+                  分割残り {data.device.installmentRemaining}回（月々¥
+                  {data.device.monthlyInstallment.toLocaleString()}）
                 </p>
               )}
             </div>
@@ -137,7 +138,10 @@ export default function MypageDashboard() {
               {data.notifications.slice(0, 3).map(notification => (
                 <li key={notification.id} className="flex items-start gap-2">
                   {!notification.isRead && (
-                    <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500" aria-label="未読" />
+                    <span
+                      className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"
+                      aria-label="未読"
+                    />
                   )}
                   <div className={notification.isRead ? 'pl-4' : ''}>
                     <p className="text-sm font-medium">{notification.title}</p>

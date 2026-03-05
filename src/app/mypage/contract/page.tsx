@@ -93,7 +93,10 @@ export default function ContractPage() {
           </div>
           <div>
             <dt className="text-sm text-slate-400">月額料金</dt>
-            <dd className="mt-1 text-xl font-bold">¥{data.monthlyCharge.toLocaleString()}<span className="text-sm font-normal text-slate-400">（税込）</span></dd>
+            <dd className="mt-1 text-xl font-bold">
+              ¥{data.monthlyCharge.toLocaleString()}
+              <span className="text-sm font-normal text-slate-400">（税込）</span>
+            </dd>
           </div>
           <div>
             <dt className="text-sm text-slate-400">データ容量</dt>
@@ -115,12 +118,16 @@ export default function ContractPage() {
         <h2 className="mb-4 text-lg font-semibold">端末情報</h2>
         <div className="flex items-center gap-4">
           <div className="flex h-20 w-20 items-center justify-center rounded-lg bg-slate-700">
-            <span className="text-3xl" aria-hidden="true">📱</span>
+            <span className="text-3xl" aria-hidden="true">
+              📱
+            </span>
           </div>
           <dl className="grid gap-2">
             <div>
               <dt className="text-sm text-slate-400">端末名</dt>
-              <dd className="font-medium">{data.device.name}（{data.device.manufacturer}）</dd>
+              <dd className="font-medium">
+                {data.device.name}（{data.device.manufacturer}）
+              </dd>
             </div>
             <div>
               <dt className="text-sm text-slate-400">購入日</dt>
@@ -130,7 +137,8 @@ export default function ContractPage() {
               <div>
                 <dt className="text-sm text-slate-400">分割払い</dt>
                 <dd className="font-medium">
-                  残り{data.device.installmentRemaining}回（月々¥{data.device.monthlyInstallment.toLocaleString()}）
+                  残り{data.device.installmentRemaining}回（月々¥
+                  {data.device.monthlyInstallment.toLocaleString()}）
                 </dd>
               </div>
             )}
@@ -146,13 +154,19 @@ export default function ContractPage() {
         ) : (
           <div className="space-y-3">
             {data.options.map(option => (
-              <div key={option.id} className="flex items-center justify-between rounded-md bg-slate-700 p-4">
+              <div
+                key={option.id}
+                className="flex items-center justify-between rounded-md bg-slate-700 p-4"
+              >
                 <div>
                   <p className="font-medium">{option.name}</p>
                   <p className="text-sm text-slate-400">{option.description}</p>
                   <p className="text-xs text-slate-500">契約開始: {option.startDate}</p>
                 </div>
-                <p className="text-lg font-bold">¥{option.monthlyPrice.toLocaleString()}<span className="text-xs font-normal text-slate-400">/月</span></p>
+                <p className="text-lg font-bold">
+                  ¥{option.monthlyPrice.toLocaleString()}
+                  <span className="text-xs font-normal text-slate-400">/月</span>
+                </p>
               </div>
             ))}
           </div>

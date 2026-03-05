@@ -129,9 +129,7 @@ async function authenticatedFetch(url: string, options: RequestInit = {}): Promi
  * @throws APIエラー時にエラーをスロー
  */
 export async function getAccountDashboard(): Promise<AccountDashboardResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/dashboard`
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/dashboard`)
   return response.json()
 }
 
@@ -142,9 +140,7 @@ export async function getAccountDashboard(): Promise<AccountDashboardResponse> {
  * @throws APIエラー時にエラーをスロー
  */
 export async function getContractInfo(): Promise<ContractInfoResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/contract`
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/contract`)
   return response.json()
 }
 
@@ -155,9 +151,7 @@ export async function getContractInfo(): Promise<ContractInfoResponse> {
  * @throws APIエラー時にエラーをスロー
  */
 export async function getDataUsage(): Promise<DataUsageResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/data-usage`
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/data-usage`)
   return response.json()
 }
 
@@ -168,9 +162,7 @@ export async function getDataUsage(): Promise<DataUsageResponse> {
  * @throws APIエラー時にエラーをスロー
  */
 export async function getBillingInfo(): Promise<BillingInfoResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/billing`
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/billing`)
   return response.json()
 }
 
@@ -181,9 +173,7 @@ export async function getBillingInfo(): Promise<BillingInfoResponse> {
  * @throws APIエラー時にエラーをスロー
  */
 export async function getAccountOptions(): Promise<AccountOptionsResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options`
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options`)
   return response.json()
 }
 
@@ -195,13 +185,10 @@ export async function getAccountOptions(): Promise<AccountOptionsResponse> {
  * @throws APIエラー時にエラーをスロー
  */
 export async function updateProfile(data: UpdateProfileRequest): Promise<AccountApiResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/profile`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    }
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/profile`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
   return response.json()
 }
 
@@ -213,13 +200,10 @@ export async function updateProfile(data: UpdateProfileRequest): Promise<Account
  * @throws APIエラー時にエラーをスロー
  */
 export async function changePassword(data: ChangePasswordRequest): Promise<AccountApiResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/password`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    }
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/password`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
   return response.json()
 }
 
@@ -269,13 +253,10 @@ export async function changePlan(data: PlanChangeRequest): Promise<PlanChangeRes
  * @throws APIエラー時にエラーをスロー
  */
 export async function addOption(data: AddOptionRequest): Promise<AccountApiResponse> {
-  const response = await authenticatedFetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options`,
-    {
-      method: 'POST',
-      body: JSON.stringify(data),
-    }
-  )
+  const response = await authenticatedFetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
   return response.json()
 }
 

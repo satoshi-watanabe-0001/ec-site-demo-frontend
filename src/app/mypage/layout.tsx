@@ -56,7 +56,11 @@ export default function MypageLayout({ children }: { children: React.ReactNode }
   // hydration前またはリダイレクト中はローディング表示
   if (!isHydrated || !isAuthenticated) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center" role="status" aria-label="読み込み中">
+      <div
+        className="flex min-h-[50vh] items-center justify-center"
+        role="status"
+        aria-label="読み込み中"
+      >
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
       </div>
     )
