@@ -26,7 +26,7 @@ interface DataUsageBarProps {
  * @param props - コンポーネントプロパティ
  */
 export function DataUsageBar({ used, limit }: DataUsageBarProps) {
-  const percentage = Math.min((used / limit) * 100, 100)
+  const percentage = limit > 0 ? Math.min((used / limit) * 100, 100) : 0
 
   // 使用率に応じた色の決定
   const getBarColor = () => {

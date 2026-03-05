@@ -98,7 +98,10 @@ async function authenticatedFetch(url: string, options: RequestInit = {}): Promi
         const errorData = await response.json()
         throw new Error(errorData.message || ERROR_MESSAGES.UNEXPECTED_ERROR)
       } catch (e) {
-        if (e instanceof Error && e.message !== ERROR_MESSAGES.UNEXPECTED_ERROR) {
+        if (e instanceof Error && Object.values(ERROR_MESSAGES).some(msg => e.message === msg)) {
+          throw e
+        }
+        if (e instanceof Error && e.message && !e.message.includes('JSON')) {
           throw e
         }
         throw new Error(ERROR_MESSAGES.UNEXPECTED_ERROR)
