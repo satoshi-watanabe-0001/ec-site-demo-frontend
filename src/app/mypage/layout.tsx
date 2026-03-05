@@ -34,6 +34,7 @@ export default function MypageLayout({
 
   useEffect(() => {
     if (!isAuthenticated) {
+      setIsChecking(true)
       router.push('/login')
     } else {
       setIsChecking(false)
