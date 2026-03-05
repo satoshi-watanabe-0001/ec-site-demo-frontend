@@ -308,7 +308,6 @@ describe('accountService', () => {
       const result = await changePassword({
         currentPassword: 'old123',
         newPassword: 'new456',
-        confirmPassword: 'new456',
       })
 
       // Assert
@@ -329,7 +328,6 @@ describe('accountService', () => {
         changePassword({
           currentPassword: 'wrong',
           newPassword: 'new456',
-          confirmPassword: 'new456',
         })
       ).rejects.toThrow('現在のパスワードが正しくありません')
     })
@@ -346,7 +344,6 @@ describe('accountService', () => {
       const result = await changePassword({
         currentPassword: 'old123',
         newPassword: 'new456',
-        confirmPassword: 'new456',
       })
 
       // Assert
@@ -392,7 +389,7 @@ describe('accountService', () => {
       })
 
       // Act
-      const result = await changePlan({ planId: 'ahamo-large', timing: 'next-month' })
+      const result = await changePlan({ newPlanId: 'ahamo-large', applyTiming: 'next_month' })
 
       // Assert
       expect(result).toBe('プラン変更を受け付けました。')
@@ -407,7 +404,7 @@ describe('accountService', () => {
       })
 
       // Act & Assert
-      await expect(changePlan({ planId: 'invalid', timing: 'next-month' })).rejects.toThrow(
+      await expect(changePlan({ newPlanId: 'invalid', applyTiming: 'next_month' })).rejects.toThrow(
         'プラン変更に失敗しました'
       )
     })
@@ -421,7 +418,7 @@ describe('accountService', () => {
       })
 
       // Act
-      const result = await changePlan({ planId: 'ahamo-large', timing: 'next-month' })
+      const result = await changePlan({ newPlanId: 'ahamo-large', applyTiming: 'next_month' })
 
       // Assert
       expect(result).toBe('プラン変更を受け付けました。')
