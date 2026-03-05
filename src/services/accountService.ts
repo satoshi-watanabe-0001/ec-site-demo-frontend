@@ -175,14 +175,11 @@ export async function changePassword(data: ChangePasswordRequest): Promise<Succe
 export async function updateNotificationSettings(
   data: UpdateNotificationSettingsRequest
 ): Promise<SuccessResponse> {
-  const response = await fetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/notification-settings`,
-    {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }
-  )
+  const response = await fetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/notification-settings`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
 
   if (!response.ok) {
     throw new Error(`通知設定の更新に失敗しました: ${response.status}`)
@@ -243,12 +240,9 @@ export async function subscribeOption(optionId: string): Promise<SuccessResponse
  * @throws APIエラー時にエラーをスロー
  */
 export async function unsubscribeOption(optionId: string): Promise<SuccessResponse> {
-  const response = await fetch(
-    `${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`,
-    {
-      method: 'DELETE',
-    }
-  )
+  const response = await fetch(`${ACCOUNT_SERVICE_BASE_URL}/api/v1/account/options/${optionId}`, {
+    method: 'DELETE',
+  })
 
   if (!response.ok) {
     throw new Error(`オプションの解除に失敗しました: ${response.status}`)

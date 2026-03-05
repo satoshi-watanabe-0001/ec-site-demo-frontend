@@ -31,7 +31,10 @@ export default function DataUsagePage(): React.ReactElement {
 
   if (error || !dataUsage) {
     return (
-      <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+      <div
+        className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+        role="alert"
+      >
         データ通信量の取得に失敗しました。
       </div>
     )
@@ -64,7 +67,10 @@ export default function DataUsagePage(): React.ReactElement {
               return (
                 <div key={day.date} className="flex items-center gap-3">
                   <span className="w-24 flex-shrink-0 text-sm text-slate-400">
-                    {new Date(day.date).toLocaleDateString('ja-JP', { month: 'short', day: 'numeric' })}
+                    {new Date(day.date).toLocaleDateString('ja-JP', {
+                      month: 'short',
+                      day: 'numeric',
+                    })}
                   </span>
                   <div className="flex-1">
                     <div className="h-6 w-full rounded bg-slate-700">
@@ -105,7 +111,11 @@ export default function DataUsagePage(): React.ReactElement {
                   >
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
-                        usagePercent >= 95 ? 'bg-red-500' : usagePercent >= 80 ? 'bg-yellow-500' : 'bg-blue-500'
+                        usagePercent >= 95
+                          ? 'bg-red-500'
+                          : usagePercent >= 80
+                            ? 'bg-yellow-500'
+                            : 'bg-blue-500'
                       }`}
                       style={{ width: `${Math.min(usagePercent, 100)}%` }}
                     />

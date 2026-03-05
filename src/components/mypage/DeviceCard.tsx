@@ -60,9 +60,7 @@ export function DeviceCard({ device }: DeviceCardProps): React.ReactElement {
         <div className="mt-4 border-t border-slate-700 pt-4">
           <div className="flex items-center justify-between text-sm">
             <span className="text-slate-400">月額支払い</span>
-            <span className="text-white">
-              ¥{device.payment.monthlyAmount?.toLocaleString()}/月
-            </span>
+            <span className="text-white">¥{device.payment.monthlyAmount?.toLocaleString()}/月</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-sm">
             <span className="text-slate-400">残り回数</span>

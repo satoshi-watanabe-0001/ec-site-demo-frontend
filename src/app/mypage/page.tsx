@@ -25,11 +25,7 @@ export default function MypagePage(): React.ReactElement {
       {/* ヘッダー */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white">マイページ</h1>
-        {user && (
-          <p className="mt-1 text-slate-400">
-            ようこそ、{user.name}さん
-          </p>
-        )}
+        {user && <p className="mt-1 text-slate-400">ようこそ、{user.name}さん</p>}
       </div>
 
       {/* ダッシュボードサマリー */}

@@ -14,14 +14,21 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAccountInfo } from '@/hooks'
-import { updateProfile, changePassword, updateNotificationSettings } from '@/services/accountService'
+import {
+  updateProfile,
+  changePassword,
+  updateNotificationSettings,
+} from '@/services/accountService'
 
 /**
  * プロフィール更新のバリデーションスキーマ
  */
 const profileSchema = z.object({
   name: z.string().min(1, '氏名を入力してください'),
-  email: z.string().min(1, 'メールアドレスを入力してください').email('有効なメールアドレスを入力してください'),
+  email: z
+    .string()
+    .min(1, 'メールアドレスを入力してください')
+    .email('有効なメールアドレスを入力してください'),
   phoneNumber: z.string().min(1, '電話番号を入力してください'),
 })
 
@@ -153,12 +160,18 @@ export function SettingsForm(): React.ReactElement {
 
       {/* メッセージ */}
       {successMessage && (
-        <div className="mb-4 rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm" role="status">
+        <div
+          className="mb-4 rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm"
+          role="status"
+        >
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+        <div
+          className="mb-4 rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+          role="alert"
+        >
           {errorMessage}
         </div>
       )}
@@ -166,7 +179,11 @@ export function SettingsForm(): React.ReactElement {
       {/* プロフィールフォーム */}
       {activeTab === 'profile' && (
         <div id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
-          <form onSubmit={profileForm.handleSubmit(handleProfileSubmit)} className="space-y-4" noValidate>
+          <form
+            onSubmit={profileForm.handleSubmit(handleProfileSubmit)}
+            className="space-y-4"
+            noValidate
+          >
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm font-medium text-slate-300">
                 氏名
@@ -206,7 +223,10 @@ export function SettingsForm(): React.ReactElement {
                 {...profileForm.register('phoneNumber')}
               />
             </div>
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3"
+            >
               プロフィールを更新
             </Button>
           </form>
@@ -216,7 +236,11 @@ export function SettingsForm(): React.ReactElement {
       {/* パスワード変更フォーム */}
       {activeTab === 'password' && (
         <div id="panel-password" role="tabpanel" aria-labelledby="tab-password">
-          <form onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)} className="space-y-4" noValidate>
+          <form
+            onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)}
+            className="space-y-4"
+            noValidate
+          >
             <div className="space-y-2">
               <label htmlFor="currentPassword" className="block text-sm font-medium text-slate-300">
                 現在のパスワード
@@ -256,7 +280,10 @@ export function SettingsForm(): React.ReactElement {
                 {...passwordForm.register('confirmPassword')}
               />
             </div>
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3"
+            >
               パスワードを変更
             </Button>
           </form>
@@ -268,12 +295,31 @@ export function SettingsForm(): React.ReactElement {
         <div id="panel-notifications" role="tabpanel" aria-labelledby="tab-notifications">
           <div className="space-y-4">
             {[
-              { key: 'emailNotification' as const, label: 'メール通知', description: '請求確定やお知らせをメールで受信します' },
-              { key: 'pushNotification' as const, label: 'プッシュ通知', description: 'アプリのプッシュ通知を受信します' },
-              { key: 'campaignNotification' as const, label: 'キャンペーン通知', description: 'キャンペーンやお得な情報を受信します' },
-              { key: 'billingNotification' as const, label: '請求通知', description: '請求額確定時に通知を受信します' },
+              {
+                key: 'emailNotification' as const,
+                label: 'メール通知',
+                description: '請求確定やお知らせをメールで受信します',
+              },
+              {
+                key: 'pushNotification' as const,
+                label: 'プッシュ通知',
+                description: 'アプリのプッシュ通知を受信します',
+              },
+              {
+                key: 'campaignNotification' as const,
+                label: 'キャンペーン通知',
+                description: 'キャンペーンやお得な情報を受信します',
+              },
+              {
+                key: 'billingNotification' as const,
+                label: '請求通知',
+                description: '請求額確定時に通知を受信します',
+              },
             ].map(setting => (
-              <div key={setting.key} className="flex items-center justify-between rounded-lg border border-slate-700 p-4">
+              <div
+                key={setting.key}
+                className="flex items-center justify-between rounded-lg border border-slate-700 p-4"
+              >
                 <div>
                   <p className="text-sm font-medium text-white">{setting.label}</p>
                   <p className="text-xs text-slate-400">{setting.description}</p>

@@ -10,4 +10,9 @@ import { marketingHandlers } from './marketingHandlers'
 import { authHandlers } from './authHandlers'
 import { accountHandlers } from './accountHandlers'
 
-export const handlers = [...productHandlers, ...marketingHandlers, ...authHandlers, ...accountHandlers]
+export const handlers = [
+  ...productHandlers,
+  ...marketingHandlers,
+  ...authHandlers,
+  ...accountHandlers,
+]

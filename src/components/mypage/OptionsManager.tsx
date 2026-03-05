@@ -75,12 +75,18 @@ export function OptionsManager(): React.ReactElement {
     <div className="space-y-6">
       {/* メッセージ */}
       {successMessage && (
-        <div className="rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm" role="status">
+        <div
+          className="rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm"
+          role="status"
+        >
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+          role="alert"
+        >
           {errorMessage}
         </div>
       )}

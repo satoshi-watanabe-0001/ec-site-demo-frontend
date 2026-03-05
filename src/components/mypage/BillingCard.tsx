@@ -40,12 +40,8 @@ export function BillingCard({
       {/* 合計金額 */}
       <div className="mb-4">
         <p className="text-sm text-slate-400">合計金額（税込）</p>
-        <p className="text-3xl font-bold text-white">
-          ¥{totalAmount.toLocaleString()}
-        </p>
-        <p className="mt-1 text-xs text-slate-500">
-          支払い予定日: {paymentDueDate}
-        </p>
+        <p className="text-3xl font-bold text-white">¥{totalAmount.toLocaleString()}</p>
+        <p className="mt-1 text-xs text-slate-500">支払い予定日: {paymentDueDate}</p>
       </div>
 
       {/* 明細 */}

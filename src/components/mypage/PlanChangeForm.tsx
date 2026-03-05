@@ -93,19 +93,26 @@ export function PlanChangeForm(): React.ReactElement {
           <p className="text-sm text-slate-400">現在のプラン</p>
           <p className="text-lg font-semibold text-white">{accountInfo.plan.planName}</p>
           <p className="text-sm text-slate-400">
-            月額 ¥{accountInfo.plan.monthlyPrice.toLocaleString()} / データ容量 {accountInfo.plan.dataCapacityGB}GB
+            月額 ¥{accountInfo.plan.monthlyPrice.toLocaleString()} / データ容量{' '}
+            {accountInfo.plan.dataCapacityGB}GB
           </p>
         </div>
       )}
 
       {/* メッセージ */}
       {successMessage && (
-        <div className="rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm" role="status">
+        <div
+          className="rounded-md bg-emerald-500/10 border border-emerald-500 p-4 text-emerald-400 text-sm"
+          role="status"
+        >
           {successMessage}
         </div>
       )}
       {errorMessage && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+          role="alert"
+        >
           {errorMessage}
         </div>
       )}
@@ -173,9 +180,7 @@ export function PlanChangeForm(): React.ReactElement {
         {isSubmitting ? 'プラン変更中...' : 'プランを変更する'}
       </Button>
 
-      <p className="text-xs text-slate-500 text-center">
-        ※ プラン変更は翌月1日から適用されます。
-      </p>
+      <p className="text-xs text-slate-500 text-center">※ プラン変更は翌月1日から適用されます。</p>
     </div>
   )
 }

@@ -29,7 +29,11 @@ export function DashboardSummary(): React.ReactElement {
   const { data: notifications, isLoading: isLoadingNotifications } = useNotifications()
 
   const isLoading =
-    isLoadingAccount || isLoadingData || isLoadingBilling || isLoadingDevice || isLoadingNotifications
+    isLoadingAccount ||
+    isLoadingData ||
+    isLoadingBilling ||
+    isLoadingDevice ||
+    isLoadingNotifications
 
   if (isLoading) {
     return (

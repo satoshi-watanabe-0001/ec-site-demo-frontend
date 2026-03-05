@@ -30,7 +30,10 @@ export default function BillingPage(): React.ReactElement {
 
   if (error || !billing) {
     return (
-      <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+      <div
+        className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+        role="alert"
+      >
         請求情報の取得に失敗しました。
       </div>
     )
@@ -74,9 +77,14 @@ export default function BillingPage(): React.ReactElement {
           <h3 className="mb-3 text-sm font-medium text-slate-400">内訳</h3>
           <div className="space-y-2">
             {billing.currentBilling.items.map((item, index) => (
-              <div key={index} className="flex items-center justify-between rounded-md bg-slate-700/30 px-4 py-3">
+              <div
+                key={index}
+                className="flex items-center justify-between rounded-md bg-slate-700/30 px-4 py-3"
+              >
                 <span className="text-sm text-slate-300">{item.label}</span>
-                <span className="text-sm font-medium text-white">¥{item.amount.toLocaleString()}</span>
+                <span className="text-sm font-medium text-white">
+                  ¥{item.amount.toLocaleString()}
+                </span>
               </div>
             ))}
             <div className="flex items-center justify-between border-t border-slate-700 px-4 pt-3">
@@ -136,9 +144,13 @@ export default function BillingPage(): React.ReactElement {
                 💳
               </div>
               <div>
-                <p className="text-sm font-medium text-white">{billing.paymentMethod.displayName}</p>
+                <p className="text-sm font-medium text-white">
+                  {billing.paymentMethod.displayName}
+                </p>
                 {billing.paymentMethod.expiryDate && (
-                  <p className="text-xs text-slate-400">有効期限: {billing.paymentMethod.expiryDate}</p>
+                  <p className="text-xs text-slate-400">
+                    有効期限: {billing.paymentMethod.expiryDate}
+                  </p>
                 )}
               </div>
             </div>

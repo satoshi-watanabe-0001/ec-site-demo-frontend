@@ -30,7 +30,10 @@ export default function ContractPage(): React.ReactElement {
 
   if (error || !accountInfo) {
     return (
-      <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm" role="alert">
+      <div
+        className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-500 text-sm"
+        role="alert"
+      >
         契約情報の取得に失敗しました。
       </div>
     )

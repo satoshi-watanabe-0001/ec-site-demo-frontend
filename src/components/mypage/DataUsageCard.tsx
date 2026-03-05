@@ -69,19 +69,13 @@ export function DataUsageCard({
       >
         <div
           className={`h-full rounded-full transition-all duration-500 ${
-            isCritical
-              ? 'bg-red-500'
-              : isWarning
-                ? 'bg-yellow-500'
-                : 'bg-emerald-500'
+            isCritical ? 'bg-red-500' : isWarning ? 'bg-yellow-500' : 'bg-emerald-500'
           }`}
           style={{ width: `${usagePercent}%` }}
         />
       </div>
 
-      <p className="mt-2 text-xs text-slate-500">
-        {usagePercent.toFixed(0)}% 使用中
-      </p>
+      <p className="mt-2 text-xs text-slate-500">{usagePercent.toFixed(0)}% 使用中</p>
     </div>
   )
 }

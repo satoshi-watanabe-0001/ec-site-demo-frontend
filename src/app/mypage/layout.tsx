@@ -53,9 +53,7 @@ export default function MypageLayout({
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <div className="mx-auto max-w-5xl px-4 py-8">
-        {children}
-      </div>
+      <div className="mx-auto max-w-5xl px-4 py-8">{children}</div>
     </div>
   )
 }
