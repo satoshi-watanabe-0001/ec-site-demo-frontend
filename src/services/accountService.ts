@@ -83,7 +83,8 @@ async function handleResponse<T>(response: Response): Promise<T> {
       const errorData = await response.json()
       message = errorData?.message || ERROR_MESSAGES.SERVER_ERROR
     } catch {
-      message = response.status >= 500 ? ERROR_MESSAGES.SERVER_ERROR : ERROR_MESSAGES.UNEXPECTED_ERROR
+      message =
+        response.status >= 500 ? ERROR_MESSAGES.SERVER_ERROR : ERROR_MESSAGES.UNEXPECTED_ERROR
     }
 
     throw new Error(message)

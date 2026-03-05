@@ -167,7 +167,10 @@ export default function SettingsPage(): React.ReactElement {
         )}
 
         {profileError && (
-          <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm mb-4" role="alert">
+          <div
+            className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm mb-4"
+            role="alert"
+          >
             {profileError}
           </div>
         )}
@@ -251,7 +254,10 @@ export default function SettingsPage(): React.ReactElement {
         )}
 
         {passwordError && (
-          <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm mb-4" role="alert">
+          <div
+            className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm mb-4"
+            role="alert"
+          >
             {passwordError}
           </div>
         )}

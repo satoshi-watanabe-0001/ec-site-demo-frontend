@@ -58,10 +58,7 @@ export function MypageSidebar(): React.ReactElement {
   return (
     <>
       {/* デスクトップサイドバー */}
-      <nav
-        className="hidden lg:block w-64 flex-shrink-0"
-        aria-label="マイページナビゲーション"
-      >
+      <nav className="hidden lg:block w-64 flex-shrink-0" aria-label="マイページナビゲーション">
         <div className="sticky top-24 bg-slate-800 rounded-lg p-4 shadow-lg">
           <h2 className="text-lg font-bold text-white mb-4 px-3">マイページ</h2>
           <ul className="space-y-1">
@@ -91,10 +88,7 @@ export function MypageSidebar(): React.ReactElement {
       </nav>
 
       {/* モバイル・タブレット用横スクロールタブ */}
-      <nav
-        className="lg:hidden mb-6 -mx-4 px-4"
-        aria-label="マイページナビゲーション"
-      >
+      <nav className="lg:hidden mb-6 -mx-4 px-4" aria-label="マイページナビゲーション">
         <div className="overflow-x-auto scrollbar-hide">
           <ul className="flex gap-2 min-w-max pb-2">
             {navItems.map(item => {

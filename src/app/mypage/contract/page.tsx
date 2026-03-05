@@ -96,9 +96,17 @@ export default function ContractPage(): React.ReactElement {
           個人情報
         </h2>
         <dl>
-          <InfoRow icon={User} label="契約者名" value={`${contract.name}（${contract.nameKana}）`} />
+          <InfoRow
+            icon={User}
+            label="契約者名"
+            value={`${contract.name}（${contract.nameKana}）`}
+          />
           <InfoRow icon={Calendar} label="生年月日" value={contract.birthday} />
-          <InfoRow icon={MapPin} label="住所" value={`〒${contract.postalCode} ${contract.address}`} />
+          <InfoRow
+            icon={MapPin}
+            label="住所"
+            value={`〒${contract.postalCode} ${contract.address}`}
+          />
           <InfoRow icon={Phone} label="電話番号" value={contract.phoneNumber} />
           <InfoRow icon={Mail} label="メールアドレス" value={contract.email} />
         </dl>

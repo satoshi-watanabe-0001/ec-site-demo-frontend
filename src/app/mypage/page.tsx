@@ -18,7 +18,13 @@ import type { DashboardData } from '@/types'
 /**
  * データ使用量プログレスバーコンポーネント
  */
-function DataUsageBar({ usedGb, totalGb }: { usedGb: number; totalGb: number }): React.ReactElement {
+function DataUsageBar({
+  usedGb,
+  totalGb,
+}: {
+  usedGb: number
+  totalGb: number
+}): React.ReactElement {
   const percentage = Math.min((usedGb / totalGb) * 100, 100)
   const isWarning = percentage >= 80
 
@@ -194,13 +200,11 @@ export default function MypageDashboard(): React.ReactElement {
               <Smartphone className="h-5 w-5 text-slate-400" />
             </div>
             <p className="text-xl font-bold text-white mb-2">{data.deviceInfo.name}</p>
-            <p className="text-sm text-slate-400 mb-1">
-              購入日: {data.deviceInfo.purchaseDate}
-            </p>
+            <p className="text-sm text-slate-400 mb-1">購入日: {data.deviceInfo.purchaseDate}</p>
             {data.deviceInfo.remainingPayments && data.deviceInfo.monthlyPayment && (
               <p className="text-sm text-slate-400">
-                分割払い: 月々{data.deviceInfo.monthlyPayment.toLocaleString()}円
-                （残り{data.deviceInfo.remainingPayments}回）
+                分割払い: 月々{data.deviceInfo.monthlyPayment.toLocaleString()}円 （残り
+                {data.deviceInfo.remainingPayments}回）
               </p>
             )}
           </div>

@@ -69,7 +69,9 @@ function MonthlyUsageChart({ data }: { data: MonthlyDataUsage[] }): React.ReactE
                         ? 'bg-gradient-to-r from-orange-500 to-orange-400'
                         : 'bg-gradient-to-r from-blue-500 to-cyan-500'
                   )}
-                  style={{ width: `${Math.min(percentage, 100) * (month.capacityGb / maxCapacity)}%` }}
+                  style={{
+                    width: `${Math.min(percentage, 100) * (month.capacityGb / maxCapacity)}%`,
+                  }}
                 />
               </div>
             </div>
@@ -175,7 +177,9 @@ export default function DataUsagePage(): React.ReactElement {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <span className="text-2xl font-bold text-white">{usagePercentage.toFixed(0)}</span>
+                  <span className="text-2xl font-bold text-white">
+                    {usagePercentage.toFixed(0)}
+                  </span>
                   <span className="text-sm text-slate-400">%</span>
                 </div>
               </div>
@@ -231,7 +235,9 @@ export default function DataUsagePage(): React.ReactElement {
                   <tr key={index} className="border-b border-slate-700/50">
                     <td className="py-3 px-2 text-white">{charge.date}</td>
                     <td className="py-3 px-2 text-white text-right">{charge.amountGb}GB</td>
-                    <td className="py-3 px-2 text-white text-right">{charge.price.toLocaleString()}円</td>
+                    <td className="py-3 px-2 text-white text-right">
+                      {charge.price.toLocaleString()}円
+                    </td>
                     <td className="py-3 px-2 text-slate-400 text-right">{charge.expiryDate}</td>
                   </tr>
                 ))}

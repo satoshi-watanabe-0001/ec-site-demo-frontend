@@ -108,7 +108,10 @@ export default function PlanChangePage(): React.ReactElement {
 
       {/* エラーメッセージ */}
       {error && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm"
+          role="alert"
+        >
           {error}
         </div>
       )}
@@ -267,8 +270,7 @@ export default function PlanChangePage(): React.ReactElement {
             <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
               <p className="text-sm text-yellow-400">
                 ※ プラン変更後、元のプランに戻す場合は再度お手続きが必要です。
-                <br />
-                ※ 適用タイミングにより料金の日割り計算が行われる場合があります。
+                <br />※ 適用タイミングにより料金の日割り計算が行われる場合があります。
               </p>
             </div>
           </div>
@@ -281,11 +283,7 @@ export default function PlanChangePage(): React.ReactElement {
             >
               {isSubmitting ? '処理中...' : 'プランを変更する'}
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => setShowConfirm(false)}
-              disabled={isSubmitting}
-            >
+            <Button variant="outline" onClick={() => setShowConfirm(false)} disabled={isSubmitting}>
               戻る
             </Button>
           </div>

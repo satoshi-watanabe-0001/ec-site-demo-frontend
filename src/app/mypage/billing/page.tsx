@@ -76,7 +76,10 @@ export default function BillingPage(): React.ReactElement {
 
         <div className="space-y-3 mb-4">
           {billing.currentMonth.items.map((item, index) => (
-            <div key={index} className="flex justify-between items-center py-2 border-b border-slate-700/50">
+            <div
+              key={index}
+              className="flex justify-between items-center py-2 border-b border-slate-700/50"
+            >
               <span className="text-slate-300">{item.name}</span>
               <span className="text-white font-medium">{item.amount.toLocaleString()}円</span>
             </div>
@@ -91,10 +94,12 @@ export default function BillingPage(): React.ReactElement {
         </div>
 
         {billing.currentMonth.differenceFromLastMonth !== 0 && (
-          <p className={cn(
-            'text-sm mt-2 text-right',
-            billing.currentMonth.differenceFromLastMonth > 0 ? 'text-red-400' : 'text-green-400'
-          )}>
+          <p
+            className={cn(
+              'text-sm mt-2 text-right',
+              billing.currentMonth.differenceFromLastMonth > 0 ? 'text-red-400' : 'text-green-400'
+            )}
+          >
             先月比: {billing.currentMonth.differenceFromLastMonth > 0 ? '+' : ''}
             {billing.currentMonth.differenceFromLastMonth.toLocaleString()}円
           </p>

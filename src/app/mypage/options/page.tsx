@@ -86,9 +86,7 @@ export default function OptionsPage(): React.ReactElement {
       const message = await subscribeOption(optionId)
       setSuccessMessage(message)
       // ローカル状態を更新
-      setOptions(prev =>
-        prev.map(o => (o.id === optionId ? { ...o, isSubscribed: true } : o))
-      )
+      setOptions(prev => prev.map(o => (o.id === optionId ? { ...o, isSubscribed: true } : o)))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'オプションの追加に失敗しました')
     } finally {
@@ -108,9 +106,7 @@ export default function OptionsPage(): React.ReactElement {
       const message = await unsubscribeOption(optionId)
       setSuccessMessage(message)
       // ローカル状態を更新
-      setOptions(prev =>
-        prev.map(o => (o.id === optionId ? { ...o, isSubscribed: false } : o))
-      )
+      setOptions(prev => prev.map(o => (o.id === optionId ? { ...o, isSubscribed: false } : o)))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'オプションの解除に失敗しました')
     } finally {
@@ -158,7 +154,10 @@ export default function OptionsPage(): React.ReactElement {
 
       {/* エラーメッセージ */}
       {error && (
-        <div className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm" role="alert">
+        <div
+          className="rounded-md bg-red-500/10 border border-red-500 p-4 text-red-400 text-sm"
+          role="alert"
+        >
           {error}
         </div>
       )}
@@ -168,7 +167,9 @@ export default function OptionsPage(): React.ReactElement {
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <Package className="h-5 w-5 text-orange-500" />
           契約中のオプション
-          <span className="text-sm text-slate-400 font-normal">（{subscribedOptions.length}件）</span>
+          <span className="text-sm text-slate-400 font-normal">
+            （{subscribedOptions.length}件）
+          </span>
         </h2>
 
         {subscribedOptions.length > 0 ? (
@@ -227,7 +228,9 @@ export default function OptionsPage(): React.ReactElement {
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <Plus className="h-5 w-5 text-blue-500" />
           利用可能なオプション
-          <span className="text-sm text-slate-400 font-normal">（{availableOptions.length}件）</span>
+          <span className="text-sm text-slate-400 font-normal">
+            （{availableOptions.length}件）
+          </span>
         </h2>
 
         <div className="space-y-3">
