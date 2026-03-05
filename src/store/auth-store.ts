@@ -72,6 +72,10 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
+        // アクセストークンをlocalStorageから削除
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('access-token')
+        }
         set({
           user: null,
           isAuthenticated: false,

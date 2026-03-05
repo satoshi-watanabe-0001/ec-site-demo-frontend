@@ -96,6 +96,9 @@ export function LoginForm({ selectedEmail }: LoginFormProps): React.ReactElement
         rememberMe: data.rememberMe,
       })
 
+      // アクセストークンをlocalStorageに保存（accountServiceで使用）
+      localStorage.setItem('access-token', response.accessToken)
+
       // 認証ストアにユーザー情報を保存（バックエンドから返されるnameを使用）
       login({
         id: response.user.id,
