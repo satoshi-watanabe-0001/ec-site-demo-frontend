@@ -25,7 +25,7 @@ export function MSWProvider({
 }: {
   children: React.ReactNode
 }): React.ReactElement | null {
-  const [isReady, setIsReady] = useState(false)
+  const [isReady, setIsReady] = useState(process.env.NODE_ENV !== 'development')
 
   useEffect(() => {
     enableMocking().then(() => {
