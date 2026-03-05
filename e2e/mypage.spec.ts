@@ -361,7 +361,7 @@ test.describe('マイページ サブページ遷移 (EC-278)', () => {
     await page.waitForURL('/mypage/billing')
     const billingPage = new BillingPage(page)
     const title = await billingPage.getPageTitle()
-    expect(title).toBe('請求情報')
+    expect(title).toBe('請求・お支払い')
   })
 
   test('設定ページに遷移できる', async ({ page }) => {
