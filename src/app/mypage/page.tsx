@@ -180,13 +180,15 @@ export default function MypageDashboard(): React.ReactElement {
                     先月より +{data.billingSummary.difference.toLocaleString()}円
                   </span>
                 </>
-              ) : (
+              ) : data.billingSummary.difference < 0 ? (
                 <>
                   <TrendingDown className="h-4 w-4 text-green-400" />
                   <span className="text-green-400">
                     先月より {data.billingSummary.difference.toLocaleString()}円
                   </span>
                 </>
+              ) : (
+                <span className="text-slate-400">先月と同額</span>
               )}
             </div>
           </div>
