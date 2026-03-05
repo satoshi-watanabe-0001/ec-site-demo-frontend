@@ -7,7 +7,6 @@
  * - AAA（Arrange-Act-Assert）パターン
  */
 
-import React from 'react'
 import { renderHook } from '@testing-library/react'
 import { useActivePath, useActivePathMap } from '../use-active-path'
 
