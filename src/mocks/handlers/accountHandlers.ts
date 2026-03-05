@@ -122,6 +122,7 @@ const mockContractInfo: ContractInfo = {
   currentPlanId: 'ahamo-basic',
   currentPlanName: 'ahamo',
   subscribedOptionIds: ['kakehodai'],
+  subscribedOptionNames: ['かけ放題オプション'],
 }
 
 /**

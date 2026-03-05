@@ -48,7 +48,7 @@ function DailyUsageChart({ data }: { data: DailyDataUsage[] }): React.ReactEleme
  * 月別データ使用量チャートコンポーネント
  */
 function MonthlyUsageChart({ data }: { data: MonthlyDataUsage[] }): React.ReactElement {
-  const maxCapacity = Math.max(...data.map(d => d.capacityGb))
+  const maxCapacity = Math.max(...data.map(d => d.capacityGb), 1)
 
   return (
     <div className="space-y-3">

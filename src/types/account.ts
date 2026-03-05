@@ -34,6 +34,8 @@ export interface ContractInfo {
   currentPlanName: string
   /** 契約中のオプションID一覧 */
   subscribedOptionIds: string[]
+  /** 契約中のオプション名一覧 */
+  subscribedOptionNames: string[]
 }
 
 /**

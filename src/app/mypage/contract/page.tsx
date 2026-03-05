@@ -126,8 +126,8 @@ export default function ContractPage(): React.ReactElement {
             icon={FileText}
             label="契約中のオプション"
             value={
-              contract.subscribedOptionIds.length > 0
-                ? contract.subscribedOptionIds.join('、')
+              contract.subscribedOptionNames.length > 0
+                ? contract.subscribedOptionNames.join('、')
                 : 'なし'
             }
           />
