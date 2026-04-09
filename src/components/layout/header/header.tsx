@@ -100,6 +100,8 @@ export function Header({ className }: HeaderProps): React.ReactElement {
         'sticky top-0 z-50 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 shadow-lg border-b border-slate-700',
         className
       )}
+      itemScope
+      itemType="https://schema.org/SiteNavigationElement"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
