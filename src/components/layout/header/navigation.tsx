@@ -62,9 +62,7 @@ function NavLink({
         isMobile
           ? 'py-2 px-4 rounded-lg hover:bg-slate-700 block'
           : 'hover:text-white pb-1 border-b-2',
-        isActive
-          ? 'text-white border-orange-500'
-          : 'text-gray-300 border-transparent'
+        isActive ? 'text-white border-orange-500' : 'text-gray-300 border-transparent'
       )}
       aria-current={isActive ? 'page' : undefined}
     >
