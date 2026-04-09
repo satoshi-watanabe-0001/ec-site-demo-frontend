@@ -28,12 +28,12 @@ describe('UserActions', () => {
       mockUseAuthStore.mockReturnValue({ isAuthenticated: false })
     })
 
-    test('UserActions_WhenNotAuthenticated_ShouldRenderSignupButton', () => {
+    test('UserActions_WhenNotAuthenticated_ShouldRenderApplyButton', () => {
       // Arrange & Act
       render(<UserActions />)
 
       // Assert
-      expect(screen.getByText('新規登録')).toBeInTheDocument()
+      expect(screen.getByText('申し込み')).toBeInTheDocument()
     })
 
     test('UserActions_WhenNotAuthenticated_ShouldRenderLoginButton', () => {
@@ -44,13 +44,13 @@ describe('UserActions', () => {
       expect(screen.getByText('ログイン')).toBeInTheDocument()
     })
 
-    test('UserActions_WhenNotAuthenticated_ShouldLinkToSignupPage', () => {
+    test('UserActions_WhenNotAuthenticated_ShouldLinkToApplyPage', () => {
       // Arrange & Act
       render(<UserActions />)
 
       // Assert
-      const signupLink = screen.getByText('新規登録').closest('a')
-      expect(signupLink).toHaveAttribute('href', '/signup')
+      const applyLink = screen.getByText('申し込み').closest('a')
+      expect(applyLink).toHaveAttribute('href', '/apply')
     })
 
     test('UserActions_WhenNotAuthenticated_ShouldLinkToLoginPage', () => {
@@ -76,12 +76,12 @@ describe('UserActions', () => {
       expect(screen.getByText('マイページ')).toBeInTheDocument()
     })
 
-    test('UserActions_WhenAuthenticated_ShouldNotRenderSignupButton', () => {
+    test('UserActions_WhenAuthenticated_ShouldNotRenderApplyButton', () => {
       // Arrange & Act
       render(<UserActions />)
 
       // Assert
-      expect(screen.queryByText('新規登録')).not.toBeInTheDocument()
+      expect(screen.queryByText('申し込み')).not.toBeInTheDocument()
     })
 
     test('UserActions_WhenAuthenticated_ShouldNotRenderLoginButton', () => {

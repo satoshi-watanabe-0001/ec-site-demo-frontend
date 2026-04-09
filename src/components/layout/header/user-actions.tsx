@@ -68,7 +68,7 @@ export function UserActions({ className, isMobile = false }: UserActionsProps): 
     <div
       className={cn('flex items-center', isMobile ? 'flex-col space-y-3' : 'space-x-3', className)}
     >
-      <Link href="/signup">
+      <Link href="/apply">
         <GradientButton
           className={cn(
             'shadow-md hover:shadow-lg',
@@ -76,7 +76,7 @@ export function UserActions({ className, isMobile = false }: UserActionsProps): 
           )}
           size="sm"
         >
-          新規登録
+          申し込み
         </GradientButton>
       </Link>
       <Link href="/login">
